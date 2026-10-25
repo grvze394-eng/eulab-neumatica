@@ -5,15 +5,15 @@
   <meta name="keywords" content="Online Pneumatic Simulator Schematic Picuino Open-source">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="eulab-version" content="1.4.0">
+  <meta name="eulab-version" content="1.5.0">
   <meta name="description" content="Interactive pneumatic circuit simulator designed for secondary school students and teachers. Build, test, and visualize pneumatic systems online. Free, accurate, and ready for classroom use. By Picuino.">
-  <title>EuLab Neumática v1.4.0 · basado en Picuino</title>
+  <title>EuLab Electroneumática v1.5.0 · basado en Picuino</title>
 
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
   <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
 
-  <link rel="canonical" href="https://www.picuino.com/neumatic/index.html">
+  <!-- EuLab derivado de Picuino; créditos y licencia GPL conservados. -->
 
   <style>
   body {
@@ -271,7 +271,7 @@
   }
 
 
-/* EuLab Neumática: interfaz sobre el motor original de Picuino */
+/* EuLab Electroneumática: interfaz sobre el motor original de Picuino */
 :root { --eulab-side: 310px; }
 #eulab-sidebar {position:fixed;z-index:800;top:35px;bottom:0;left:0;width:var(--eulab-side);background:#fff;border-right:1px solid #d6dce5;box-sizing:border-box;overflow:auto;box-shadow:2px 0 8px #0b25400c;font-size:13px}
 #eulab-sidebar .eu-head {position:sticky;top:0;background:#12314a;color:white;padding:13px 14px;z-index:1}
@@ -324,7 +324,7 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 @media(max-width:850px){#eulab-sidebar{top:74px}}
 
 
-/* EuLab 1.4 — ajustes de componentes neumáticos */
+/* EuLab 1.5 — ajustes de componentes neumáticos */
 #eu-props {max-width:min(460px,95vw);width:420px;border:1px solid #aac6d5;border-radius:12px;padding:0;box-shadow:0 16px 55px #11283d55;color:#17364e;background:#fff}
 #eu-props::backdrop{background:#0c263b66}
 .eu-props-head{background:#12314a;color:white;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:15px}
@@ -343,6 +343,76 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 #eu-props-error{padding:0 18px;color:#ac2431;font-size:12px}
 #eulab-sidebar .eu-head .eu-hint{display:block;font-size:11px;color:#c5dfed;margin-top:6px}
 #eu-help{position:sticky;bottom:0;background:#f4f9fd;border-top:1px solid #bfd6e5;color:#2c5067;font-size:11px;line-height:1.45;padding:9px 11px}
+
+/* EuLab v1.5: tablero eléctrico independiente conectado a las electroválvulas. */
+#eulab-electric-open{position:fixed;z-index:1006;top:2px;left:600px;height:30px;padding:0 12px;border:1px solid #cbab60;border-radius:5px;color:#744b00;background:#fff5d7;cursor:pointer;font-size:13px;font-weight:700}
+#eu-electric-panel[hidden]{display:none!important}
+#eu-electric-panel{position:fixed;z-index:1200;right:0;left:min(37vw,530px);top:35px;bottom:0;display:flex;flex-direction:column;background:#fff;border-left:2px solid #7b99ad;box-shadow:-10px 0 25px #08243d33;font-family:Arial,sans-serif;color:#17354b}
+#eu-e-header{display:flex;gap:10px;align-items:center;justify-content:space-between;padding:9px 12px;background:#12314a;color:white;flex:none}
+#eu-e-header strong{font-size:16px}#eu-e-header small{font-size:11px;color:#c1d7e8;display:block;margin-top:2px}
+#eu-e-header button{border-radius:5px;padding:8px 12px;background:white;color:#153448;cursor:pointer;border:0;font-weight:650}
+#eu-e-workspace{display:grid;grid-template-columns:175px minmax(0,1fr);min-height:0;flex:1}
+#eu-e-library{padding:9px;border-right:1px solid #cbd7e0;overflow-y:auto;background:#f7fbff}
+#eu-e-library h3{font-size:11px;letter-spacing:.07em;color:#527087;margin:12px 0 5px;text-transform:uppercase}
+#eu-e-library button{display:block;width:100%;text-align:left;white-space:normal;border:1px solid #d8e3eb;border-radius:7px;margin:4px 0;background:#fff;color:#17354b;cursor:pointer;padding:9px 7px;font-size:12px}
+#eu-e-library button:focus-visible,#eu-e-library button:hover,#eu-e-library button.eu-active{background:#dbedf9;border-color:#3485b1;outline:none}
+#eu-e-library .eu-tool-line{display:flex;gap:5px;flex-wrap:wrap}
+#eu-e-library .eu-tool-line button{width:auto;flex:1;min-width:58px;text-align:center}
+#eu-e-surface{display:flex;flex-direction:column;min-width:0;min-height:0}
+#eu-e-board{width:100%;height:100%;min-height:190px;background:#fff;touch-action:none;cursor:crosshair;display:block;user-select:none}
+#eu-e-footer{padding:8px 10px;border-top:1px solid #d9e3eb;background:#f8fcff;color:#315066;flex:none;font-size:11px;line-height:1.5}
+#eu-e-status{font-weight:700;display:flex;gap:8px;flex-wrap:wrap;color:#285773}
+#eu-e-status span{border-radius:5px;padding:3px 6px;background:#e8eff6}
+#eu-e-status span.eu-live{background:#d1fae5;color:#14532d}
+#eu-e-message{padding-top:5px;min-height:1.2em}
+#eu-e-cylinder{margin-top:5px;display:flex;align-items:center;gap:8px}
+#eu-e-cylinder-track{width:120px;height:9px;background:#ddeaf3;border-radius:6px;overflow:hidden}
+#eu-e-cylinder-fill{height:100%;background:#2481a5;width:0%}
+#eu-e-board .eu-el-symbol{cursor:grab;touch-action:none}
+#eu-e-board .eu-el-symbol text{font-family:Arial,sans-serif;user-select:none}
+#eu-e-board .eu-el-port{cursor:crosshair;stroke:#118ac3;stroke-width:1.5;fill:#fff}
+#eu-e-board .eu-el-port:hover{fill:#ffb74d;stroke:#a05b00;stroke-width:3}
+#eu-e-board .eu-el-wire{fill:none;stroke:#44515d;stroke-width:2.8;stroke-linejoin:round;pointer-events:stroke}
+#eu-e-board .eu-el-wire.powered{stroke:#c24232}
+#eu-e-board .eu-el-wire.grounded{stroke:#1679b2}
+#eu-e-board .eu-el-label{font-size:12px;fill:#223c50;font-weight:bold;pointer-events:none}
+#eu-e-board .eu-el-component{fill:white;stroke:#253849;stroke-width:2.6}
+#eu-e-board .eu-el-component.on{stroke:#12804c;stroke-width:3.5}
+#eu-e-board .eu-el-component.test-active{fill:#d0f4df}
+#eu-e-board .eu-el-symbol.selected .eu-el-component{stroke:#e18e11}
+#eu-e-board .eu-el-grid{pointer-events:none}
+@media(max-width:1150px){#eulab-electric-open{left:auto;right:112px}#eu-electric-panel{left:0}}
+@media(max-width:650px){#eu-electric-panel{top:73px}#eu-e-header strong{font-size:13px}#eu-e-workspace{grid-template-columns:1fr;grid-template-rows:auto minmax(0,1fr)}#eu-e-library{display:flex;flex-wrap:nowrap;gap:5px;overflow-x:auto;overflow-y:hidden;padding:6px}#eu-e-library h3{display:none}#eu-e-library button{flex:0 0 auto;width:110px;margin:1px;font-size:11px;padding:8px 7px}#eu-e-library .eu-tool-line{display:contents}#eu-e-library .eu-tool-line button{min-width:75px;flex:0 0 auto}#eulab-electric-open{top:39px;right:130px;z-index:1002;font-size:11px;padding:0 5px}}
+
+#eu-e-nav{display:none;gap:3px;position:absolute;right:8px;bottom:102px;z-index:3;background:#ffffffdf;border:1px solid #c8dce8;border-radius:7px;padding:4px;box-shadow:0 3px 12px #14394c22}
+#eu-e-nav button{border:1px solid #acc8d8;background:#fff;color:#204a63;border-radius:5px;padding:6px 9px;cursor:pointer}
+@media(max-width:650px){
+ #eu-e-header{gap:5px;padding:6px 7px}
+ #eu-e-header div{min-width:0;flex:1}
+ #eu-e-header strong{font-size:12px;line-height:1.15}
+ #eu-e-header small{display:none}
+ #eu-e-header button{flex:none;font-size:10px;padding:6px;white-space:nowrap}
+ #eu-e-nav{display:flex;bottom:105px}
+ #eu-e-footer{font-size:10px;padding:6px}
+ #eu-e-cylinder{margin-top:3px}
+}
+
+/* El SVG consume solo el espacio restante: el estado y los controles siempre visibles. */
+#eu-e-surface{position:relative;min-height:0;min-width:0;overflow:hidden}
+#eu-e-board{height:0;min-height:0;flex:1 1 auto}
+#eu-e-footer{flex:0 0 auto}
+@media(max-width:650px){#eu-e-header>div{overflow:hidden}#eu-e-header>div strong{display:block;white-space:normal}#eu-e-header button{min-width:95px;max-width:112px;white-space:normal}}
+@media(max-width:650px){
+ #eu-electric-panel{left:0;right:auto;top:73px;bottom:auto;width:100vw;max-width:100vw;height:calc(100dvh - 73px);max-height:calc(100dvh - 73px);min-width:0;overflow:hidden;box-sizing:border-box}
+ #eu-e-header,#eu-e-workspace,#eu-e-surface{box-sizing:border-box;min-width:0;width:100%;max-width:100%}
+ #eu-e-header{flex:0 0 auto}
+ #eu-e-workspace{height:0;min-height:0;flex:1 1 auto;overflow:hidden}
+ #eu-e-library{min-width:0;max-width:100%;box-sizing:border-box}
+ #eu-e-surface{min-height:0;height:100%;overflow:hidden}
+ #eu-e-board{flex:1 1 auto;min-height:0;height:0;max-height:100%}
+ #eu-e-footer{max-height:116px;overflow:auto;word-break:normal}
+ #eu-e-nav{right:5px;bottom:119px}
+}
 
   </style>
 </head>
@@ -518,11 +588,64 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 
   <button type="button" id="eulab-toggle" aria-controls="eulab-sidebar" aria-expanded="true">☰ Componentes</button>
   <aside id="eulab-sidebar" aria-label="Biblioteca neumática">
-    <div class="eu-head"><strong>EuLab · Neumática v1.4.0</strong><small>Motor Picuino · componentes EuLab</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
+    <div class="eu-head"><strong>EuLab · Electroneumática v1.5.0</strong><small>Motor Picuino · componentes EuLab</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
     <div id="eulab-catalog"></div>
 <div id="eu-help">Para configurar: <strong>doble clic</strong> o <strong>Editar → Opciones</strong>. El regulador ajusta presión (bar); el estrangulador ajusta caudal (0–100 %).</div>
     <div class="eu-foot">Elige un componente y toca el lienzo para insertarlo. Usa «Tubería» para conectar puertos. Simulación y símbolos originales de Picuino, GPL-3.0-or-later.</div>
   </aside>
+
+<button id="eulab-electric-open" type="button" aria-controls="eu-electric-panel" aria-expanded="false">⚡ Electricidad 24 V</button>
+<section id="eu-electric-panel" hidden aria-label="Editor eléctrico de EuLab">
+  <div id="eu-e-header"><div><strong>⚡ EuLab · Circuito eléctrico 24 V CC</strong><small>Editor independiente conectado a electroválvulas Y1/Y2 · IEC esquemático</small></div><button id="eu-e-close" type="button">✕ Volver a neumática</button></div>
+  <div id="eu-e-workspace">
+    <aside id="eu-e-library" aria-label="Símbolos eléctricos">
+      <h3>Herramientas</h3><div class="eu-tool-line">
+      <button type="button" data-eu-tool="select" class="eu-active">Mover</button>
+      <button type="button" data-eu-tool="wire">Cable</button>
+      <button type="button" data-eu-tool="test">Probar</button>
+      <button type="button" data-eu-tool="erase">Borrar</button></div>
+      <h3>Alimentación</h3>
+      <button type="button" data-eu-add="plus">⊕ Fuente +24 V</button>
+      <button type="button" data-eu-add="zero">⊖ Retorno 0 V</button>
+      <h3>Mandos y finales de carrera</h3>
+      <button type="button" data-eu-add="no">Contacto NA · pulsador</button>
+      <button type="button" data-eu-add="nc">Contacto NC · pulsador</button>
+      <button type="button" data-eu-add="limit0">B0 · cilindro retraído</button>
+      <button type="button" data-eu-add="limit1">B1 · cilindro extendido</button>
+      <h3>Relés auxiliares</h3>
+      <button type="button" data-eu-add="relayK1">Bobina K1</button>
+      <button type="button" data-eu-add="contactK1">Contacto K1 NA</button>
+      <button type="button" data-eu-add="contactK1nc">Contacto K1 NC</button>
+      <button type="button" data-eu-add="relayK2">Bobina K2</button>
+      <button type="button" data-eu-add="contactK2">Contacto K2 NA</button>
+      <h3>Salidas</h3>
+      <button type="button" data-eu-add="solY1">Bobina Y1 · electroválvula</button>
+      <button type="button" data-eu-add="solY2">Bobina Y2 · electroválvula</button>
+      <button type="button" data-eu-add="lampH1">Lámpara H1</button>
+      <h3>Prácticas</h3>
+      <button type="button" id="eu-e-demo">Cargar ejemplo completo</button>
+      <button type="button" id="eu-e-clear">Vaciar circuito eléctrico</button>
+      <button type="button" id="eu-e-undo">Deshacer (eléctrico)</button>
+    </aside>
+    <div id="eu-e-surface">
+      <div id="eu-e-nav" aria-label="Navegación del diagrama eléctrico">
+        <button type="button" data-eu-nav="left" aria-label="Desplazar a la izquierda">◀</button>
+        <button type="button" data-eu-nav="right" aria-label="Desplazar a la derecha">▶</button>
+        <button type="button" data-eu-nav="up" aria-label="Desplazar arriba">▲</button>
+        <button type="button" data-eu-nav="down" aria-label="Desplazar abajo">▼</button>
+        <button type="button" data-eu-nav="zoomIn" aria-label="Acercar">＋</button>
+        <button type="button" data-eu-nav="zoomOut" aria-label="Alejar">−</button>
+      </div>
+      <svg id="eu-e-board" viewBox="0 0 1060 650" preserveAspectRatio="xMinYMin meet" aria-label="Lienzo eléctrico interactivo" role="img"></svg>
+      <div id="eu-e-footer">
+        <div id="eu-e-status" aria-live="polite"><span>Y1 0 V</span><span>Y2 0 V</span></div>
+        <div id="eu-e-message" aria-live="polite">Selecciona un símbolo, tócalo en el lienzo y conecta sus bornes con «Cable».</div>
+        <div id="eu-e-cylinder"><span>Cilindro</span><div id="eu-e-cylinder-track"><div id="eu-e-cylinder-fill"></div></div><span id="eu-e-cylinder-percent">0 %</span></div>
+        <div>En «Probar», mantén presionado S1/S2. Alimentación ideal y lógica de 24 V CC; sin cálculo de corrientes ni protecciones reales.</div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <canvas id="canvas" class="canvas"></canvas>
 
@@ -698,7 +821,7 @@ function createGhostComponent(position) {
     Compressor, Manometer, Escape, Cylinder1, Cylinder2,
     Valve22m, Valve32b, Valve32m, Valve32p, Valve32r, Roller,
     Valve52m, Valve52p, ValveNret, ValveFlow, ValveOr, ValveAnd,
-    AirReservoir, ValveOneWayFlow, PressureRegulator, ValveSequence, ValveTimer
+    AirReservoir, ValveOneWayFlow, PressureRegulator, ValveSequence, ValveTimer, Valve52e, Valve52es, Valve32e
   };
   const Ctor = constructors[componentType];
   if (Ctor) return new Ctor(position);
@@ -1000,6 +1123,9 @@ document.addEventListener("click", (e) => {
     cRegulator: () => {simulationStop();drawMode='component';componentType='PressureRegulator';},
     cSequence: () => {simulationStop();drawMode='component';componentType='ValveSequence';},
     cTimer: () => {simulationStop();drawMode='component';componentType='ValveTimer';},
+    cValve52e: () => {simulationStop(); drawMode='component'; componentType='Valve52e';},
+    cValve52es: () => {simulationStop(); drawMode='component'; componentType='Valve52es';},
+    cValve32e: () => {simulationStop(); drawMode='component'; componentType='Valve32e';},
     cCylinder1: () => { simulationStop(); drawMode='component'; componentType='Cylinder1'; },
     cCylinder2: () => { simulationStop(); drawMode='component'; componentType='Cylinder2'; },
 
@@ -3899,6 +4025,101 @@ class Node {
 }
 
 
+
+// EuLab v1.5 — distribuidoras de accionamiento eléctrico.
+// Las conexiones neumáticas siguen perteneciendo íntegramente al motor Picuino.
+class Valve52e extends Valve52p {
+ constructor(pos){super(pos);this.type='Valve52e';this.options={leftCoil:'Y1',rightCoil:'Y2'};}
+ validateOptions(){if(!['Y1','Y2'].includes(this.options.leftCoil))this.options.leftCoil='Y1';if(!['Y1','Y2'].includes(this.options.rightCoil))this.options.rightCoil='Y2';}
+ vias(){return super.vias().slice(0,5);}
+ reset(){super.reset();}
+ near(pos){return this.nearRect(this.x-116,this.y-56,this.x+65,this.y+6,pos);}
+ update(ctx,engine,dt){
+  const values=window.euElectricBoard?.outputs||{};
+  const l=!!values[this.options.leftCoil],r=!!values[this.options.rightCoil];
+  if(l&&!r)this.active=true;
+  else if(r&&!l)this.active=false;
+  // Ambas bobinas energizadas: conserva posición y muestra advertencia en panel.
+  const ns=this.vias().map(v=>engine.findNode(v));
+  if(ns.some(n=>!n))return;
+  const [P,R1,R2,A,B]=ns;
+  if(this.shift.pos===this.shift.min){this.computeFlow(P,B,this.conductance,dt);this.computeFlow(A,R1,this.conductance,dt);}
+  if(this.shift.pos===this.shift.max){this.computeFlow(P,A,this.conductance,dt);this.computeFlow(B,R2,this.conductance,dt);}
+  const goal=this.active?this.shift.max:this.shift.min;
+  this.shift.pos=goal>this.shift.pos?Math.min(goal,this.shift.pos+this.shift.speed*dt):Math.max(goal,this.shift.pos-this.shift.speed*dt);
+  [this.color1,this.color2,this.color3,this.color4,this.color5]=ns.map(n=>this.colorPressure(n.pressure));
+ }
+ draw(ctx){
+  const vs=this.vias();
+  const colors=[this.color1,this.color2,this.color3,this.color4,this.color5];
+  vs.forEach((p,i)=>this.drawPort(ctx,p.x,p.y,0,i>=3?10:-10,colors[i]));
+  const x=this.x,y=this.y,s=this.shift.pos;
+  // Dos casillas normalizadas para las posiciones de la distribuidora.
+  ctx.lineWidth=lineWidth;ctx.strokeStyle=this.selected?selectedColor:defaultColor;
+  ctx.strokeRect(x-90,y-40,60,30);ctx.strokeRect(x-30,y-40,60,30);
+  // Paso P->A/B y conexiones a escape según la posición, con flechas.
+  this.drawArrow(ctx,x-74,y-11,x-74,y-39);
+  this.drawArrow(ctx,x-51,y-38,x-35,y-12);
+  this.drawArrow(ctx,x+1,y-12,x+20,y-39);
+  this.drawArrow(ctx,x-20,y-39,x-20,y-12);
+  this.drawTap(ctx,x-53,y-10,x-53,y-19);
+  this.drawTap(ctx,x+20,y-10,x+20,y-19);
+  // Bobinas eléctricas IEC-like, sin pilotos neumáticos falsos.
+  const leftOn=!!window.euElectricBoard?.outputs[this.options.leftCoil];
+  const rightOn=!!window.euElectricBoard?.outputs[this.options.rightCoil];
+  ctx.strokeStyle=leftOn?'#15803d':(this.selected?selectedColor:defaultColor);
+  ctx.strokeRect(x-113,y-37,20,24);ctx.beginPath();ctx.moveTo(x-110,y-16);ctx.lineTo(x-96,y-34);ctx.stroke();
+  ctx.strokeStyle=rightOn?'#15803d':(this.selected?selectedColor:defaultColor);
+  ctx.strokeRect(x+33,y-37,20,24);ctx.beginPath();ctx.moveTo(x+36,y-16);ctx.lineTo(x+50,y-34);ctx.stroke();
+  ctx.fillStyle=this.selected?selectedColor:'#19384f';ctx.font='11px sans-serif';ctx.textAlign='center';
+  ctx.fillText(this.options.leftCoil,x-102,y-45);ctx.fillText(this.options.rightCoil,x+43,y-45);
+  ctx.textAlign='start';
+ }
+}
+class Valve52es extends Valve52e {
+ constructor(pos){super(pos);this.type='Valve52es';this.options={leftCoil:'Y1',rightCoil:'Y2'};}
+ update(ctx,engine,dt){
+  const on=!!window.euElectricBoard?.outputs[this.options.leftCoil];
+  this.active=on;
+  const ns=this.vias().map(v=>engine.findNode(v));if(ns.some(n=>!n))return;
+  const [P,R1,R2,A,B]=ns;
+  if(this.shift.pos===this.shift.min){this.computeFlow(P,B,this.conductance,dt);this.computeFlow(A,R1,this.conductance,dt);}
+  if(this.shift.pos===this.shift.max){this.computeFlow(P,A,this.conductance,dt);this.computeFlow(B,R2,this.conductance,dt);}
+  const goal=this.active?this.shift.max:this.shift.min;
+  this.shift.pos=goal>this.shift.pos?Math.min(goal,this.shift.pos+this.shift.speed*dt):Math.max(goal,this.shift.pos-this.shift.speed*dt);
+  [this.color1,this.color2,this.color3,this.color4,this.color5]=ns.map(n=>this.colorPressure(n.pressure));
+ }
+ draw(ctx){super.draw(ctx);const x=this.x,y=this.y;
+  ctx.strokeStyle=this.selected?selectedColor:defaultColor;ctx.fillStyle='#fff';ctx.fillRect(x+32,y-39,24,27);ctx.strokeRect(x+32,y-39,24,27);
+  this.drawSpring(ctx,x+34,y-24);ctx.font='10px sans-serif';ctx.fillStyle='#19384f';ctx.fillText('M',x+58,y-20);
+ }
+}
+class Valve32e extends Valve32b {
+ constructor(pos){super(pos);this.type='Valve32e';this.options={flipped:false,coil:'Y1'};}
+ validateOptions(){if(!['Y1','Y2'].includes(this.options.coil))this.options.coil='Y1';}
+ nearPushButton(){return false;}
+ update(ctx,engine,dt){
+  this.active=!!window.euElectricBoard?.outputs[this.options.coil];
+  const ns=this.vias().map(v=>engine.findNode(v));if(ns.some(n=>!n))return;
+  const [P,A,R]=ns;
+  if(this.shift.pos===this.shift.min)this.computeFlow(A,R,this.conductance,dt);
+  if(this.shift.pos===this.shift.max)this.computeFlow(P,A,this.conductance,dt);
+  const goal=this.active?this.shift.max:this.shift.min;
+  this.shift.pos=goal>this.shift.pos?Math.min(goal,this.shift.pos+this.shift.speed*dt):Math.max(goal,this.shift.pos-this.shift.speed*dt);
+  [this.color1,this.color2,this.color3]=ns.map(n=>this.colorPressure(n.pressure));
+ }
+ draw(ctx){
+  super.draw(ctx);
+  const x=this.x,y=this.y,s=this.shift.pos;
+  // Sustituye el mando del pulsador por una bobina eléctrica.
+  ctx.fillStyle='#fff';ctx.fillRect(x-87+s,y-44,37,33);
+  const powered=!!window.euElectricBoard?.outputs[this.options.coil];
+  ctx.lineWidth=lineWidth;ctx.strokeStyle=powered?'#15803d':(this.selected?selectedColor:defaultColor);
+  ctx.strokeRect(x-72+s,y-35,18,22);ctx.beginPath();ctx.moveTo(x-69+s,y-16);ctx.lineTo(x-57+s,y-33);ctx.stroke();
+  ctx.fillStyle='#19384f';ctx.font='10px sans-serif';ctx.fillText(this.options.coil,x-76+s,y-45);
+ }
+}
+
 class Engine {
 
   constructor() {
@@ -3909,6 +4130,7 @@ class Engine {
   }
 
   render(dt) {
+    window.euElectricBoard?.tick(dt);
     for (const comp of this.components) {
       comp.update(this.ctx, this, dt);
     }
@@ -4682,7 +4904,7 @@ class UIController {
             optionsOpened = true;
             break;
           }
-          if (['ValveFlow','ValveOneWayFlow','AirReservoir','PressureRegulator','ValveSequence','ValveTimer'].includes(comp.type)) {
+          if (['Valve52e','Valve52es','Valve32e','ValveFlow','ValveOneWayFlow','AirReservoir','PressureRegulator','ValveSequence','ValveTimer'].includes(comp.type)) {
             euOpenConfigDialog(comp);
             optionsOpened = true;
             break;
@@ -4773,6 +4995,9 @@ class UIController {
       if (componentType === 'Valve42m') comp = new Valve42m(position);
       if (componentType === 'Valve52m') comp = new Valve52m(position);
       if (componentType === 'Valve52p') comp = new Valve52p(position);
+      if (componentType === 'Valve52e') comp = new Valve52e(position);
+      if (componentType === 'Valve52es') comp = new Valve52es(position);
+      if (componentType === 'Valve32e') comp = new Valve32e(position);
       if (componentType === 'ValveNret') comp = new ValveNret(position);
       if (componentType === 'ValveFlow') comp = new ValveFlow(position);
       if (componentType === 'AirReservoir') comp = new AirReservoir(position);
@@ -4817,7 +5042,7 @@ class UIController {
 
       // EuLab: inserción única de componentes configurables. Evita que un
       // doble clic posterior inserte copias sobrepuestas del mismo símbolo.
-      if (comp && ['ValveFlow','AirReservoir','ValveOneWayFlow','PressureRegulator','ValveSequence','ValveTimer'].includes(componentType)) {
+      if (comp && ['Valve52e','Valve52es','Valve32e','ValveFlow','AirReservoir','ValveOneWayFlow','PressureRegulator','ValveSequence','ValveTimer'].includes(componentType)) {
         drawMode = null; componentType = null; ghostComponent = null;
       } else if (componentType !== 'Pipe' && componentType !== 'Text') {
         ghostComponent = createGhostComponent(position);
@@ -5119,6 +5344,7 @@ function aboutWindowShow() {
 function resetEditor() {
    if (engine.components.length > 0) pushUndo();
    engine.reset();
+   window.euElectricBoard?.load(null);
    renderer.draw();
 }
 
@@ -5150,6 +5376,9 @@ function createComponentFromData(data) {
   else if (data.type === 'Valve42m')   comp = new Valve42m(pos);
   else if (data.type === 'Valve52m')   comp = new Valve52m(pos);
   else if (data.type === 'Valve52p')   comp = new Valve52p(pos);
+  else if (data.type === 'Valve52e') comp = new Valve52e(pos);
+  else if (data.type === 'Valve52es') comp = new Valve52es(pos);
+  else if (data.type === 'Valve32e') comp = new Valve32e(pos);
   else if (data.type === 'ValveFlow')  comp = new ValveFlow(pos);
   else if (data.type === 'AirReservoir') comp = new AirReservoir(pos);
   else if (data.type === 'ValveOneWayFlow') comp = new ValveOneWayFlow(pos);
@@ -5246,6 +5475,7 @@ function loadSchema(schematicJSON) {
   const data = JSON.parse(schematicJSON);
   const header = data.slice(0, 1)[0];
   const schematic = data.slice(1, -1);
+  window.euPendingElectrical=schematic.find(c=>c.type==='EuLabElectrical')?.data||null;
   const footer = data.slice(-1)[0];
   const hashData = cyrb53(JSON.stringify(data.slice(0, -1)));
   if (footer.hash !== hashData) {
@@ -5268,6 +5498,12 @@ function loadSchema(schematicJSON) {
     if (comp.type === 'Valve42m')   newcomp = new Valve42m({x:comp.x, y:comp.y});
     if (comp.type === 'Valve52m')   newcomp = new Valve52m({x:comp.x, y:comp.y});
     if (comp.type === 'Valve52p')   newcomp = new Valve52p({x:comp.x, y:comp.y});
+    if (comp.type === 'Valve52e') newcomp = new Valve52e({x:comp.x, y:comp.y});
+    if (comp.type === 'Valve52es') newcomp = new Valve52es({x:comp.x, y:comp.y});
+    if (comp.type === 'Valve32e') newcomp = new Valve32e({x:comp.x, y:comp.y});
+    if (comp.type === 'Valve52e') newcomp = new Valve52e({x:comp.x, y:comp.y});
+    if (comp.type === 'Valve52es') newcomp = new Valve52es({x:comp.x, y:comp.y});
+    if (comp.type === 'Valve32e') newcomp = new Valve32e({x:comp.x, y:comp.y});
     if (comp.type === 'ValveFlow')  newcomp = new ValveFlow({x:comp.x, y:comp.y});
     if (comp.type === 'AirReservoir') newcomp = new AirReservoir({x:comp.x,y:comp.y});
     if (comp.type === 'ValveOneWayFlow') newcomp = new ValveOneWayFlow({x:comp.x,y:comp.y});
@@ -5306,6 +5542,7 @@ async function openSchema() {
       pushUndo();
       engine.components = components;
       engine.createNodes();
+      window.euElectricBoard?.load(window.euPendingElectrical);
       renderer.draw();
     }
   };
@@ -5327,6 +5564,7 @@ async function openFile(filename) {
       pushUndo();
       engine.components = components;
       engine.createNodes();
+      window.euElectricBoard?.load(window.euPendingElectrical);
       renderer.draw();
     }
   } catch (error) {
@@ -5390,6 +5628,7 @@ function saveSchema(rol) {
     }
     schematic.push(data);
   }
+  if(window.euElectricBoard)schematic.push({type:'EuLabElectrical',version:1,data:window.euElectricBoard.snapshot()});
   schematicJSON = JSON.stringify(schematic);
   const hash = cyrb53(schematicJSON);
   schematic.push({type:'hash', hash});
@@ -5631,6 +5870,7 @@ function simulationReset() {
   for (const comp of engine.components) {
     comp.reset();
   }
+  window.euElectricBoard?.resetRuntime();
   engine.createNodes();
   renderer.draw();
   updateSimToolbar();
@@ -5982,6 +6222,7 @@ function closeConfirm() {
   ['Control de presión y tiempo',['cSequence','cTimer']],
   ['Válvulas distribuidoras',['cValve22m','cValve32b','cValve32m','cValve32r','cRoller','cValve32p','cValve42m','cValve52m','cValve52p']],
   ['Lógica neumática',['cValveOr','cValveAnd']],
+  ['Electroválvulas',['cValve52e','cValve52es','cValve32e']],
   ['Actuadores',['cCylinder1','cCylinder2']],
   ['Alimentación y medición',['cPress','cEscape','cManometer']],
   ['Conexión y anotaciones',['cPipe','cText']]
@@ -5992,6 +6233,7 @@ function closeConfirm() {
   cValve42m:Valve42m,cValve52m:Valve52m,cValve52p:Valve52p,
   cValveNret:ValveNret,cValveFlow:ValveFlow,cValveOr:ValveOr,cValveAnd:ValveAnd,
   cReservoir:AirReservoir,cOneWayFlow:ValveOneWayFlow,cRegulator:PressureRegulator,cSequence:ValveSequence,cTimer:ValveTimer,
+  cValve52e:Valve52e,cValve52es:Valve52es,cValve32e:Valve32e,
   cCylinder1:Cylinder1,cCylinder2:Cylinder2,cPress:Compressor,
   cEscape:Escape,cManometer:Manometer
  };
@@ -6013,7 +6255,7 @@ function closeConfirm() {
     const Klass=classes[action];if(!Klass)throw new Error('Componente no identificado');
     const isCylinder=action.startsWith('cCylinder');
     const isValve=action.startsWith('cValve');
-    const longValve=action==='cValve52m'||action==='cValve52p';
+    const longValve=['cValve52m','cValve52p','cValve52e','cValve52es'].includes(action);
     const isControl=['cSequence','cTimer'].includes(action);
     const isRegulator=action==='cRegulator';
     const isTank=action==='cReservoir';
@@ -6030,7 +6272,7 @@ function closeConfirm() {
   }
   return canvas;
  }
- const euLabels={cRegulator:'Regulador de presión ajustable',cReservoir:'Depósito neumático',cOneWayFlow:'Estranguladora + antirretorno',cSequence:'Válvula de secuencia',cTimer:'Válvula temporizadora'};
+ const euLabels={cValve52e:'Electroválvula 5/2 biestable · Y1/Y2',cValve52es:'Electroválvula 5/2 monoestable · Y1',cValve32e:'Electroválvula 3/2 · Y1',cRegulator:'Regulador de presión ajustable',cReservoir:'Depósito neumático',cOneWayFlow:'Estranguladora + antirretorno',cSequence:'Válvula de secuencia',cTimer:'Válvula temporizadora'};
  const allButtons=[];
  categories.forEach(([name,actions],index)=>{
   const group=document.createElement('details');group.className='eu-group';group.open=index===0;
@@ -6039,7 +6281,7 @@ function closeConfirm() {
   const items=document.createElement('div');items.className='eu-items';
   actions.forEach(action=>{
    const original=document.querySelector('.menu-item [data-action="'+action+'"]');
-   if(!original && !['cRegulator','cReservoir','cOneWayFlow','cSequence','cTimer'].includes(action))return;
+   if(!original && !['cValve52e','cValve52es','cValve32e','cRegulator','cReservoir','cOneWayFlow','cSequence','cTimer'].includes(action))return;
    const btn=document.createElement('button');btn.type='button';btn.className='eu-item';btn.dataset.action=action;
    const label=document.createElement('span');label.className='eu-label';
    label.textContent=euLabels[action] || (typeof translations!=='undefined' && translations.es && translations.es[action]) || original.textContent.trim();
@@ -6078,15 +6320,18 @@ function closeConfirm() {
  function updateButton(){ const open=document.body.classList.contains('eu-sidebar-open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'✕ Componentes':'☰ Componentes'; }
  toggle.addEventListener('click',()=>{document.body.classList.toggle('eu-sidebar-open');document.body.classList.toggle('eu-sidebar-closed');updateButton();window.dispatchEvent(new Event('resize'))});
  document.body.classList.add(matchMedia('(max-width:850px)').matches?'eu-sidebar-closed':'eu-sidebar-open');updateButton();
- console.info('[EuLab] Biblioteca con símbolos dibujados por clases de Picuino, versión 1.4.0');
+ console.info('[EuLab] Biblioteca con símbolos dibujados por clases de Picuino, versión 1.5.0');
 })();
 </script>
 
 <script>
-// EuLab 1.4 — controles tipo FluidSIM: doble clic o Editar → Opciones.
+// EuLab 1.5 — controles tipo FluidSIM: doble clic o Editar → Opciones.
 let euConfigComponent=null;
-const euPropLabels={PressureRegulator:'Regulador de presión ajustable',ValveFlow:'Estranguladora',ValveOneWayFlow:'Estranguladora unidireccional',AirReservoir:'Depósito de aire',ValveSequence:'Válvula de secuencia',ValveTimer:'Válvula temporizadora'};
+const euPropLabels={Valve52e:'Electroválvula 5/2 biestable',Valve52es:'Electroválvula 5/2 monoestable',Valve32e:'Electroválvula 3/2',PressureRegulator:'Regulador de presión ajustable',ValveFlow:'Estranguladora',ValveOneWayFlow:'Estranguladora unidireccional',AirReservoir:'Depósito de aire',ValveSequence:'Válvula de secuencia',ValveTimer:'Válvula temporizadora'};
 const euPropDefinitions={
+ leftCoil:{label:'Bobina izquierda',choices:[['Y1','Y1'],['Y2','Y2']],help:'Nombre de la salida eléctrica que conmuta hacia avance.'},
+ rightCoil:{label:'Bobina derecha',choices:[['Y1','Y1'],['Y2','Y2']],help:'Salida eléctrica para retroceso. Solo para 5/2 biestable.'},
+ coil:{label:'Bobina de mando',choices:[['Y1','Y1'],['Y2','Y2']],help:'Electroimán asignado a la salida del circuito eléctrico.'},
  setpointBar:{label:'Presión de salida regulada (bar relativos)',min:0,max:6,step:0.1,help:'Controla la presión en A. Ajusta este valor antes del pilotaje Z de la válvula de secuencia.'},
  openingPct:{label:'Apertura (%)',min:0,max:100,step:1,help:'100 % = paso libre (conductancia de tubería). 0 % = cerrado.'},
  volumeCm3:{label:'Volumen del depósito (cm³)',min:20,max:5000,step:10,help:'Cuanto mayor es el volumen, más lentamente se acumula presión.'},
@@ -6101,7 +6346,10 @@ function euOpenConfigDialog(comp){
  document.getElementById('eu-props-error').textContent='';
  const fields=document.getElementById('eu-props-fields');fields.textContent='';
  let keys;
- if(comp.type==='PressureRegulator')keys=['setpointBar'];
+ if(comp.type==='Valve52e')keys=['leftCoil','rightCoil'];
+ else if(comp.type==='Valve52es')keys=['leftCoil'];
+ else if(comp.type==='Valve32e')keys=['coil'];
+ else if(comp.type==='PressureRegulator')keys=['setpointBar'];
  else if(comp.type==='ValveFlow')keys=['openingPct'];
  else if(comp.type==='ValveOneWayFlow')keys=['openingPct','freeDirection'];
  else if(comp.type==='AirReservoir')keys=['volumeCm3'];
@@ -6156,5 +6404,229 @@ canvas.addEventListener('dblclick',(e)=>{
 });
 </script>
 
+<script>
+/* EuLab Electroneumática v1.5 — controlador eléctrico 24 V CC.
+   Extensión educativa independiente del motor físico de Picuino.
+   Wires are anchored by component ID and terminal index, never by loose pixels.
+   Las bobinas Y1/Y2 son salidas lógicas de 24 V, NO modelado de corriente. */
+class EuElectricalBoard {
+ constructor(){
+  this.svg=document.getElementById('eu-e-board');this.overlay=document.getElementById('eu-electric-panel');
+  this.parts=[];this.wires=[];this.nextId=1;this.outputs={Y1:false,Y2:false,K1:false,K2:false,H1:false};
+  this.mode='select';this.addType=null;this.startPort=null;this.hover=null;this.drag=null;this.activeTouches=new Map();this.pendingRender=false;
+  this.view={x:0,y:0,w:1060,h:650};this.viewSet=false;
+  this.elapsed=0;this.wireLive=new Set();this.wireZero=new Set();this.warning='';this.undo=[];this.previewPoint=null;
+  this.types={plus:'Fuente +24 V',zero:'Retorno 0 V',no:'Pulsador NA',nc:'Pulsador NC',
+   limit0:'B0 retraído',limit1:'B1 extendido',relayK1:'K1',relayK2:'K2',
+   contactK1:'K1 NA',contactK1nc:'K1 NC',contactK2:'K2 NA',solY1:'Y1',solY2:'Y2',lampH1:'H1'};
+  this.svg.addEventListener('pointerdown',e=>this.onDown(e));
+  this.svg.addEventListener('pointermove',e=>this.onMove(e));
+  this.svg.addEventListener('pointerup',e=>this.onUp(e));
+  this.svg.addEventListener('pointercancel',e=>this.onUp(e));
+  this.svg.addEventListener('click',e=>{if(this.pendingRender){this.pendingRender=false;this.draw();}if(e.target.closest('[data-eu-terminal]'))e.stopPropagation()});
+  document.querySelectorAll('[data-eu-add]').forEach(b=>b.addEventListener('click',()=>{
+   this.addType=b.dataset.euAdd;this.setMode('add');this.message('Selecciona un lugar del lienzo para insertar «'+this.types[this.addType]+'».');
+  }));
+  document.querySelectorAll('[data-eu-tool]').forEach(b=>b.addEventListener('click',()=>this.setMode(b.dataset.euTool)));
+  document.getElementById('eulab-electric-open').addEventListener('click',()=>this.open());
+  document.getElementById('eu-e-close').addEventListener('click',()=>this.close());
+  document.getElementById('eu-e-demo').addEventListener('click',()=>this.demo());
+  document.querySelectorAll('[data-eu-nav]').forEach(b=>b.addEventListener('click',()=>this.navigate(b.dataset.euNav)));
+  window.addEventListener('resize',()=>this.configureView(false));
+  document.getElementById('eu-e-clear').addEventListener('click',()=>{if(confirm('¿Vaciar el circuito eléctrico?')){this.remember();this.load(null,false)}});
+  document.getElementById('eu-e-undo').addEventListener('click',()=>{if(this.undo.length)this.load(this.undo.pop(),false)});
+  this.draw();
+ }
+ setMode(mode){this.mode=mode;this.startPort=null;this.drag=null;
+  document.querySelectorAll('[data-eu-tool]').forEach(b=>b.classList.toggle('eu-active',b.dataset.euTool===mode));
+  document.querySelectorAll('[data-eu-add]').forEach(b=>b.classList.toggle('eu-active',mode==='add'&&b.dataset.euAdd===this.addType));
+  this.message({wire:'Cable: toca dos bornes; el codo será ortogonal.',test:'Prueba: mantén pulsados los contactos S1/S2.',select:'Mueve componentes arrastrándolos; los cables permanecerán conectados.',erase:'Borrar: toca un componente o cable.',add:'Toca el lienzo para insertar.'}[mode]||'');this.draw();
+ }
+ message(t){document.getElementById('eu-e-message').textContent=t;}
+ open(){this.overlay.hidden=false;document.getElementById('eulab-electric-open').setAttribute('aria-expanded','true');
+  this.configureView(false);this.draw();this.message('Dibuja, conecta y prueba el mando eléctrico. La neumática sigue funcionando en el mismo proyecto.');}
+ configureView(force=false){const mobile=window.innerWidth<=650;const targetW=mobile?600:1060,targetH=mobile?850:650;
+  if(force||!this.viewSet||this.view.w===1060&&mobile||this.view.w===600&&!mobile){this.view={x:0,y:0,w:targetW,h:targetH};this.viewSet=true;}
+  this.svg.setAttribute('viewBox',`${this.view.x} ${this.view.y} ${this.view.w} ${this.view.h}`);
+ }
+ navigate(action){const v=this.view,step=190;
+  if(action==='left')v.x=Math.max(0,v.x-step);if(action==='right')v.x=Math.min(1060-v.w,v.x+step);
+  if(action==='up')v.y=Math.max(0,v.y-150);if(action==='down')v.y=Math.min(Math.max(0,650-v.h),v.y+150);
+  if(action==='zoomIn'||action==='zoomOut'){const f=action==='zoomIn'?.8:1.25;v.w=Math.max(360,Math.min(1060,Math.round(v.w*f)));v.h=Math.max(420,Math.min(900,Math.round(v.h*f)));v.x=Math.max(0,Math.min(1060-v.w,v.x));v.y=Math.max(0,Math.min(Math.max(0,650-v.h),v.y));}
+  this.svg.setAttribute('viewBox',`${v.x} ${v.y} ${v.w} ${v.h}`);this.message('Vista desplazada: los cables y conexiones conservan su geometría.');
+ }
+ close(){this.overlay.hidden=true;document.getElementById('eulab-electric-open').setAttribute('aria-expanded','false');
+  this.drag=null;this.activeTouches.clear();this.parts.forEach(p=>p.pressed=false);this.solve();renderer.draw();}
+ round(v){return Math.round(v/10)*10;}
+ point(evt){const p=this.svg.createSVGPoint();p.x=evt.clientX;p.y=evt.clientY;
+  const m=this.svg.getScreenCTM();if(!m)return {x:200,y:200};
+  const q=p.matrixTransform(m.inverse());return {x:this.round(q.x),y:this.round(q.y)};}
+ add(type,x,y){const part={id:'E'+this.nextId++,type,x:this.round(x),y:this.round(y),pressed:false};this.parts.push(part);return part;}
+ pin(part,port){if(part.type==='plus')return {x:part.x+39,y:part.y};
+  if(part.type==='zero')return {x:part.x-39,y:part.y};
+  return {x:part.x+(port===0?-42:42),y:part.y};}
+ part(id){return this.parts.find(p=>p.id===id);}
+ portKey(ref){return ref.id+':'+ref.port;}
+ findPortNear(x,y,limit=16){let best=null,d=limit*limit;
+  for(const p of this.parts)for(let i=0;i<(p.type==='plus'||p.type==='zero'?1:2);i++){
+   const q=this.pin(p,i),delta=(q.x-x)**2+(q.y-y)**2;
+   if(delta<=d){best={id:p.id,port:i};d=delta;}}
+  return best;}
+ remember(){this.undo.push(this.snapshot());if(this.undo.length>40)this.undo.shift();}
+ snapshot(){return {parts:this.parts.map(({id,type,x,y})=>({id,type,x,y})),wires:this.wires.map(w=>({a:{...w.a},b:{...w.b},bend:w.bend})),nextId:this.nextId};}
+ load(saved,clearHistory=true){
+  const okTypes=new Set(Object.keys(this.types));
+  this.parts=(Array.isArray(saved?.parts)?saved.parts:[]).filter(p=>okTypes.has(p.type)&&/^E\d{1,6}$/.test(String(p.id))&&Number.isFinite(+p.x)&&Number.isFinite(+p.y)).slice(0,200).map(p=>({id:p.id,type:p.type,x:this.round(+p.x),y:this.round(+p.y),pressed:false}));
+  this.wires=(Array.isArray(saved?.wires)?saved.wires:[]).filter(w=>w.a&&w.b&&this.part(w.a.id)&&this.part(w.b.id)&&[0,1].includes(w.a.port)&&[0,1].includes(w.b.port)).slice(0,600).map(w=>({a:{id:w.a.id,port:w.a.port},b:{id:w.b.id,port:w.b.port},bend:w.bend==='vh'?'vh':'hv'}));
+  this.nextId=Math.max(1,Number.isFinite(+saved?.nextId)?+saved.nextId:1,...this.parts.map(p=>Number(p.id.slice(1))+1));
+  if(clearHistory)this.undo=[];
+  this.startPort=null;this.drag=null;this.resetRuntime();this.draw();
+ }
+ resetRuntime(){this.activeTouches.clear();this.parts.forEach(p=>p.pressed=false);this.outputs={Y1:false,Y2:false,K1:false,K2:false,H1:false};this.warning='';this.elapsed=0;this.solve();}
+ bind(a,b){if(a.id===b.id&&a.port===b.port)return;
+  if(this.wires.some(w=>(this.portKey(w.a)===this.portKey(a)&&this.portKey(w.b)===this.portKey(b))||(this.portKey(w.a)===this.portKey(b)&&this.portKey(w.b)===this.portKey(a))))return;
+  this.wires.push({a:{...a},b:{...b},bend:'hv'});}
+ onDown(e){if(e.button!==0)return;const pt=this.point(e);
+  const portEl=e.target.closest('[data-eu-terminal]');const symbolEl=e.target.closest('[data-eu-part]');const wireEl=e.target.closest('[data-eu-wire]');
+  const ref=portEl?{id:portEl.dataset.euTerminal,port:Number(portEl.dataset.euPin)}:this.findPortNear(pt.x,pt.y,10);
+  if(this.mode==='wire'){
+   if(!ref){this.message('Acércate a un borne circular para conectar.');return;}
+   if(!this.startPort){this.startPort=ref;this.message('Primer borne seleccionado; toca el segundo.');}
+   else {this.remember();this.bind(this.startPort,ref);this.startPort=null;this.message('Cable colocado. Los bornes quedan anclados al componente.');this.solve();}
+   if(this.startPort)this.drawWirePreview();else this.pendingRender=true;return;
+  }
+  if(this.mode==='add'){
+   if(ref||symbolEl)return;
+   this.remember();this.add(this.addType,pt.x,pt.y);this.setMode('select');this.solve();return;
+  }
+  if(this.mode==='erase'){
+   if(wireEl){const idx=Number(wireEl.dataset.euWire);if(this.wires[idx]){this.remember();this.wires.splice(idx,1)}}
+   else if(symbolEl){const id=symbolEl.dataset.euPart;this.remember();this.parts=this.parts.filter(p=>p.id!==id);this.wires=this.wires.filter(w=>w.a.id!==id&&w.b.id!==id)}
+   this.solve();this.draw();return;
+  }
+  if(!symbolEl)return;
+  const part=this.part(symbolEl.dataset.euPart);if(!part)return;
+  if(this.mode==='test'){
+   if(part.type==='no'||part.type==='nc'){part.pressed=true;this.activeTouches.set(e.pointerId,part.id);this.solve();symbolEl.classList.add('eu-pressed');this.svg.setPointerCapture(e.pointerId);}
+   return;
+  }
+  if(this.mode==='select'){
+   this.remember();this.drag={id:part.id,dx:pt.x-part.x,dy:pt.y-part.y};this.svg.setPointerCapture(e.pointerId);
+   return;
+  }
+ }
+ onMove(e){const pt=this.point(e);this.previewPoint=pt;
+  if(this.drag?.id){const p=this.part(this.drag.id);if(p){p.x=this.round(pt.x-this.drag.dx);p.y=this.round(pt.y-this.drag.dy);this.draw()}}
+  else if(this.mode==='wire'&&this.startPort){this.drawWirePreview();}
+ }
+ onUp(e){const id=this.activeTouches.get(e.pointerId);if(id){this.activeTouches.delete(e.pointerId);const p=this.part(id);if(p&&!Array.from(this.activeTouches.values()).includes(id))p.pressed=false;this.solve();this.svg.querySelector('[data-eu-part="'+id+'"]')?.classList.remove('eu-pressed');}
+  this.drag=null;}
+ // Closed contacts are conductive edges; coils and lamps are loads, not short-circuit wires.
+ closed(part,relays){const name=part.type;
+  if(name==='no')return part.pressed;
+  if(name==='nc')return !part.pressed;
+  if(name==='limit0'||name==='limit1'){
+   const c=engine.components.find(c=>['Cylinder1','Cylinder2'].includes(c.type));if(!c)return false;
+   const stroke=c.position.max-c.position.min;
+   return name==='limit0'?c.position.actual<=c.position.min+stroke*.02:c.position.actual>=c.position.max-stroke*.02;
+  }
+  if(name==='contactK1')return !!relays.K1;
+  if(name==='contactK1nc')return !relays.K1;
+  if(name==='contactK2')return !!relays.K2;
+  return false;
+ }
+ calc(relays){
+  const parent=new Map();const find=x=>{if(!parent.has(x))parent.set(x,x);const p=parent.get(x);if(p!==x)parent.set(x,find(p));return parent.get(x)};
+  const union=(x,y)=>{const a=find(x),b=find(y);if(a!==b)parent.set(a,b)};
+  for(const w of this.wires)if(this.part(w.a.id)&&this.part(w.b.id))union(this.portKey(w.a),this.portKey(w.b));
+  for(const p of this.parts)if(this.closed(p,relays))union(p.id+':0',p.id+':1');
+  const positive=new Set(this.parts.filter(p=>p.type==='plus').map(p=>find(p.id+':0')));
+  const negative=new Set(this.parts.filter(p=>p.type==='zero').map(p=>find(p.id+':0')));
+  const powered=(a,b)=>positive.has(find(a))&&negative.has(find(b))||positive.has(find(b))&&negative.has(find(a));
+  const out={Y1:false,Y2:false,K1:false,K2:false,H1:false};
+  const matches={relayK1:'K1',relayK2:'K2',solY1:'Y1',solY2:'Y2',lampH1:'H1'};
+  for(const p of this.parts)if(matches[p.type]&&powered(p.id+':0',p.id+':1'))out[matches[p.type]]=true;
+  let short=false;for(const value of positive)if(negative.has(value))short=true;
+  return {out,positive,negative,find,short};
+ }
+ solve(){
+  let relays={K1:this.outputs.K1,K2:this.outputs.K2},result=null;
+  for(let i=0;i<6;i++){
+   result=this.calc(relays);
+   if(result.out.K1===relays.K1&&result.out.K2===relays.K2)break;
+   relays={K1:result.out.K1,K2:result.out.K2};
+  }
+  result=this.calc(relays);
+  const out=result.short?{Y1:false,Y2:false,K1:false,K2:false,H1:false}:result.out;
+  this.outputs=out;
+  this.wireLive=new Set();this.wireZero=new Set();
+  for(let i=0;i<this.wires.length;i++){
+   const key=this.portKey(this.wires[i].a),root=result.find(key);
+   if(result.positive.has(root))this.wireLive.add(i);
+   if(result.negative.has(root))this.wireZero.add(i);
+  }
+  this.warning=result.short?'CORTOCIRCUITO: +24 V unido a 0 V. Se desactivan las salidas.':
+    (out.Y1&&out.Y2?'Y1 y Y2 energizadas a la vez: la válvula biestable conserva su posición.':'');
+  this.renderStatus();return out;
+ }
+ tick(dt){this.elapsed+=dt;if(this.elapsed<.012)return;this.elapsed=0;this.solve();}
+ renderStatus(){const list=document.getElementById('eu-e-status');
+  list.innerHTML=['Y1','Y2','K1','K2','H1'].map(k=>'<span class="'+(this.outputs[k]?'eu-live':'')+'">'+k+' '+(this.outputs[k]?'24 V':'0 V')+'</span>').join('');
+  const c=engine.components.find(c=>['Cylinder1','Cylinder2'].includes(c.type));const pct=c?Math.max(0,Math.min(100,100*(c.position.actual-c.position.min)/(c.position.max-c.position.min))):0;
+  document.getElementById('eu-e-cylinder-fill').style.width=pct.toFixed(1)+'%';document.getElementById('eu-e-cylinder-percent').textContent=pct.toFixed(0)+' %';
+  if(this.warning)this.message(this.warning);
+ }
+ drawWirePreview(){if(!this.startPort)return;const p=this.part(this.startPort.id);if(!p)return;const a=this.pin(p,this.startPort.port),b=this.previewPoint||a;let path=this.svg.querySelector('#eu-e-temp');if(!path){path=document.createElementNS('http://www.w3.org/2000/svg','path');path.id='eu-e-temp';path.setAttribute('stroke','#e7a232');path.setAttribute('stroke-width','2.4');path.setAttribute('stroke-dasharray','5 4');path.setAttribute('fill','none');path.style.pointerEvents='none';this.svg.append(path);}path.setAttribute('d',this.path(a,b,'hv'));}
+ path(a,b,bend){if(a.x===b.x||a.y===b.y)return `M ${a.x} ${a.y} L ${b.x} ${b.y}`;
+  return bend==='vh'?`M ${a.x} ${a.y} V ${b.y} H ${b.x}`:`M ${a.x} ${a.y} H ${b.x} V ${b.y}`;}
+ label(type,part){if(type==='no'||type==='nc'){const controls=this.parts.filter(p=>p.type==='no'||p.type==='nc');return 'S'+(1+controls.findIndex(p=>p.id===part.id))+' · '+(type==='no'?'NA':'NC');}return {plus:'+24 V',zero:'0 V',no:'S1 · NA',nc:'S2 · NC',limit0:'B0 · retraído',limit1:'B1 · extendido',relayK1:'K1 · bobina',relayK2:'K2 · bobina',contactK1:'K1 · NA',contactK1nc:'K1 · NC',contactK2:'K2 · NA',solY1:'Y1 · solenoide',solY2:'Y2 · solenoide',lampH1:'H1 · señal'}[type]||type;}
+ // IEC-style two-terminal schematic glyphs. SVG is independent from symbol assets of original Picuino.
+ glyph(p){const t=p.type,on=(t==='plus'||t==='zero')?false:(['no','nc','limit0','limit1','contactK1','contactK1nc','contactK2'].includes(t)?this.closed(p,this.outputs):!!this.outputs[{relayK1:'K1',relayK2:'K2',solY1:'Y1',solY2:'Y2',lampH1:'H1'}[t]]);
+  const extra=on?' on':'';let b='';
+  if(t==='plus'||t==='zero'){
+   b=`<circle class="eu-el-component" r="17"/><text text-anchor="middle" y="5" font-weight="bold" font-size="17" fill="#15354e">${t==='plus'?'+':'−'}</text><path d="M17 0 H39" stroke="#23384c" stroke-width="2.5"/>`;
+   if(t==='zero')b=`<circle class="eu-el-component" r="17"/><text text-anchor="middle" y="5" font-weight="bold" font-size="17" fill="#15354e">−</text><path d="M-39 0 H-17" stroke="#23384c" stroke-width="2.5"/>`;
+  } else {
+   b='<path d="M-42 0 H-19 M19 0 H42" stroke="#243949" stroke-width="2.3"/>';
+   if(['no','nc','limit0','limit1','contactK1','contactK1nc','contactK2'].includes(t)){
+    b+=`<path class="eu-el-component${extra}" d="M-15 -22 V22 M15 -22 V22" fill="none"/>`;
+    if(t==='nc'||t==='contactK1nc')b+='<path d="M-23 19 L24 -19" stroke="#273e4e" stroke-width="2.1"/>';
+    if(t==='limit0'||t==='limit1')b+='<path d="M-4 -28 L7 -34" stroke="#173b53" stroke-width="2"/><circle cx="9" cy="-35" r="5" fill="white" stroke="#173b53" stroke-width="1.5"/>';
+   }else if(t==='lampH1')b+=`<circle class="eu-el-component${extra}" r="20"/><path d="M-12 -12 L12 12 M12 -12 L-12 12" stroke="#1a3c52" stroke-width="2"/>`;
+   else b+=`<rect class="eu-el-component${extra}" x="-19" y="-21" width="38" height="42" rx="2"/><path d="M-13 14 L13 -14" stroke="#27485a" stroke-width="2"/>`;
+  }
+  return `<g class="eu-el-symbol" data-eu-part="${p.id}" transform="translate(${p.x} ${p.y})">
+    <text class="eu-el-label" x="0" y="-39" text-anchor="middle">${this.label(t,p)}</text>${b}<rect x="-32" y="-29" width="64" height="58" fill="transparent" style="pointer-events:all"/>
+    ${[0,...(t==='plus'||t==='zero'?[]:[1])].map(i=>{const q=this.pin(p,i);return `<circle class="eu-el-port" data-eu-terminal="${p.id}" data-eu-pin="${i}" cx="${q.x-p.x}" cy="${q.y-p.y}" r="7.5"/>`}).join('')}
+  </g>`;
+ }
+ draw(){if(this.overlay.hidden)return;
+  const svg=this.svg;
+  let str='<defs><pattern id="eu-e-dot" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="0.9" fill="#ccdce8"/></pattern></defs><rect x="0" y="0" width="1060" height="650" fill="url(#eu-e-dot)" class="eu-el-grid"/>';
+  this.wires.forEach((w,i)=>{const a=this.part(w.a.id),b=this.part(w.b.id);if(!a||!b)return;
+   const p=this.pin(a,w.a.port),q=this.pin(b,w.b.port);
+   const cls=this.wireLive.has(i)?' powered':(this.wireZero.has(i)?' grounded':'');
+   str+=`<path class="eu-el-wire${cls}" data-eu-wire="${i}" d="${this.path(p,q,w.bend)}"/>`;
+  });
+  if(this.startPort){const p=this.part(this.startPort.id);if(p){const a=this.pin(p,this.startPort.port),b=this.previewPoint||a;str+=`<path d="${this.path(a,b,'hv')}" stroke="#e7a232" stroke-width="2.4" stroke-dasharray="5 4" fill="none"/>`}}
+  this.parts.forEach(p=>str+=this.glyph(p));svg.innerHTML=str;
+  this.renderStatus();
+ }
+ demo(){if(engine.components.length&& !confirm('¿Reemplazar el circuito neumático actual por un ejemplo electroneumático completo?'))return;
+  simulationStop();this.remember();const v=new Valve52e({x:580,y:420}),c=new Cylinder2({x:540,y:150});
+  const P={x:580,y:420};engine.components=[v,c,new Compressor(P),new Escape({x:560,y:420}),new Escape({x:600,y:420}),
+   new Pipe({x:540,y:150},{x:540,y:300}),new Pipe({x:540,y:300},{x:560,y:300}),new Pipe({x:560,y:300},{x:560,y:370}),
+   new Pipe({x:650,y:150},{x:650,y:300}),new Pipe({x:650,y:300},{x:600,y:300}),new Pipe({x:600,y:300},{x:600,y:370})];
+  engine.createNodes();
+  this.load(null);
+  const plus=this.add('plus',100,130),zero=this.add('zero',940,130),s1=this.add('no',360,220),s2=this.add('no',360,410),y1=this.add('solY1',700,220),y2=this.add('solY2',700,410);
+  for(const [a,ap,b,bp] of [[plus,0,s1,0],[s1,1,y1,0],[y1,1,zero,0],[plus,0,s2,0],[s2,1,y2,0],[y2,1,zero,0]])this.bind({id:a.id,port:ap},{id:b.id,port:bp});
+  this.setMode('test');this.solve();renderer.draw();this.draw();
+  this.message('Ejemplo cargado: ejecuta ▶, mantén S1 para extender y S2 para retraer. Abre/cierra el panel para ver el cilindro.');
+ }
+}
+window.euElectricBoard = new EuElectricalBoard();
+
+</script>
 </body>
 </html>

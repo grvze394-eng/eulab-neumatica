@@ -5,9 +5,9 @@
   <meta name="keywords" content="Online Pneumatic Simulator Schematic Picuino Open-source">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="eulab-version" content="0.7.0">
+  <meta name="eulab-version" content="0.8.0">
   <meta name="description" content="Interactive pneumatic circuit simulator designed for secondary school students and teachers. Build, test, and visualize pneumatic systems online. Free, accurate, and ready for classroom use. By Picuino.">
-  <title>EuLab Neumática v0.7.0 · basado en Picuino</title>
+  <title>EuLab Neumática v0.8.0 · basado en Picuino</title>
 
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -497,7 +497,7 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 
   <button type="button" id="eulab-toggle" aria-controls="eulab-sidebar" aria-expanded="true">☰ Componentes</button>
   <aside id="eulab-sidebar" aria-label="Biblioteca neumática">
-    <div class="eu-head"><strong>EuLab · Neumática v0.7.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
+    <div class="eu-head"><strong>EuLab · Neumática v0.8.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
     <div id="eulab-catalog"></div>
     <div class="eu-foot">Elige un componente y toca el lienzo para insertarlo. Usa «Tubería» para conectar puertos. Simulación y símbolos originales de Picuino, GPL-3.0-or-later.</div>
   </aside>
@@ -3826,6 +3826,14 @@ class Renderer{
       ctx.restore();
     }
 
+    // Highlight connection port when a pipe is being placed or the cursor is near a port.
+    if (euHoveredPort) {
+      ctx.save();
+      ctx.strokeStyle='#0b8df4'; ctx.fillStyle='rgba(20,145,255,0.20)';
+      ctx.lineWidth=2/zoomLevel;
+      ctx.beginPath(); ctx.arc(euHoveredPort.x,euHoveredPort.y,8/zoomLevel,0,Math.PI*2);
+      ctx.fill();ctx.stroke();ctx.restore();
+    }
     ctx.restore();
 
     // Picuino Pneumatic Simulator banner
@@ -3865,6 +3873,52 @@ class Renderer{
 
 
 /*************************************************************************/
+
+// EuLab v0.8: keep pipe endpoints connected to the component ports.
+// Capture by original port coordinates, not by screen positions; this preserves
+// connectivity during a move without modifying Picuino's simulation engine.
+let euAttachments = [];
+let euHoveredPort = null;
+function euPortNear(pos, engine, exclude=null, radius=13) {
+  let best=null, dist=radius*radius;
+  for (const comp of engine.components) {
+    if (comp === exclude || comp.type === 'Pipe') continue;
+    for (const via of comp.vias()) {
+      const d=(via.x-pos.x)**2+(via.y-pos.y)**2;
+      if(d<dist) {dist=d; best={x:via.x,y:via.y,comp};}
+    }
+  }
+  return best;
+}
+function euBeginAttachedMove(engine, moving) {
+  const movingSet=new Set(moving.filter(c=>c.type!=='Pipe'));
+  const captures=[];
+  for (const comp of movingSet) {
+    const ports=comp.vias().map(p=>({x:p.x,y:p.y}));
+    for (const pipe of engine.components.filter(c=>c.type==='Pipe' && !moving.includes(c))) {
+      for (const end of ['init','end']) {
+        const p=pipe[end];
+        const idx=ports.findIndex(v=>v.x===p.x && v.y===p.y);
+        if(idx>=0) captures.push({comp,pipe,end,idx,old:{x:p.x,y:p.y}});
+      }
+    }
+  }
+  euAttachments=captures;
+}
+function euUpdateAttachedPipes() {
+  for(const a of euAttachments) {
+    const p=a.comp.vias()[a.idx];
+    if(!p) continue;
+    // Endpoints of pipes stay on the actual moved connection ports.
+    if(a.end==='init') a.pipe.moveInit(p);
+    else a.pipe.moveEnd(p);
+  }
+}
+function euResetAttached() {euAttachments=[];}
+function euSnapPort(pos, engine) {
+  const near=euPortNear(pos,engine);
+  return near ? {x:near.x,y:near.y} : pos;
+}
 
 class UIController {
   constructor(canvas, engine, renderer) {
@@ -4008,6 +4062,10 @@ class UIController {
       }
     }
 
+    for (const a of euAttachments) {
+      if(a.end==='init') a.pipe.moveInit(a.old); else a.pipe.moveEnd(a.old);
+    }
+    euResetAttached(); euHoveredPort=null;
     // Clear multi-select state
     this.engine.components.forEach(c => c.selected = false);
     selectionRect = null;
@@ -4061,6 +4119,7 @@ class UIController {
     }
 
     let position = this._getMousePos(e);
+    if(drawMode==='component' && componentType==='Pipe') position=euSnapPort(position,this.engine);
 
     // Activate manual valves
     for (const comp of this.engine.components) {
@@ -4243,6 +4302,7 @@ class UIController {
           const selected = this.engine.components.filter(c => c.selected);
           if (selected.length > 0) {
             pushUndo();
+            euBeginAttachedMove(this.engine, selected);
             isMultiDragging = true;
             multiDragOffset = selected.map(c => {
               if (c.type === 'Pipe') {
@@ -4280,6 +4340,8 @@ class UIController {
           this.positionMoveInit = {x:0, y:0};
           this.positionCompInit = {x:0, y:0};
         }
+        // Finalise connected pipe endpoints as well.
+        euUpdateAttachedPipes(); euResetAttached();
         // Finalise group members (already at correct position via _onMove)
         isMultiDragging = false;
         multiDragOffset = [];
@@ -4295,6 +4357,7 @@ class UIController {
           if (near) {
             pushUndo();
             componentMove = comp;
+            euBeginAttachedMove(this.engine,[comp]);
             this.positionMoveInit.x = position.x;
             this.positionMoveInit.y = position.y;
             this.positionCompInit.x = comp.x;
@@ -4341,6 +4404,11 @@ class UIController {
     }
 
     let position = this._getMousePos(e);
+    euHoveredPort = euPortNear(position,this.engine);
+    if (drawMode==='component' && componentType==='Pipe' && euHoveredPort) {
+      position={x:euHoveredPort.x,y:euHoveredPort.y};
+    }
+    if (!isMultiDragging && !componentMove && !selectionRect) this.renderer.draw();
 
     // Rubber-band update
     if (selectionRect) {
@@ -4361,6 +4429,7 @@ class UIController {
           c.move(position.x + offset.dx, position.y + offset.dy);
         }
       }
+      euUpdateAttachedPipes();
       this.renderer.draw();
       this.renderer.drawPosition(position);
       return;
@@ -4401,6 +4470,7 @@ class UIController {
           }
         }
       }
+      euUpdateAttachedPipes();
       this.renderer.draw();
     }
     this.renderer.drawPosition(position);
@@ -4416,6 +4486,7 @@ class UIController {
 
     // End multi-drag
     if (isMultiDragging) {
+      euUpdateAttachedPipes(); euResetAttached();
       isMultiDragging = false;
       multiDragOffset = [];
       this.renderer.draw();

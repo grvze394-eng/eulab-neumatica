@@ -5,9 +5,9 @@
   <meta name="keywords" content="Online Pneumatic Simulator Schematic Picuino Open-source">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="eulab-version" content="0.5.0">
+  <meta name="eulab-version" content="0.6.0">
   <meta name="description" content="Interactive pneumatic circuit simulator designed for secondary school students and teachers. Build, test, and visualize pneumatic systems online. Free, accurate, and ready for classroom use. By Picuino.">
-  <title>EuLab Neumática v0.5.0 · basado en Picuino</title>
+  <title>EuLab Neumática v0.6.0 · basado en Picuino</title>
 
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -272,17 +272,17 @@
 
 
 /* EuLab Neumática: interfaz sobre el motor original de Picuino */
-:root { --eulab-side: 292px; }
+:root { --eulab-side: 356px; }
 #eulab-sidebar {position:fixed;z-index:800;top:35px;bottom:0;left:0;width:var(--eulab-side);background:#fff;border-right:1px solid #d6dce5;box-sizing:border-box;overflow:auto;box-shadow:2px 0 8px #0b25400c;font-size:13px}
 #eulab-sidebar .eu-head {position:sticky;top:0;background:#12314a;color:white;padding:13px 14px;z-index:1}
 #eulab-sidebar .eu-head strong {display:block;font-size:17px;letter-spacing:.2px}
 #eulab-sidebar .eu-head small{display:block;color:#c7dfea;margin-top:4px;line-height:1.4}
 #eulab-sidebar .eu-group {border-bottom:1px solid #e5eaf0;padding:9px 10px 12px}
 #eulab-sidebar .eu-group h3{font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:#496176;margin:4px 0 8px}
-#eulab-sidebar .eu-item {cursor:pointer;box-sizing:border-box;width:100%;display:flex;align-items:center;text-align:left;background:white;border:1px solid transparent;border-radius:8px;min-height:66px;margin:3px 0;padding:7px;color:#1c3449;font-size:12px;gap:9px}
+#eulab-sidebar .eu-item {cursor:pointer;box-sizing:border-box;width:100%;display:flex;align-items:center;text-align:left;background:white;border:1px solid transparent;border-radius:8px;min-height:74px;margin:3px 0;padding:7px;color:#1c3449;font-size:13px;gap:10px}
 #eulab-sidebar .eu-item:hover,#eulab-sidebar .eu-item:focus-visible {background:#eaf4fa;border-color:#afd3e7}
 #eulab-sidebar .eu-item.eu-selected{background:#dceefa;border-color:#3786b3;font-weight:650}
-#eulab-sidebar .eu-symbol{display:block;flex:none;width:132px;height:58px;border:1px solid #d7e1e8;border-radius:5px;background:white}
+#eulab-sidebar .eu-symbol{display:block;flex:none;width:152px;height:64px;border:1px solid #d7e1e8;border-radius:5px;background:white}
 #eulab-sidebar .eu-label{line-height:1.27;min-width:0}
 #eulab-sidebar .eu-error{font-size:10px;color:#9a2b2b}
 #eulab-sidebar .eu-foot{padding:11px;line-height:1.4;color:#5f7281;font-size:11px}
@@ -294,7 +294,7 @@ body.eu-sidebar-open {overflow-x:hidden}
 body.eu-sidebar-closed #eulab-sidebar{display:none}
 body.eu-sidebar-closed #canvas{margin-left:0}
 @media(max-width:850px){
- #eulab-sidebar{width:min(82vw,285px);box-shadow:6px 0 22px #0003}
+ #eulab-sidebar{width:min(90vw,356px);box-shadow:6px 0 22px #0003}
  body.eu-sidebar-open #canvas{margin-left:0}
  #eulab-toggle{left:auto;right:10px;top:39px;z-index:1001;background:#fff}
  .menu-principal{padding-right:0!important}
@@ -475,7 +475,7 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 
   <button type="button" id="eulab-toggle" aria-controls="eulab-sidebar" aria-expanded="true">☰ EuLab · Componentes</button>
   <aside id="eulab-sidebar" aria-label="Biblioteca neumática">
-    <div class="eu-head"><strong>EuLab · Neumática v0.5.0</strong><small>Biblioteca de símbolos del simulador Picuino</small></div>
+    <div class="eu-head"><strong>EuLab · Neumática v0.6.0</strong><small>Biblioteca de símbolos del simulador Picuino</small></div>
     <div id="eulab-catalog"></div>
     <div class="eu-foot">Elige un componente y toca el lienzo para insertarlo. Usa «Tubería» para conectar puertos. Simulación y símbolos originales de Picuino, GPL-3.0-or-later.</div>
   </aside>
@@ -4007,7 +4007,7 @@ class UIController {
   _resizeCanvas(e) {
     const canvas = this.canvas;
     const ctx = canvas.getContext('2d');
-    const sidebarWidth = (document.body.classList.contains("eu-sidebar-open") && window.innerWidth > 850) ? 292 : 0;
+    const sidebarWidth = (document.body.classList.contains("eu-sidebar-open") && window.innerWidth > 850) ? 356 : 0;
     const width = (window.innerWidth-sidebarWidth)*canvasScale;
     const height = (window.innerHeight - 35)*canvasScale ;
     canvas.width  = (width < minCanvasWidth) ? minCanvasWidth : width;
@@ -5337,7 +5337,7 @@ function closeConfirm() {
  const catalog=document.getElementById('eulab-catalog');
  // Renderizado genuino: invocamos Component.draw() de Picuino sobre un canvas pequeño.
  function symbolPreview(action){
-  const canvas=document.createElement('canvas');canvas.width=264;canvas.height=116;
+  const canvas=document.createElement('canvas');canvas.width=304;canvas.height=128;
   canvas.className='eu-symbol';canvas.setAttribute('aria-hidden','true');
   const ctx=canvas.getContext('2d');
   ctx.setTransform(2,0,0,2,0,0);
@@ -5352,9 +5352,10 @@ function closeConfirm() {
     const Klass=classes[action];if(!Klass)throw new Error('Componente no identificado');
     const isCylinder=action.startsWith('cCylinder');
     const isValve=action.startsWith('cValve');
-    const k=isCylinder?0.43:(isValve?0.70:0.95);
+    const longValve=action==='cValve52m'||action==='cValve52p';
+    const k=isCylinder?0.48:(longValve?0.48:(isValve?0.74:0.95));
     // Anclajes elegidos para incluir en la miniatura actuadores y resortes.
-    ctx.translate(isCylinder?14:isValve?66:43,isCylinder?45:47);
+    ctx.translate(isCylinder?17:(longValve?86:(isValve?78:54)),isCylinder?48:51);
     ctx.scale(k,k);
     const comp=new Klass({x:0,y:0});
     comp.draw(ctx);
@@ -5373,8 +5374,8 @@ function closeConfirm() {
    if(!original)return;
    const btn=document.createElement('button');btn.type='button';btn.className='eu-item';btn.dataset.action=action;
    const label=document.createElement('span');label.className='eu-label';
-   label.textContent=(typeof translations!=='undefined' && translations[globalLang] && translations[globalLang][action]) || original.textContent.trim();
-   label.setAttribute('data-i18n',original.getAttribute('data-i18n')||action);
+   label.textContent=(typeof translations!=='undefined' && translations.es && translations.es[action]) || original.textContent.trim();
+   /* Catálogo fijo en español; el simulador original conserva sus propios idiomas. */
    btn.append(symbolPreview(action),label);group.append(btn);
    btn.addEventListener('click',()=>{
     catalog.querySelectorAll('.eu-item').forEach(b=>b.classList.remove('eu-selected'));
@@ -5387,7 +5388,7 @@ function closeConfirm() {
  function updateButton(){ const open=document.body.classList.contains('eu-sidebar-open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'✕ Componentes':'☰ Componentes'; }
  toggle.addEventListener('click',()=>{document.body.classList.toggle('eu-sidebar-open');document.body.classList.toggle('eu-sidebar-closed');updateButton();window.dispatchEvent(new Event('resize'))});
  document.body.classList.add(matchMedia('(max-width:850px)').matches?'eu-sidebar-closed':'eu-sidebar-open');updateButton();
- console.info('[EuLab] Biblioteca con símbolos dibujados por clases de Picuino, versión 0.5.0');
+ console.info('[EuLab] Biblioteca con símbolos dibujados por clases de Picuino, versión 0.6.0');
 })();
 </script>
 

@@ -5,9 +5,9 @@
   <meta name="keywords" content="Online Pneumatic Simulator Schematic Picuino Open-source">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="eulab-version" content="1.3.0">
+  <meta name="eulab-version" content="1.4.0">
   <meta name="description" content="Interactive pneumatic circuit simulator designed for secondary school students and teachers. Build, test, and visualize pneumatic systems online. Free, accurate, and ready for classroom use. By Picuino.">
-  <title>EuLab Neumática v1.3.0 · basado en Picuino</title>
+  <title>EuLab Neumática v1.4.0 · basado en Picuino</title>
 
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -324,7 +324,7 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 @media(max-width:850px){#eulab-sidebar{top:74px}}
 
 
-/* EuLab 1.3 — ajustes de componentes neumáticos */
+/* EuLab 1.4 — ajustes de componentes neumáticos */
 #eu-props {max-width:min(460px,95vw);width:420px;border:1px solid #aac6d5;border-radius:12px;padding:0;box-shadow:0 16px 55px #11283d55;color:#17364e;background:#fff}
 #eu-props::backdrop{background:#0c263b66}
 .eu-props-head{background:#12314a;color:white;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:15px}
@@ -518,9 +518,9 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 
   <button type="button" id="eulab-toggle" aria-controls="eulab-sidebar" aria-expanded="true">☰ Componentes</button>
   <aside id="eulab-sidebar" aria-label="Biblioteca neumática">
-    <div class="eu-head"><strong>EuLab · Neumática v1.3.0</strong><small>Motor Picuino · componentes EuLab</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
+    <div class="eu-head"><strong>EuLab · Neumática v1.4.0</strong><small>Motor Picuino · componentes EuLab</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
     <div id="eulab-catalog"></div>
-<div id="eu-help">Para configurar: <strong>doble clic</strong> en el símbolo o <strong>Editar → Opciones</strong>. La apertura del estrangulador va de 0 % a 100 %.</div>
+<div id="eu-help">Para configurar: <strong>doble clic</strong> o <strong>Editar → Opciones</strong>. El regulador ajusta presión (bar); el estrangulador ajusta caudal (0–100 %).</div>
     <div class="eu-foot">Elige un componente y toca el lienzo para insertarlo. Usa «Tubería» para conectar puertos. Simulación y símbolos originales de Picuino, GPL-3.0-or-later.</div>
   </aside>
 
@@ -698,7 +698,7 @@ function createGhostComponent(position) {
     Compressor, Manometer, Escape, Cylinder1, Cylinder2,
     Valve22m, Valve32b, Valve32m, Valve32p, Valve32r, Roller,
     Valve52m, Valve52p, ValveNret, ValveFlow, ValveOr, ValveAnd,
-    AirReservoir, ValveOneWayFlow, ValveSequence, ValveTimer
+    AirReservoir, ValveOneWayFlow, PressureRegulator, ValveSequence, ValveTimer
   };
   const Ctor = constructors[componentType];
   if (Ctor) return new Ctor(position);
@@ -997,6 +997,7 @@ document.addEventListener("click", (e) => {
     cValveFlow: () => { simulationStop(); drawMode='component'; componentType='ValveFlow'; },
     cReservoir: () => {simulationStop();drawMode='component';componentType='AirReservoir';},
     cOneWayFlow: () => {simulationStop();drawMode='component';componentType='ValveOneWayFlow';},
+    cRegulator: () => {simulationStop();drawMode='component';componentType='PressureRegulator';},
     cSequence: () => {simulationStop();drawMode='component';componentType='ValveSequence';},
     cTimer: () => {simulationStop();drawMode='component';componentType='ValveTimer';},
     cCylinder1: () => { simulationStop(); drawMode='component'; componentType='Cylinder1'; },
@@ -1833,6 +1834,70 @@ class ValveOneWayFlow extends ComponentBase {
 }
 
 // 3/2 normalmente cerrada: activada por presión de pilotaje ajustable.
+// Regulador de presión reducible (2 vías, con alivio didáctico integrado).
+// Entrada P inferior; salida A superior. Controla PRESIÓN, no caudal.
+// Un manómetro separado se puede conectar al puerto A para leer la presión.
+class PressureRegulator extends ComponentBase {
+  constructor(pos){
+    super(pos);
+    this.type='PressureRegulator';
+    this.options={setpointBar:3}; // bar manométricos, 0 .. 6
+    this.colorIn=defaultColor;
+    this.colorOut=defaultColor;
+    this.actualBar=0;
+  }
+  validateOptions(){this.options.setpointBar=euClamp(this.options.setpointBar,0,6,3);}
+  vias(){return [{x:this.x,y:this.y},{x:this.x,y:this.y-60}];}
+  reset(){this.colorIn=this.colorOut=defaultColor;this.actualBar=0;}
+  update(ctx,engine,dt){
+    const [input,output]=this.vias().map(v=>engine.findNode(v));
+    if(!input||!output||input===output)return;
+    const setpoint=airPressure+this.options.setpointBar;
+    // Alimentación de salida sin superar la consigna ni la presión de entrada.
+    // Modelo de flujo simplificado y estable, con conservación de masa.
+    if(input.pressure>output.pressure+1e-8 && output.pressure<setpoint-1e-8){
+      const target=Math.min(input.pressure,setpoint);
+      const dp=Math.max(0,input.pressure-output.pressure);
+      const requested=conductanceBase*Math.sqrt(dp)*dt;
+      const capacity=(target-output.pressure)*output.volume;
+      const available=Math.max(0,(input.pressure-airPressure)*input.volume);
+      const dm=Math.min(requested,Math.max(0,capacity),available);
+      if(dm>0){input.mass-=dm;output.mass+=dm;
+        input.pressure=input.mass/input.volume;output.pressure=output.mass/output.volume;}
+    }
+    // Regulador con alivio: si se baja la consigna, la salida puede descargarse
+    // hacia la atmósfera sin añadir un escape externo. No crea presión.
+    if(output.pressure>setpoint+1e-8){
+      const dp=output.pressure-setpoint;
+      const exhaust=Math.min(dp*output.volume,conductanceBase*Math.sqrt(dp)*dt);
+      output.mass=Math.max(airPressure*output.volume,output.mass-exhaust);
+      output.pressure=output.mass/output.volume;
+    }
+    this.actualBar=Math.max(0,output.pressure-airPressure);
+    this.colorIn=this.colorPressure(input.pressure);
+    this.colorOut=this.colorPressure(output.pressure);
+  }
+  near(pos){return this.nearRect(this.x-29,this.y-61,this.x+42,this.y+5,pos);}
+  draw(ctx){
+    const x=this.x,y=this.y,col=this.selected?selectedColor:defaultColor;
+    ctx.lineWidth=lineWidth;ctx.strokeStyle=col;ctx.fillStyle=col;
+    this.drawPort(ctx,x,y,0,-12,this.colorIn);
+    this.drawPort(ctx,x,y-60,0,13,this.colorOut);
+    // Regulador reductor de presión: cuerpo y flecha de regulación.
+    ctx.strokeRect(x-20,y-47,40,35);
+    this.drawArrow(ctx,x-9,y-17,x+9,y-41);
+    // Muelle con ajuste exterior al costado.
+    ctx.beginPath();ctx.moveTo(x+20,y-30);ctx.lineTo(x+27,y-30);
+    ctx.lineTo(x+31,y-36);ctx.lineTo(x+35,y-24);ctx.lineTo(x+39,y-36);
+    ctx.lineTo(x+43,y-24);ctx.stroke();
+    // Flecha oblicua que marca la regulación ajustable.
+    this.drawArrow(ctx,x+23,y-16,x+42,y-42);
+    ctx.font='11px sans-serif';ctx.textAlign='center';ctx.fillStyle=col;
+    ctx.fillText(this.options.setpointBar.toFixed(1)+' bar',x,y-70);
+    ctx.textAlign='start';
+  }
+}
+
 class ValveSequence extends ComponentBase {
  constructor(pos){super(pos);this.type='ValveSequence';this.options={thresholdBar:3};this.active=false;this.colorP=defaultColor;this.colorA=defaultColor;this.colorR=defaultColor;this.colorZ=defaultColor;}
  validateOptions(){this.options.thresholdBar=euClamp(this.options.thresholdBar,0.2,6,3);}
@@ -4617,7 +4682,7 @@ class UIController {
             optionsOpened = true;
             break;
           }
-          if (['ValveFlow','ValveOneWayFlow','AirReservoir','ValveSequence','ValveTimer'].includes(comp.type)) {
+          if (['ValveFlow','ValveOneWayFlow','AirReservoir','PressureRegulator','ValveSequence','ValveTimer'].includes(comp.type)) {
             euOpenConfigDialog(comp);
             optionsOpened = true;
             break;
@@ -4712,6 +4777,7 @@ class UIController {
       if (componentType === 'ValveFlow') comp = new ValveFlow(position);
       if (componentType === 'AirReservoir') comp = new AirReservoir(position);
       if (componentType === 'ValveOneWayFlow') comp = new ValveOneWayFlow(position);
+      if (componentType === 'PressureRegulator') comp = new PressureRegulator(position);
       if (componentType === 'ValveSequence') comp = new ValveSequence(position);
       if (componentType === 'ValveTimer') comp = new ValveTimer(position);
       if (componentType === 'ValveOr') comp = new ValveOr(position);
@@ -4751,7 +4817,7 @@ class UIController {
 
       // EuLab: inserción única de componentes configurables. Evita que un
       // doble clic posterior inserte copias sobrepuestas del mismo símbolo.
-      if (comp && ['ValveFlow','AirReservoir','ValveOneWayFlow','ValveSequence','ValveTimer'].includes(componentType)) {
+      if (comp && ['ValveFlow','AirReservoir','ValveOneWayFlow','PressureRegulator','ValveSequence','ValveTimer'].includes(componentType)) {
         drawMode = null; componentType = null; ghostComponent = null;
       } else if (componentType !== 'Pipe' && componentType !== 'Text') {
         ghostComponent = createGhostComponent(position);
@@ -5087,6 +5153,7 @@ function createComponentFromData(data) {
   else if (data.type === 'ValveFlow')  comp = new ValveFlow(pos);
   else if (data.type === 'AirReservoir') comp = new AirReservoir(pos);
   else if (data.type === 'ValveOneWayFlow') comp = new ValveOneWayFlow(pos);
+  else if (data.type === 'PressureRegulator') comp = new PressureRegulator(pos);
   else if (data.type === 'ValveSequence') comp = new ValveSequence(pos);
   else if (data.type === 'ValveTimer') comp = new ValveTimer(pos);
   else if (data.type === 'ValveOr')    comp = new ValveOr(pos);
@@ -5204,6 +5271,7 @@ function loadSchema(schematicJSON) {
     if (comp.type === 'ValveFlow')  newcomp = new ValveFlow({x:comp.x, y:comp.y});
     if (comp.type === 'AirReservoir') newcomp = new AirReservoir({x:comp.x,y:comp.y});
     if (comp.type === 'ValveOneWayFlow') newcomp = new ValveOneWayFlow({x:comp.x,y:comp.y});
+    if (comp.type === 'PressureRegulator') newcomp = new PressureRegulator({x:comp.x,y:comp.y});
     if (comp.type === 'ValveSequence') newcomp = new ValveSequence({x:comp.x,y:comp.y});
     if (comp.type === 'ValveTimer') newcomp = new ValveTimer({x:comp.x,y:comp.y});
     if (comp.type === 'ValveOr')    newcomp = new ValveOr({x:comp.x, y:comp.y});
@@ -5910,7 +5978,7 @@ function closeConfirm() {
 /* EuLab 0.5: los símbolos se renderizan usando las mismas clases y rutinas Canvas de Picuino. */
 (function(){
  const categories = [
-  ['Regulación y almacenamiento',['cReservoir','cValveFlow','cOneWayFlow','cValveNret']],
+  ['Regulación y almacenamiento',['cRegulator','cReservoir','cValveFlow','cOneWayFlow','cValveNret']],
   ['Control de presión y tiempo',['cSequence','cTimer']],
   ['Válvulas distribuidoras',['cValve22m','cValve32b','cValve32m','cValve32r','cRoller','cValve32p','cValve42m','cValve52m','cValve52p']],
   ['Lógica neumática',['cValveOr','cValveAnd']],
@@ -5923,7 +5991,7 @@ function closeConfirm() {
   cValve32r:Valve32r,cRoller:Roller,cValve32p:Valve32p,
   cValve42m:Valve42m,cValve52m:Valve52m,cValve52p:Valve52p,
   cValveNret:ValveNret,cValveFlow:ValveFlow,cValveOr:ValveOr,cValveAnd:ValveAnd,
-  cReservoir:AirReservoir,cOneWayFlow:ValveOneWayFlow,cSequence:ValveSequence,cTimer:ValveTimer,
+  cReservoir:AirReservoir,cOneWayFlow:ValveOneWayFlow,cRegulator:PressureRegulator,cSequence:ValveSequence,cTimer:ValveTimer,
   cCylinder1:Cylinder1,cCylinder2:Cylinder2,cPress:Compressor,
   cEscape:Escape,cManometer:Manometer
  };
@@ -5947,10 +6015,11 @@ function closeConfirm() {
     const isValve=action.startsWith('cValve');
     const longValve=action==='cValve52m'||action==='cValve52p';
     const isControl=['cSequence','cTimer'].includes(action);
+    const isRegulator=action==='cRegulator';
     const isTank=action==='cReservoir';
-    const k=isCylinder?0.48:(longValve?0.48:(isControl?0.61:(isTank?0.72:(isValve?0.74:0.95))));
+    const k=isCylinder?0.48:(longValve?0.48:(isControl?0.61:(isRegulator?0.8:(isTank?0.72:(isValve?0.74:0.95)))));
     // Anclajes elegidos para incluir en la miniatura actuadores y resortes.
-    ctx.translate(isCylinder?17:(longValve?86:(isControl?84:(isTank?77:(isValve?78:54)))),isCylinder?48:(isTank?56:51));
+    ctx.translate(isCylinder?17:(longValve?86:(isControl?84:(isRegulator?76:(isTank?77:(isValve?78:54))))),isCylinder?48:(isRegulator?61:(isTank?56:51)));
     ctx.scale(k,k);
     const comp=new Klass({x:0,y:0});
     comp.draw(ctx);
@@ -5961,7 +6030,7 @@ function closeConfirm() {
   }
   return canvas;
  }
- const euLabels={cReservoir:'Depósito neumático',cOneWayFlow:'Estranguladora + antirretorno',cSequence:'Válvula de secuencia',cTimer:'Válvula temporizadora'};
+ const euLabels={cRegulator:'Regulador de presión ajustable',cReservoir:'Depósito neumático',cOneWayFlow:'Estranguladora + antirretorno',cSequence:'Válvula de secuencia',cTimer:'Válvula temporizadora'};
  const allButtons=[];
  categories.forEach(([name,actions],index)=>{
   const group=document.createElement('details');group.className='eu-group';group.open=index===0;
@@ -5970,7 +6039,7 @@ function closeConfirm() {
   const items=document.createElement('div');items.className='eu-items';
   actions.forEach(action=>{
    const original=document.querySelector('.menu-item [data-action="'+action+'"]');
-   if(!original && !['cReservoir','cOneWayFlow','cSequence','cTimer'].includes(action))return;
+   if(!original && !['cRegulator','cReservoir','cOneWayFlow','cSequence','cTimer'].includes(action))return;
    const btn=document.createElement('button');btn.type='button';btn.className='eu-item';btn.dataset.action=action;
    const label=document.createElement('span');label.className='eu-label';
    label.textContent=euLabels[action] || (typeof translations!=='undefined' && translations.es && translations.es[action]) || original.textContent.trim();
@@ -6009,15 +6078,16 @@ function closeConfirm() {
  function updateButton(){ const open=document.body.classList.contains('eu-sidebar-open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'✕ Componentes':'☰ Componentes'; }
  toggle.addEventListener('click',()=>{document.body.classList.toggle('eu-sidebar-open');document.body.classList.toggle('eu-sidebar-closed');updateButton();window.dispatchEvent(new Event('resize'))});
  document.body.classList.add(matchMedia('(max-width:850px)').matches?'eu-sidebar-closed':'eu-sidebar-open');updateButton();
- console.info('[EuLab] Biblioteca con símbolos dibujados por clases de Picuino, versión 1.3.0');
+ console.info('[EuLab] Biblioteca con símbolos dibujados por clases de Picuino, versión 1.4.0');
 })();
 </script>
 
 <script>
-// EuLab 1.3 — controles tipo FluidSIM: doble clic o Editar → Opciones.
+// EuLab 1.4 — controles tipo FluidSIM: doble clic o Editar → Opciones.
 let euConfigComponent=null;
-const euPropLabels={ValveFlow:'Estranguladora',ValveOneWayFlow:'Estranguladora unidireccional',AirReservoir:'Depósito de aire',ValveSequence:'Válvula de secuencia',ValveTimer:'Válvula temporizadora'};
+const euPropLabels={PressureRegulator:'Regulador de presión ajustable',ValveFlow:'Estranguladora',ValveOneWayFlow:'Estranguladora unidireccional',AirReservoir:'Depósito de aire',ValveSequence:'Válvula de secuencia',ValveTimer:'Válvula temporizadora'};
 const euPropDefinitions={
+ setpointBar:{label:'Presión de salida regulada (bar relativos)',min:0,max:6,step:0.1,help:'Controla la presión en A. Ajusta este valor antes del pilotaje Z de la válvula de secuencia.'},
  openingPct:{label:'Apertura (%)',min:0,max:100,step:1,help:'100 % = paso libre (conductancia de tubería). 0 % = cerrado.'},
  volumeCm3:{label:'Volumen del depósito (cm³)',min:20,max:5000,step:10,help:'Cuanto mayor es el volumen, más lentamente se acumula presión.'},
  thresholdBar:{label:'Presión de conmutación (bar relativos)',min:0.2,max:6,step:0.1,help:'La válvula se activa al superar este umbral de presión.'},
@@ -6031,7 +6101,8 @@ function euOpenConfigDialog(comp){
  document.getElementById('eu-props-error').textContent='';
  const fields=document.getElementById('eu-props-fields');fields.textContent='';
  let keys;
- if(comp.type==='ValveFlow')keys=['openingPct'];
+ if(comp.type==='PressureRegulator')keys=['setpointBar'];
+ else if(comp.type==='ValveFlow')keys=['openingPct'];
  else if(comp.type==='ValveOneWayFlow')keys=['openingPct','freeDirection'];
  else if(comp.type==='AirReservoir')keys=['volumeCm3'];
  else if(comp.type==='ValveSequence')keys=['thresholdBar'];

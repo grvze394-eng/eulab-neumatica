@@ -5,9 +5,9 @@
   <meta name="keywords" content="Online Pneumatic Simulator Schematic Picuino Open-source">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="eulab-version" content="0.9.0">
+  <meta name="eulab-version" content="1.0.0">
   <meta name="description" content="Interactive pneumatic circuit simulator designed for secondary school students and teachers. Build, test, and visualize pneumatic systems online. Free, accurate, and ready for classroom use. By Picuino.">
-  <title>EuLab Neumática v0.9.0 · basado en Picuino</title>
+  <title>EuLab Neumática v1.0.0 · basado en Picuino</title>
 
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -497,7 +497,7 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 
   <button type="button" id="eulab-toggle" aria-controls="eulab-sidebar" aria-expanded="true">☰ Componentes</button>
   <aside id="eulab-sidebar" aria-label="Biblioteca neumática">
-    <div class="eu-head"><strong>EuLab · Neumática v0.9.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
+    <div class="eu-head"><strong>EuLab · Neumática v1.0.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
     <div id="eulab-catalog"></div>
     <div class="eu-foot">Elige un componente y toca el lienzo para insertarlo. Usa «Tubería» para conectar puertos. Simulación y símbolos originales de Picuino, GPL-3.0-or-later.</div>
   </aside>
@@ -3950,33 +3950,74 @@ function euPortNear(pos, engine, exclude=null, radius=13) {
   }
   return best;
 }
+// EuLab 1.0: turn all port-on-pipe junctions into real pipe endpoints.
+// A T connection must be split, otherwise moving the attached object can
+// leave a line apparently connected while its pneumatic node separates.
+function euPointInsidePipe(pt,pipe) {
+  const a=pipe.init,b=pipe.end;
+  if(euEq(pt,a)||euEq(pt,b))return false;
+  if(a.x===b.x && pt.x===a.x)return pt.y>Math.min(a.y,b.y)&&pt.y<Math.max(a.y,b.y);
+  if(a.y===b.y && pt.y===a.y)return pt.x>Math.min(a.x,b.x)&&pt.x<Math.max(a.x,b.x);
+  return false;
+}
+function euSplitAtPorts(engine) {
+  const points=[];
+  for(const c of engine.components)if(c.type!=='Pipe')for(const v of c.vias())points.push({...v});
+  // Split on non-pipe ports, including compressor, escape, gauge and cylinders.
+  for(const pt of points)for(const pipe of [...engine.components]){
+    if(pipe.type!=='Pipe'||!euPointInsidePipe(pt,pipe))continue;
+    const tail={...pipe.end};pipe.moveEnd(pt);
+    engine.addComponent(new Pipe(pt,tail));
+  }
+}
+let euStraightExtensions=[];
 function euBeginAttachedMove(engine, moving) {
   const movingSet=new Set(moving.filter(c=>c.type!=='Pipe'));
+  euSplitAtPorts(engine);
   const captures=[];
-  for (const comp of movingSet) {
+  for(const comp of movingSet) {
     const ports=comp.vias().map(p=>({x:p.x,y:p.y}));
-    for (const pipe of engine.components.filter(c=>c.type==='Pipe' && !moving.includes(c))) {
-      for (const end of ['init','end']) {
-        const p=pipe[end];
-        const idx=ports.findIndex(v=>Math.abs(v.x-p.x)<=1 && Math.abs(v.y-p.y)<=1);
-        if(idx>=0) captures.push({comp,pipe,end,idx,old:{x:p.x,y:p.y}});
+    for(const pipe of engine.components.filter(c=>c.type==='Pipe' && !moving.includes(c))) {
+      for(const end of ['init','end']) {
+        const pt=pipe[end];
+        const idx=ports.findIndex(v=>euEq(v,pt));
+        if(idx>=0)captures.push({comp,pipe,end,idx,old:{...pt}});
       }
     }
   }
   euAttachments=captures;
   euCaptureElbows(engine);
+  euStraightExtensions=[];
+  const elbowPipes=new Set(euActiveElbows.flatMap(e=>[e.a.pipe,e.b.pipe]));
+  // Straight lines need an additional orthogonal section as soon as a port
+  // moves off the original axis. A zero-length piece becomes the new leg.
+  for(const a of captures) {
+    const p=a.pipe;
+    if(elbowPipes.has(p)||euStraightExtensions.some(e=>e.pipe===p))continue;
+    const otherKey=a.end==='init'?'end':'init';
+    const fixed={...p[otherKey]};
+    const pt={...p[a.end]};
+    if(pt.x!==fixed.x && pt.y!==fixed.y)continue;
+    const second=new Pipe(fixed,fixed);
+    engine.addComponent(second);
+    euStraightExtensions.push({pipe:p,end:a.end,otherKey,second,fixed,orientation:pt.y===fixed.y?'h':'v'});
+  }
 }
 function euUpdateAttachedPipes() {
   for(const a of euAttachments) {
-    const p=a.comp.vias()[a.idx];
-    if(!p) continue;
-    // Endpoints of pipes stay on the actual moved connection ports.
-    if(a.end==='init') a.pipe.moveInit(p);
-    else a.pipe.moveEnd(p);
+    const v=a.comp.vias()[a.idx];
+    if(!v)continue;
+    if(a.end==='init')a.pipe.moveInit(v);else a.pipe.moveEnd(v);
   }
   euUpdateElbows();
+  for(const e of euStraightExtensions) {
+    const moving=e.pipe[e.end];
+    const corner=e.orientation==='h'?{x:e.fixed.x,y:moving.y}:{x:moving.x,y:e.fixed.y};
+    if(e.otherKey==='init')e.pipe.moveInit(corner);else e.pipe.moveEnd(corner);
+    e.second.moveInit(corner);e.second.moveEnd(e.fixed);
+  }
 }
-function euResetAttached() {euAttachments=[];euActiveElbows=[];}
+function euResetAttached() {euAttachments=[];euActiveElbows=[];euStraightExtensions=[];}
 function euSnapPort(pos, engine) {
   const near=euPortNear(pos,engine);
   return near ? {x:near.x,y:near.y} : pos;
@@ -5562,7 +5603,7 @@ function closeConfirm() {
  function updateButton(){ const open=document.body.classList.contains('eu-sidebar-open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'✕ Componentes':'☰ Componentes'; }
  toggle.addEventListener('click',()=>{document.body.classList.toggle('eu-sidebar-open');document.body.classList.toggle('eu-sidebar-closed');updateButton();window.dispatchEvent(new Event('resize'))});
  document.body.classList.add(matchMedia('(max-width:850px)').matches?'eu-sidebar-closed':'eu-sidebar-open');updateButton();
- console.info('[EuLab] Biblioteca con símbolos dibujados por clases de Picuino, versión 0.7.0');
+ console.info('[EuLab] Biblioteca con símbolos dibujados por clases de Picuino, versión 1.0.0');
 })();
 </script>
 

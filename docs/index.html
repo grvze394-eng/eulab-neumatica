@@ -5,9 +5,9 @@
   <meta name="keywords" content="Online Pneumatic Simulator Schematic Picuino Open-source">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="eulab-version" content="1.2.0">
+  <meta name="eulab-version" content="1.3.0">
   <meta name="description" content="Interactive pneumatic circuit simulator designed for secondary school students and teachers. Build, test, and visualize pneumatic systems online. Free, accurate, and ready for classroom use. By Picuino.">
-  <title>EuLab Neumática v1.2.0 · basado en Picuino</title>
+  <title>EuLab Neumática v1.3.0 · basado en Picuino</title>
 
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -323,6 +323,27 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 #eulab-sidebar .eu-empty{padding:18px 12px;color:#526f82;font-size:12px}
 @media(max-width:850px){#eulab-sidebar{top:74px}}
 
+
+/* EuLab 1.3 — ajustes de componentes neumáticos */
+#eu-props {max-width:min(460px,95vw);width:420px;border:1px solid #aac6d5;border-radius:12px;padding:0;box-shadow:0 16px 55px #11283d55;color:#17364e;background:#fff}
+#eu-props::backdrop{background:#0c263b66}
+.eu-props-head{background:#12314a;color:white;padding:15px 18px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+.eu-props-head strong{font-size:16px}
+#eu-props-close{border:0;border-radius:5px;background:#ffffff22;color:white;font-size:22px;cursor:pointer}
+#eu-props-fields{display:flex;flex-direction:column;gap:16px;padding:20px 18px 12px}
+.eu-prop-row label{font-size:13px;font-weight:650;display:block;margin-bottom:6px}
+.eu-prop-control{display:flex;gap:12px;align-items:center}
+.eu-prop-control input[type=range]{min-width:0;flex:1;accent-color:#176e9e}
+.eu-prop-control input[type=number]{width:85px;box-sizing:border-box;padding:9px;border:1px solid #b9cbd7;border-radius:7px;font-size:14px}
+.eu-prop-control select{width:100%;padding:9px;border:1px solid #b9cbd7;border-radius:7px;font-size:14px}
+.eu-prop-help{margin:4px 0 0;color:#577286;font-size:12px;line-height:1.4}
+.eu-props-actions{display:flex;justify-content:flex-end;gap:9px;padding:14px 18px 18px}
+.eu-props-actions button{padding:9px 16px;border-radius:7px;cursor:pointer;border:1px solid #bccfd9;background:#fff}
+.eu-props-actions .eu-apply{background:#13618b;color:white;border-color:#13618b;font-weight:650}
+#eu-props-error{padding:0 18px;color:#ac2431;font-size:12px}
+#eulab-sidebar .eu-head .eu-hint{display:block;font-size:11px;color:#c5dfed;margin-top:6px}
+#eu-help{position:sticky;bottom:0;background:#f4f9fd;border-top:1px solid #bfd6e5;color:#2c5067;font-size:11px;line-height:1.45;padding:9px 11px}
+
   </style>
 </head>
 
@@ -497,8 +518,9 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 
   <button type="button" id="eulab-toggle" aria-controls="eulab-sidebar" aria-expanded="true">☰ Componentes</button>
   <aside id="eulab-sidebar" aria-label="Biblioteca neumática">
-    <div class="eu-head"><strong>EuLab · Neumática v1.2.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
+    <div class="eu-head"><strong>EuLab · Neumática v1.3.0</strong><small>Motor Picuino · componentes EuLab</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
     <div id="eulab-catalog"></div>
+<div id="eu-help">Para configurar: <strong>doble clic</strong> en el símbolo o <strong>Editar → Opciones</strong>. La apertura del estrangulador va de 0 % a 100 %.</div>
     <div class="eu-foot">Elige un componente y toca el lienzo para insertarlo. Usa «Tubería» para conectar puertos. Simulación y símbolos originales de Picuino, GPL-3.0-or-later.</div>
   </aside>
 
@@ -565,6 +587,15 @@ body.eu-sidebar-closed #canvas{margin-left:0}
     </div>
   </dialog>
 
+
+<dialog id="eu-props" aria-labelledby="eu-props-title">
+  <div class="eu-props-head"><strong id="eu-props-title">Configurar componente</strong><button id="eu-props-close" type="button" aria-label="Cerrar">×</button></div>
+  <form id="eu-props-form">
+    <div id="eu-props-fields"></div>
+    <p id="eu-props-error" role="alert"></p>
+    <div class="eu-props-actions"><button type="button" id="eu-props-cancel">Cancelar</button><button type="submit" class="eu-apply">Aplicar cambios</button></div>
+  </form>
+</dialog>
 
 <script>
 
@@ -666,7 +697,8 @@ function createGhostComponent(position) {
   const constructors = {
     Compressor, Manometer, Escape, Cylinder1, Cylinder2,
     Valve22m, Valve32b, Valve32m, Valve32p, Valve32r, Roller,
-    Valve52m, Valve52p, ValveNret, ValveFlow, ValveOr, ValveAnd
+    Valve52m, Valve52p, ValveNret, ValveFlow, ValveOr, ValveAnd,
+    AirReservoir, ValveOneWayFlow, ValveSequence, ValveTimer
   };
   const Ctor = constructors[componentType];
   if (Ctor) return new Ctor(position);
@@ -963,6 +995,10 @@ document.addEventListener("click", (e) => {
     cValveAnd: () =>  { simulationStop(); drawMode='component'; componentType='ValveAnd'; },
     cValveNret: () => { simulationStop(); drawMode='component'; componentType='ValveNret'; },
     cValveFlow: () => { simulationStop(); drawMode='component'; componentType='ValveFlow'; },
+    cReservoir: () => {simulationStop();drawMode='component';componentType='AirReservoir';},
+    cOneWayFlow: () => {simulationStop();drawMode='component';componentType='ValveOneWayFlow';},
+    cSequence: () => {simulationStop();drawMode='component';componentType='ValveSequence';},
+    cTimer: () => {simulationStop();drawMode='component';componentType='ValveTimer';},
     cCylinder1: () => { simulationStop(); drawMode='component'; componentType='Cylinder1'; },
     cCylinder2: () => { simulationStop(); drawMode='component'; componentType='Cylinder2'; },
 
@@ -1712,69 +1748,173 @@ class ValveFlow extends ComponentBase {
   constructor(pos) {
     super(pos);
     this.type = 'ValveFlow';
-    this.options = {
-      conductance: 100,
-    }
-    this.color = defaultColor;
+    // 100% = conductancia de una tubería común; 0% = cierre total.
+    this.options = { openingPct: 100 };
+    this.color1 = defaultColor;
+    this.color2 = defaultColor;
   }
-
-  validateOptions() {
-    this.options.conductance = Number(this.options.conductance);
-    if (isNaN(this.options.conductance))
-      this.options.conductance = 100;
-    if (this.options.conductance > 1000)
-      this.options.conductance = 1000;
-    if (this.options.conductance < 10)
-      this.options.conductance = 10;
+  validateOptions() { this.options.openingPct = euClamp(this.options.openingPct, 0, 100, 100); }
+  vias() {return [{x:this.x,y:this.y},{x:this.x,y:this.y-50}];}
+  reset() {this.color1=defaultColor;this.color2=defaultColor;}
+  update(ctx,engine,dt) {
+    const [a,b]=this.vias();
+    const na=engine.findNode(a), nb=engine.findNode(b);
+    if (!na||!nb) return;
+    const c=conductanceBase*this.options.openingPct/100;
+    if (c>0) this.computeFlow(na,nb,c,dt);
+    this.color1=this.colorPressure(na.pressure);
+    this.color2=this.colorPressure(nb.pressure);
   }
-
-  vias() {
-    const via1 = {x:this.x, y:this.y};
-    const via2 = {x:this.x, y:this.y-50};
-    return [via1, via2];
-  }
-
-  reset() {
-    this.color = defaultColor;
-  }
-
-  update(ctx, engine, dt) {
-    const [via1, via2] = this.vias();
-    const node1 = engine.findNode(via1);
-    const node2 = engine.findNode(via2);
-    this.computeFlow(node1, node2, this.options.conductance, dt);
-    this.color = this.colorPressure(0.5*(node1.pressure + node2.pressure));
-  }
-
-  near(pos) {
-    return this.nearRect(this.x-15, this.y-40, this.x+15, this.y-10, pos);
-  }
-
+  near(pos) {return this.nearRect(this.x-26,this.y-45,this.x+26,this.y-5,pos);}
   draw(ctx) {
-    this.drawPort(ctx, this.x, this.y, 0, -10, this.color);
-    this.drawPort(ctx, this.x, this.y-50, 0, 10, this.color);
-    this.drawValveFlow(ctx);
-  }
-
-  drawValveFlow(ctx) {
-    ctx.strokeStyle = (this.selected) ? selectedColor : this.color;
-    ctx.beginPath();
-    ctx.moveTo(this.x, this.y-10);
-    ctx.lineTo(this.x, this.y-40);
-    ctx.stroke();
-
-    ctx.strokeStyle = (this.selected) ? selectedColor : defaultColor;
-    ctx.fillStyle = (this.selected) ? selectedColor : defaultColor;
-    ctx.beginPath();
-    ctx.arc(this.x-25,this.y-25, 22, -Math.PI*0.16, Math.PI*0.16);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.arc(this.x+25,this.y-25, 22, Math.PI*0.84, Math.PI*1.16);
-    ctx.stroke();
-    this.drawArrow(ctx, this.x-18, this.y-15, this.x+18, this.y-35);
+    const x=this.x,y=this.y;
+    this.drawPort(ctx,x,y,0,-11,this.color1);
+    this.drawPort(ctx,x,y-50,0,11,this.color2);
+    ctx.strokeStyle=this.selected?selectedColor:defaultColor;
+    ctx.lineWidth=lineWidth;
+    ctx.beginPath();ctx.moveTo(x,y-11);ctx.lineTo(x,y-39);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(x-12,y-33);ctx.lineTo(x+12,y-17);ctx.moveTo(x-12,y-17);ctx.lineTo(x+12,y-33);ctx.stroke();
+    this.drawArrow(ctx,x-22,y-11,x+20,y-41);
+    ctx.font='11px sans-serif';ctx.fillStyle=this.selected?selectedColor:'#25384a';ctx.textAlign='center';
+    ctx.fillText(this.options.openingPct+'%',x+35,y-26);ctx.textAlign='start';
   }
 }
 
+// Deposito de un puerto: amplía el volumen neumático real del nodo conectado.
+class AirReservoir extends ComponentBase {
+  constructor(pos) {
+    super(pos);this.type='AirReservoir';this.options={volumeCm3:250};
+    this.pressure=airPressure;this.color=defaultColor;
+  }
+  validateOptions() {this.options.volumeCm3=euClamp(this.options.volumeCm3,20,5000,250);}
+  vias(){return [{x:this.x,y:this.y}];}
+  reset(){this.pressure=airPressure;this.color=defaultColor;}
+  update(ctx,engine,dt){const n=engine.findNode(this.vias()[0]);if(n){this.pressure=n.pressure;this.color=this.colorPressure(n.pressure);}}
+  near(p){return this.nearRect(this.x-42,this.y-63,this.x+42,this.y-10,p);}
+  draw(ctx){
+    const x=this.x,y=this.y,c=this.selected?selectedColor:defaultColor;
+    this.drawPort(ctx,x,y,0,-14,this.color);
+    ctx.strokeStyle=c;ctx.lineWidth=lineWidth;ctx.strokeRect(x-39,y-54,78,40);
+    ctx.beginPath();ctx.moveTo(x-25,y-54);ctx.lineTo(x-25,y-14);ctx.moveTo(x+25,y-54);ctx.lineTo(x+25,y-14);ctx.stroke();
+    ctx.font='11px sans-serif';ctx.fillStyle=c;ctx.textAlign='center';
+    ctx.fillText(this.options.volumeCm3+' cm³',x,y-42);
+    ctx.fillText(Math.max(0,this.pressure-airPressure).toFixed(1)+' bar',x,y-29);ctx.textAlign='start';
+  }
+}
+
+// Válvula de estrangulación con antirretorno en derivación.
+class ValveOneWayFlow extends ComponentBase {
+ constructor(pos){super(pos);this.type='ValveOneWayFlow';this.options={openingPct:50,freeDirection:'bottomToTop'};this.color1=defaultColor;this.color2=defaultColor;}
+ validateOptions(){this.options.openingPct=euClamp(this.options.openingPct,0,100,50);if(!['bottomToTop','topToBottom'].includes(this.options.freeDirection))this.options.freeDirection='bottomToTop';}
+ vias(){return [{x:this.x,y:this.y},{x:this.x,y:this.y-60}];}
+ reset(){this.color1=defaultColor;this.color2=defaultColor;}
+ flip(){this.options.freeDirection=this.options.freeDirection==='bottomToTop'?'topToBottom':'bottomToTop';}
+ update(ctx,engine,dt){
+   const [a,b]=this.vias(),n0=engine.findNode(a),n1=engine.findNode(b);if(!n0||!n1)return;
+   const forward=this.options.freeDirection==='bottomToTop' ? n0.pressure>n1.pressure : n1.pressure>n0.pressure;
+   const c=conductanceBase*(forward?1:this.options.openingPct/100);
+   if(c>0)this.computeFlow(n0,n1,c,dt);
+   this.color1=this.colorPressure(n0.pressure);this.color2=this.colorPressure(n1.pressure);
+ }
+ near(pos){return this.nearRect(this.x-37,this.y-59,this.x+37,this.y-2,pos);}
+ draw(ctx){
+  const x=this.x,y=this.y,c=this.selected?selectedColor:defaultColor;
+  this.drawPort(ctx,x,y,0,-10,this.color1);this.drawPort(ctx,x,y-60,0,10,this.color2);
+  ctx.strokeStyle=c;ctx.lineWidth=lineWidth;
+  ctx.beginPath();ctx.moveTo(x,y-50);ctx.lineTo(x-29,y-50);ctx.lineTo(x-29,y-10);ctx.lineTo(x,y-10);
+  ctx.moveTo(x,y-50);ctx.lineTo(x+29,y-50);ctx.lineTo(x+29,y-10);ctx.lineTo(x,y-10);ctx.stroke();
+  this.drawArrow(ctx,x-39,y-12,x-19,y-49);
+  ctx.beginPath();ctx.arc(x+29,y-30,7,0,Math.PI*2);ctx.stroke();
+  ctx.beginPath();if(this.options.freeDirection==='bottomToTop'){
+    ctx.moveTo(x+21,y-21);ctx.lineTo(x+29,y-33);ctx.lineTo(x+37,y-21);
+  }else {ctx.moveTo(x+21,y-39);ctx.lineTo(x+29,y-27);ctx.lineTo(x+37,y-39);}ctx.stroke();
+  ctx.font='11px sans-serif';ctx.fillStyle=c;ctx.textAlign='center';ctx.fillText(this.options.openingPct+'%',x-31,y-65);ctx.textAlign='start';
+ }
+}
+
+// 3/2 normalmente cerrada: activada por presión de pilotaje ajustable.
+class ValveSequence extends ComponentBase {
+ constructor(pos){super(pos);this.type='ValveSequence';this.options={thresholdBar:3};this.active=false;this.colorP=defaultColor;this.colorA=defaultColor;this.colorR=defaultColor;this.colorZ=defaultColor;}
+ validateOptions(){this.options.thresholdBar=euClamp(this.options.thresholdBar,0.2,6,3);}
+ vias(){const x=this.x,y=this.y;return [{x:x+10,y:y+10},{x:x+20,y:y-60},{x:x+40,y:y+10},{x:x-70,y:y-20}];}
+ reset(){this.active=false;this.colorP=this.colorA=this.colorR=this.colorZ=defaultColor;}
+ update(ctx,engine,dt){
+  const [p,a,r,z]=this.vias().map(v=>engine.findNode(v));if(!p||!a||!r||!z)return;
+  const value=z.pressure-airPressure,threshold=this.options.thresholdBar;
+  if (this.active ? value<threshold-0.08:value>=threshold) this.active=!this.active;
+  if(this.active)this.computeFlow(p,a,conductanceBase,dt);else this.computeFlow(a,r,conductanceBase,dt);
+  this.colorP=this.colorPressure(p.pressure);this.colorA=this.colorPressure(a.pressure);
+  this.colorR=this.colorPressure(r.pressure);this.colorZ=this.colorPressure(z.pressure);
+ }
+ near(pos){return this.nearRect(this.x-75,this.y-62,this.x+67,this.y+16,pos);}
+ draw(ctx){euDrawPressureValve(this,ctx,'seq');}
+}
+
+// Temporizador NC: la señal Z carga un depósito interno vía un estrangulador.
+// La válvula 3/2 conmuta SOLO cuando ese depósito alcanza la presión umbral.
+// Modelo didáctico simplificado: flujo isotermo basado en conductancia.
+class ValveTimer extends ValveSequence {
+ constructor(pos){super(pos);this.type='ValveTimer';this.options={openingPct:50,volumeCm3:250,thresholdBar:2};this.innerMass=airPressure*this.options.volumeCm3;this.innerPressure=airPressure;}
+ validateOptions(){this.options.openingPct=euClamp(this.options.openingPct,0,100,50);this.options.volumeCm3=euClamp(this.options.volumeCm3,20,5000,250);this.options.thresholdBar=euClamp(this.options.thresholdBar,0.2,6,2);}
+ reset(){super.reset();this.innerMass=airPressure*this.options.volumeCm3;this.innerPressure=airPressure;}
+ update(ctx,engine,dt){
+  const [p,a,r,z]=this.vias().map(v=>engine.findNode(v));if(!p||!a||!r||!z)return;
+  const V=this.options.volumeCm3;
+  if(!Number.isFinite(this.innerMass)||this.innerMass<airPressure*V)this.innerMass=airPressure*V;
+  const inner={volume:V,mass:this.innerMass,pressure:this.innerMass/V};
+  if(z.pressure>inner.pressure+0.000001){
+    const c=conductanceBase*this.options.openingPct/100;
+    if(c>0)this.computeFlow(z,inner,c,dt);
+  }else if(z.pressure<inner.pressure-0.000001){
+    // Retorno más rápido por la válvula antirretorno que puentea el estrangulador.
+    this.computeFlow(inner,z,conductanceBase,dt);
+  }
+  this.innerMass=Math.max(airPressure*V,inner.mass);
+  this.innerPressure=this.innerMass/V;
+  const value=this.innerPressure-airPressure, threshold=this.options.thresholdBar;
+  if(this.active?value<threshold-0.08:value>=threshold)this.active=!this.active;
+  if(this.active)this.computeFlow(p,a,conductanceBase,dt);else this.computeFlow(a,r,conductanceBase,dt);
+  this.colorP=this.colorPressure(p.pressure);this.colorA=this.colorPressure(a.pressure);
+  this.colorR=this.colorPressure(r.pressure);this.colorZ=this.colorPressure(z.pressure);
+ }
+ draw(ctx){euDrawPressureValve(this,ctx,'timer');}
+}
+
+function euClamp(raw,min,max,fallback){const n=Number(raw);return Number.isFinite(n)?Math.max(min,Math.min(max,n)):fallback;}
+function euDrawPressureValve(c,ctx,kind){
+ const x=c.x,y=c.y,sel=c.selected?selectedColor:defaultColor;
+ ctx.lineWidth=lineWidth;ctx.strokeStyle=sel;ctx.fillStyle=sel;
+ // Símbolo 3/2 de dos posiciones. A=2, P=1, R=3; Z=12.
+ ctx.strokeRect(x-35,y-45,40,40);ctx.strokeRect(x+5,y-45,40,40);
+ ctx.beginPath();ctx.moveTo(x-70,y-20);ctx.lineTo(x-35,y-20);
+ ctx.moveTo(x+20,y-60);ctx.lineTo(x+20,y-45);
+ ctx.moveTo(x+10,y+10);ctx.lineTo(x+10,y-5);
+ ctx.moveTo(x+40,y+10);ctx.lineTo(x+40,y-5);ctx.stroke();
+ // Celda activada P->A; celda normal A->R y P bloqueada.
+ c.drawArrow(ctx,x-24,y-14,x-8,y-35);
+ c.drawArrow(ctx,x+16,y-34,x+34,y-13);
+ ctx.beginPath();ctx.moveTo(x+8,y-11);ctx.lineTo(x+13,y-11);ctx.stroke();
+ // Pilotaje neumático izquierda y muelle derecha.
+ ctx.strokeRect(x-53,y-27,17,14);
+ ctx.beginPath();ctx.moveTo(x-53,y-27);ctx.lineTo(x-41,y-20);ctx.lineTo(x-53,y-13);ctx.stroke();
+ c.drawSpring(ctx,x+45,y-20);
+ const [P,A,R,Z]=c.vias();
+ for(const [pt,col] of [[P,c.colorP],[A,c.colorA],[R,c.colorR],[Z,c.colorZ]]){
+   ctx.fillStyle=c.selected?selectedColor:col;
+   ctx.fillRect(pt.x-2,pt.y-2,4,4);
+ }
+ ctx.font='11px sans-serif';ctx.fillStyle=sel;ctx.textAlign='center';
+ if(kind==='seq'){
+  ctx.fillText('S',x+74,y-42);
+  ctx.fillText(c.options.thresholdBar+' bar',x+90,y-17);
+ }else{
+  // Pequeños símbolos del depósito y estrangulador de pilotaje integrado.
+  ctx.strokeRect(x-67,y-57,20,11);
+  ctx.beginPath();ctx.moveTo(x-65,y-40);ctx.lineTo(x-48,y-52);ctx.stroke();
+  ctx.fillText('T',x+76,y-40);
+ }
+ ctx.textAlign='start';
+}
 
 class ValveOr extends ComponentBase {
   constructor(pos) {
@@ -3719,6 +3859,14 @@ class Engine {
         }
       }
     }
+    // La masa de aire del depósito se añade al nodo al que está acoplado.
+    // Se respeta la ley isoterma usada por el motor Picuino: p = masa/volumen.
+    for (const comp of this.components) {
+      if (comp.type === 'AirReservoir') {
+        const node=this.findNode(comp.vias()[0]);
+        if(node){node.volume += comp.options.volumeCm3;node.mass=node.pressure*node.volume;}
+      }
+    }
   }
 
   findNode(pos) {
@@ -3992,7 +4140,7 @@ function euNormalizeJunctions(engine) {
 // These are distinct from routed tubing. A directly fitted Escape must translate
 // with its valve, and a dedicated terminal hose ending in an Escape should keep
 // its shape instead of growing extra arbitrary bends.
-const euFittingTypes=new Set(['Escape','Compressor','Manometer']);
+const euFittingTypes=new Set(['Escape','Compressor','Manometer','AirReservoir']);
 let euRigidFollowers=[];
 function euCoordinateKey(p) {return `${p.x},${p.y}`;}
 function euFindRigidFollowers(engine, leaders) {
@@ -4469,9 +4617,8 @@ class UIController {
             optionsOpened = true;
             break;
           }
-          if (comp.type === 'ValveFlow') {
-            componentEdit = comp;
-            textPromptAssign('conductance', 'promptConductance');
+          if (['ValveFlow','ValveOneWayFlow','AirReservoir','ValveSequence','ValveTimer'].includes(comp.type)) {
+            euOpenConfigDialog(comp);
             optionsOpened = true;
             break;
           }
@@ -4510,7 +4657,7 @@ class UIController {
     if (drawMode === 'Flip') {
       for (const comp of this.engine.components) {
         if (comp.near(position)) {
-          if (['Manometer', 'ValveNret', 'Valve22m', 'Valve32b',
+          if (['ValveOneWayFlow','Manometer', 'ValveNret', 'Valve22m', 'Valve32b',
                'Valve32m', 'Valve32r',  'Valve32p'].includes(comp.type)) {
             pushUndo();
             comp.flip();
@@ -4563,6 +4710,10 @@ class UIController {
       if (componentType === 'Valve52p') comp = new Valve52p(position);
       if (componentType === 'ValveNret') comp = new ValveNret(position);
       if (componentType === 'ValveFlow') comp = new ValveFlow(position);
+      if (componentType === 'AirReservoir') comp = new AirReservoir(position);
+      if (componentType === 'ValveOneWayFlow') comp = new ValveOneWayFlow(position);
+      if (componentType === 'ValveSequence') comp = new ValveSequence(position);
+      if (componentType === 'ValveTimer') comp = new ValveTimer(position);
       if (componentType === 'ValveOr') comp = new ValveOr(position);
       if (componentType === 'ValveAnd') comp = new ValveAnd(position);
 
@@ -4598,8 +4749,11 @@ class UIController {
         this.engine.addComponent(comp);
       }
 
-      // Recreate ghost for next placement (non-pipe, non-text)
-      if (componentType !== 'Pipe' && componentType !== 'Text') {
+      // EuLab: inserción única de componentes configurables. Evita que un
+      // doble clic posterior inserte copias sobrepuestas del mismo símbolo.
+      if (comp && ['ValveFlow','AirReservoir','ValveOneWayFlow','ValveSequence','ValveTimer'].includes(componentType)) {
+        drawMode = null; componentType = null; ghostComponent = null;
+      } else if (componentType !== 'Pipe' && componentType !== 'Text') {
         ghostComponent = createGhostComponent(position);
       }
 
@@ -4931,6 +5085,10 @@ function createComponentFromData(data) {
   else if (data.type === 'Valve52m')   comp = new Valve52m(pos);
   else if (data.type === 'Valve52p')   comp = new Valve52p(pos);
   else if (data.type === 'ValveFlow')  comp = new ValveFlow(pos);
+  else if (data.type === 'AirReservoir') comp = new AirReservoir(pos);
+  else if (data.type === 'ValveOneWayFlow') comp = new ValveOneWayFlow(pos);
+  else if (data.type === 'ValveSequence') comp = new ValveSequence(pos);
+  else if (data.type === 'ValveTimer') comp = new ValveTimer(pos);
   else if (data.type === 'ValveOr')    comp = new ValveOr(pos);
   else if (data.type === 'ValveAnd')   comp = new ValveAnd(pos);
   else if (data.type === 'Text')       comp = new Text(pos);
@@ -4939,10 +5097,18 @@ function createComponentFromData(data) {
   else if (data.type === 'ValveNret')  comp = new ValveNret(pos);
   else if (data.type === 'Pipe')       comp = new Pipe(data.init, data.end);
   if (comp && data.options) {
+    euLegacyThrottleOptions(comp,data.options);
     Object.assign(comp.options, data.options);
     comp.validateOptions();
+    if (comp.type==='ValveTimer') comp.reset();
   }
   return comp;
+}
+
+function euLegacyThrottleOptions(component, opts) {
+  if(component.type==='ValveFlow' && opts && opts.openingPct===undefined && opts.conductance!==undefined){
+    opts.openingPct=Math.max(0,Math.min(100,Math.round(100*Number(opts.conductance)/conductanceBase)));
+  }
 }
 
 function toggleGrid() {
@@ -5036,6 +5202,10 @@ function loadSchema(schematicJSON) {
     if (comp.type === 'Valve52m')   newcomp = new Valve52m({x:comp.x, y:comp.y});
     if (comp.type === 'Valve52p')   newcomp = new Valve52p({x:comp.x, y:comp.y});
     if (comp.type === 'ValveFlow')  newcomp = new ValveFlow({x:comp.x, y:comp.y});
+    if (comp.type === 'AirReservoir') newcomp = new AirReservoir({x:comp.x,y:comp.y});
+    if (comp.type === 'ValveOneWayFlow') newcomp = new ValveOneWayFlow({x:comp.x,y:comp.y});
+    if (comp.type === 'ValveSequence') newcomp = new ValveSequence({x:comp.x,y:comp.y});
+    if (comp.type === 'ValveTimer') newcomp = new ValveTimer({x:comp.x,y:comp.y});
     if (comp.type === 'ValveOr')    newcomp = new ValveOr({x:comp.x, y:comp.y});
     if (comp.type === 'ValveAnd')   newcomp = new ValveAnd({x:comp.x, y:comp.y});
     if (comp.type === 'Text')       newcomp = new Text({x:comp.x, y:comp.y});
@@ -5044,8 +5214,10 @@ function loadSchema(schematicJSON) {
     if (comp.type === 'ValveNret')  newcomp = new ValveNret({x:comp.x, y:comp.y});
     if (comp.type === 'Pipe')       newcomp = new Pipe(comp.init, comp.end);
     if (newcomp) {
-      Object.assign(newcomp.options, comp.options);
+      euLegacyThrottleOptions(newcomp,comp.options||{});
+      Object.assign(newcomp.options, comp.options||{});
       newcomp.validateOptions();
+      if(newcomp.type==='ValveTimer')newcomp.reset();
       newcomp.timestamp = comp.stamp;
       components.push(newcomp);
     }
@@ -5738,8 +5910,10 @@ function closeConfirm() {
 /* EuLab 0.5: los símbolos se renderizan usando las mismas clases y rutinas Canvas de Picuino. */
 (function(){
  const categories = [
+  ['Regulación y almacenamiento',['cReservoir','cValveFlow','cOneWayFlow','cValveNret']],
+  ['Control de presión y tiempo',['cSequence','cTimer']],
   ['Válvulas distribuidoras',['cValve22m','cValve32b','cValve32m','cValve32r','cRoller','cValve32p','cValve42m','cValve52m','cValve52p']],
-  ['Válvulas auxiliares',['cValveNret','cValveFlow','cValveOr','cValveAnd']],
+  ['Lógica neumática',['cValveOr','cValveAnd']],
   ['Actuadores',['cCylinder1','cCylinder2']],
   ['Alimentación y medición',['cPress','cEscape','cManometer']],
   ['Conexión y anotaciones',['cPipe','cText']]
@@ -5749,6 +5923,7 @@ function closeConfirm() {
   cValve32r:Valve32r,cRoller:Roller,cValve32p:Valve32p,
   cValve42m:Valve42m,cValve52m:Valve52m,cValve52p:Valve52p,
   cValveNret:ValveNret,cValveFlow:ValveFlow,cValveOr:ValveOr,cValveAnd:ValveAnd,
+  cReservoir:AirReservoir,cOneWayFlow:ValveOneWayFlow,cSequence:ValveSequence,cTimer:ValveTimer,
   cCylinder1:Cylinder1,cCylinder2:Cylinder2,cPress:Compressor,
   cEscape:Escape,cManometer:Manometer
  };
@@ -5771,9 +5946,11 @@ function closeConfirm() {
     const isCylinder=action.startsWith('cCylinder');
     const isValve=action.startsWith('cValve');
     const longValve=action==='cValve52m'||action==='cValve52p';
-    const k=isCylinder?0.48:(longValve?0.48:(isValve?0.74:0.95));
+    const isControl=['cSequence','cTimer'].includes(action);
+    const isTank=action==='cReservoir';
+    const k=isCylinder?0.48:(longValve?0.48:(isControl?0.61:(isTank?0.72:(isValve?0.74:0.95))));
     // Anclajes elegidos para incluir en la miniatura actuadores y resortes.
-    ctx.translate(isCylinder?17:(longValve?86:(isValve?78:54)),isCylinder?48:51);
+    ctx.translate(isCylinder?17:(longValve?86:(isControl?84:(isTank?77:(isValve?78:54)))),isCylinder?48:(isTank?56:51));
     ctx.scale(k,k);
     const comp=new Klass({x:0,y:0});
     comp.draw(ctx);
@@ -5784,6 +5961,7 @@ function closeConfirm() {
   }
   return canvas;
  }
+ const euLabels={cReservoir:'Depósito neumático',cOneWayFlow:'Estranguladora + antirretorno',cSequence:'Válvula de secuencia',cTimer:'Válvula temporizadora'};
  const allButtons=[];
  categories.forEach(([name,actions],index)=>{
   const group=document.createElement('details');group.className='eu-group';group.open=index===0;
@@ -5792,10 +5970,10 @@ function closeConfirm() {
   const items=document.createElement('div');items.className='eu-items';
   actions.forEach(action=>{
    const original=document.querySelector('.menu-item [data-action="'+action+'"]');
-   if(!original)return; // No mostrar componentes inexistentes en el motor original
+   if(!original && !['cReservoir','cOneWayFlow','cSequence','cTimer'].includes(action))return;
    const btn=document.createElement('button');btn.type='button';btn.className='eu-item';btn.dataset.action=action;
    const label=document.createElement('span');label.className='eu-label';
-   label.textContent=(typeof translations!=='undefined' && translations.es && translations.es[action]) || original.textContent.trim();
+   label.textContent=euLabels[action] || (typeof translations!=='undefined' && translations.es && translations.es[action]) || original.textContent.trim();
    btn.append(symbolPreview(action),label);items.append(btn);allButtons.push(btn);
    btn.addEventListener('click',()=>{
     catalog.querySelectorAll('.eu-item').forEach(b=>b.classList.remove('eu-selected'));
@@ -5831,8 +6009,80 @@ function closeConfirm() {
  function updateButton(){ const open=document.body.classList.contains('eu-sidebar-open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'✕ Componentes':'☰ Componentes'; }
  toggle.addEventListener('click',()=>{document.body.classList.toggle('eu-sidebar-open');document.body.classList.toggle('eu-sidebar-closed');updateButton();window.dispatchEvent(new Event('resize'))});
  document.body.classList.add(matchMedia('(max-width:850px)').matches?'eu-sidebar-closed':'eu-sidebar-open');updateButton();
- console.info('[EuLab] Biblioteca con símbolos dibujados por clases de Picuino, versión 1.0.0');
+ console.info('[EuLab] Biblioteca con símbolos dibujados por clases de Picuino, versión 1.3.0');
 })();
+</script>
+
+<script>
+// EuLab 1.3 — controles tipo FluidSIM: doble clic o Editar → Opciones.
+let euConfigComponent=null;
+const euPropLabels={ValveFlow:'Estranguladora',ValveOneWayFlow:'Estranguladora unidireccional',AirReservoir:'Depósito de aire',ValveSequence:'Válvula de secuencia',ValveTimer:'Válvula temporizadora'};
+const euPropDefinitions={
+ openingPct:{label:'Apertura (%)',min:0,max:100,step:1,help:'100 % = paso libre (conductancia de tubería). 0 % = cerrado.'},
+ volumeCm3:{label:'Volumen del depósito (cm³)',min:20,max:5000,step:10,help:'Cuanto mayor es el volumen, más lentamente se acumula presión.'},
+ thresholdBar:{label:'Presión de conmutación (bar relativos)',min:0.2,max:6,step:0.1,help:'La válvula se activa al superar este umbral de presión.'},
+ freeDirection:{label:'Sentido de paso libre',choices:[['bottomToTop','Desde abajo hacia arriba'],['topToBottom','Desde arriba hacia abajo']],help:'En el sentido contrario se aplica la estrangulación configurada.'}
+};
+function euOpenConfigDialog(comp){
+ if(!euPropLabels[comp.type])return false;
+ simulationStop();euConfigComponent=comp;
+ const d=document.getElementById('eu-props');
+ document.getElementById('eu-props-title').textContent=euPropLabels[comp.type];
+ document.getElementById('eu-props-error').textContent='';
+ const fields=document.getElementById('eu-props-fields');fields.textContent='';
+ let keys;
+ if(comp.type==='ValveFlow')keys=['openingPct'];
+ else if(comp.type==='ValveOneWayFlow')keys=['openingPct','freeDirection'];
+ else if(comp.type==='AirReservoir')keys=['volumeCm3'];
+ else if(comp.type==='ValveSequence')keys=['thresholdBar'];
+ else keys=['openingPct','volumeCm3','thresholdBar'];
+ for(const key of keys){
+  const def=euPropDefinitions[key];
+  const row=document.createElement('div');row.className='eu-prop-row';
+  const label=document.createElement('label');label.textContent=def.label;row.append(label);
+  const box=document.createElement('div');box.className='eu-prop-control';
+  if(def.choices){
+    const select=document.createElement('select');select.name=key;
+    for(const [value,text] of def.choices){const opt=document.createElement('option');opt.value=value;opt.textContent=text;select.append(opt)}
+    select.value=comp.options[key];box.append(select);label.htmlFor=select.id='eu-prop-'+key;
+  }else{
+    const slider=document.createElement('input');slider.type='range';slider.name=key+'-slider';
+    const num=document.createElement('input');num.type='number';num.name=key;num.id='eu-prop-'+key;
+    for(const input of [slider,num]){input.min=def.min;input.max=def.max;input.step=def.step;input.value=comp.options[key]}
+    slider.addEventListener('input',()=>num.value=slider.value);
+    num.addEventListener('input',()=>{if(Number.isFinite(+num.value))slider.value=num.value;});
+    box.append(slider,num);label.htmlFor=num.id;
+  }
+  row.append(box);
+  const note=document.createElement('p');note.className='eu-prop-help';note.textContent=def.help;row.append(note);
+  fields.append(row);
+ }
+ d.showModal();return true;
+}
+function euCloseConfig(){const d=document.getElementById('eu-props');if(d.open)d.close();euConfigComponent=null;drawMode=null;}
+document.getElementById('eu-props-close').addEventListener('click',euCloseConfig);
+document.getElementById('eu-props-cancel').addEventListener('click',euCloseConfig);
+document.getElementById('eu-props').addEventListener('close',()=>{euConfigComponent=null;drawMode=null;});
+document.getElementById('eu-props-form').addEventListener('submit',(e)=>{
+ e.preventDefault();const c=euConfigComponent;if(!c)return;
+ const f=e.currentTarget,vals={};
+ for(const el of f.elements){if(!el.name||el.name.endsWith('-slider'))continue;
+  const key=el.name,def=euPropDefinitions[key];if(!def)continue;
+  if(def.choices)vals[key]=el.value;else{
+   const n=Number(el.value);
+   if(!Number.isFinite(n)||n<def.min||n>def.max){document.getElementById('eu-props-error').textContent='Valor fuera del rango permitido: '+def.label;return;}
+   vals[key]=n;
+  }
+ }
+ pushUndo();Object.assign(c.options,vals);c.validateOptions();if(c.type==='ValveTimer')c.reset();
+ engine.createNodes();renderer.draw();euCloseConfig();
+});
+// Doble clic para editar propiedades sin usar el menú clásico.
+canvas.addEventListener('dblclick',(e)=>{
+ const r=canvas.getBoundingClientRect();
+ const p={x:(e.clientX-r.left-panOffset.x)/zoomLevel,y:(e.clientY-r.top-panOffset.y)/zoomLevel};
+ for(let i=engine.components.length-1;i>=0;i--){const c=engine.components[i];if(euPropLabels[c.type]&&c.near(p)){euOpenConfigDialog(c);e.preventDefault();break;}}
+});
 </script>
 
 </body>

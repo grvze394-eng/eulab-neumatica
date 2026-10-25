@@ -5,9 +5,9 @@
   <meta name="keywords" content="Online Pneumatic Simulator Schematic Picuino Open-source">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="eulab-version" content="1.1.0">
+  <meta name="eulab-version" content="1.2.0">
   <meta name="description" content="Interactive pneumatic circuit simulator designed for secondary school students and teachers. Build, test, and visualize pneumatic systems online. Free, accurate, and ready for classroom use. By Picuino.">
-  <title>EuLab Neumática v1.1.0 · basado en Picuino</title>
+  <title>EuLab Neumática v1.2.0 · basado en Picuino</title>
 
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -497,7 +497,7 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 
   <button type="button" id="eulab-toggle" aria-controls="eulab-sidebar" aria-expanded="true">☰ Componentes</button>
   <aside id="eulab-sidebar" aria-label="Biblioteca neumática">
-    <div class="eu-head"><strong>EuLab · Neumática v1.1.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
+    <div class="eu-head"><strong>EuLab · Neumática v1.2.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
     <div id="eulab-catalog"></div>
     <div class="eu-foot">Elige un componente y toca el lienzo para insertarlo. Usa «Tubería» para conectar puertos. Simulación y símbolos originales de Picuino, GPL-3.0-or-later.</div>
   </aside>
@@ -3988,6 +3988,89 @@ function euNormalizeJunctions(engine) {
     }
   }
 }
+// EuLab 1.2 — rigidly mounted accessories (escape, supply, manometer).
+// These are distinct from routed tubing. A directly fitted Escape must translate
+// with its valve, and a dedicated terminal hose ending in an Escape should keep
+// its shape instead of growing extra arbitrary bends.
+const euFittingTypes=new Set(['Escape','Compressor','Manometer']);
+let euRigidFollowers=[];
+function euCoordinateKey(p) {return `${p.x},${p.y}`;}
+function euFindRigidFollowers(engine, leaders) {
+  const pipesAt=new Map(), compsAt=new Map();
+  const put=(map,pt,val)=>{
+    const k=euCoordinateKey(pt);
+    if(!map.has(k))map.set(k,[]);
+    map.get(k).push(val);
+  };
+  for(const c of engine.components) {
+    if(c.type==='Pipe') {
+      put(pipesAt,c.init,c);put(pipesAt,c.end,c);
+    } else for(const v of c.vias())put(compsAt,v,c);
+  }
+  const claimed=new Set(leaders);
+  const results=[];
+  for(const leader of leaders) {
+    if(leader.type==='Pipe'||euFittingTypes.has(leader.type))continue;
+    for(const port of leader.vias()) {
+      const root=euCoordinateKey(port);
+      // 1) Directly mounted fittings: the accessory and valve have the same port.
+      for(const fitting of compsAt.get(root)||[]) {
+        if(fitting===leader||!euFittingTypes.has(fitting.type)||claimed.has(fitting))continue;
+        const otherFixed=(compsAt.get(root)||[]).some(c=>c!==leader&&c!==fitting&&!claimed.has(c));
+        if(otherFixed)continue; // do not accidentally drag another independent system
+        claimed.add(fitting);
+        results.push({driver:leader,items:[fitting]});
+      }
+      // 2) An exclusive branch of Pipes terminated by an Escape/Compressor.
+      // Never claim T branches or tubes also connected to another actuator.
+      for(const first of pipesAt.get(root)||[]) {
+        if(claimed.has(first))continue;
+        let current=port,previous=null,next=first,chain=[],found=null;
+        const visited=new Set();
+        for(let step=0;step<80 && next;step++) {
+          if(visited.has(next)||claimed.has(next))break;
+          visited.add(next);chain.push(next);
+          const end=euEq(next.init,current)?next.end:
+                    euEq(next.end,current)?next.init:null;
+          if(!end)break;
+          const here=euCoordinateKey(end);
+          const comps=(compsAt.get(here)||[]).filter(c=>c!==leader&&!claimed.has(c));
+          const pipes=(pipesAt.get(here)||[]).filter(p=>p!==next);
+          if(comps.length===1 && euFittingTypes.has(comps[0].type) && pipes.length===0 && !claimed.has(comps[0])) {
+            found=comps[0];break;
+          }
+          // A terminal accessory cannot be rigidly attached through a T or a valve.
+          if(comps.length>0 || pipes.length!==1)break;
+          previous=next;current=end;next=pipes[0];
+        }
+        if(!found)continue;
+        claimed.add(found);
+        for(const p of chain)claimed.add(p);
+        results.push({driver:leader,items:[...chain,found]});
+      }
+    }
+  }
+  // The offset is held from the start of each drag, not updated repeatedly;
+  // this avoids rounding drift over successive mousemove events.
+  return results.flatMap(({driver,items}) => items.map(item=>({
+    driver,item,driverX:driver.x,driverY:driver.y,
+    initialX:item.x,initialY:item.y,
+    initialInit:item.type==='Pipe'?{...item.init}:null,
+    initialEnd:item.type==='Pipe'?{...item.end}:null
+  })));
+}
+function euTranslateMountedFittings() {
+  for(const record of euRigidFollowers) {
+    const dx=record.driver.x-record.driverX;
+    const dy=record.driver.y-record.driverY;
+    if(record.item.type==='Pipe') {
+      record.item.moveInit({x:record.initialInit.x+dx,y:record.initialInit.y+dy});
+      record.item.moveEnd({x:record.initialEnd.x+dx,y:record.initialEnd.y+dy});
+    } else {
+      record.item.move(record.initialX+dx,record.initialY+dy);
+    }
+  }
+}
 let euCurrentRoutes=[];
 let euBeforeDrag=null;
 let euSavedRoutes=new WeakMap(); // preserve a routed lead on repeated moves
@@ -4014,12 +4097,18 @@ function euPreferredFirstAxis(engine,point,comp) {
 }
 function euBeginAttachedMove(engine,moving) {
   euCurrentRoutes=[];
+  euRigidFollowers=[];
   // Save an exact copy so Escape cancels both drags and newly split junctions.
   euBeforeDrag=JSON.stringify(engine.components.map(c=>c.serialize()));
   const movingSet=new Set(moving);
   const movedComponents=moving.filter(c=>c.type!=='Pipe');
   if(!movedComponents.length)return;
   euNormalizeJunctions(engine);
+  // Include accessory fittings and their exclusive connector pieces as a
+  // rigid part of the moving valve before calculating non-rigid pipe routes.
+  euRigidFollowers=euFindRigidFollowers(engine,movedComponents);
+  for(const r of euRigidFollowers)movingSet.add(r.item);
+  for(const r of euRigidFollowers)if(r.item.type!=='Pipe')movedComponents.push(r.item);
   const covered=new Set();
   for(const comp of movedComponents) {
     const ports=comp.vias();
@@ -4132,6 +4221,7 @@ function euSetRouteGeometry(engine,route,target,clean=false) {
   }
 }
 function euUpdateAttachedPipes() {
+  euTranslateMountedFittings();
   if(!euCurrentRoutes.length)return;
   for(const route of euCurrentRoutes) {
     const port=route.comp.vias()[route.index];
@@ -4146,6 +4236,7 @@ function euFinalizeAttachedPipes() {
 }
 function euResetAttached() {
   euCurrentRoutes=[];
+  euRigidFollowers=[];
   euBeforeDrag=null;
 }
 function euCancelAttachedMove() {

@@ -5,9 +5,9 @@
   <meta name="keywords" content="Online Pneumatic Simulator Schematic Picuino Open-source">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="eulab-version" content="1.0.0">
+  <meta name="eulab-version" content="1.1.0">
   <meta name="description" content="Interactive pneumatic circuit simulator designed for secondary school students and teachers. Build, test, and visualize pneumatic systems online. Free, accurate, and ready for classroom use. By Picuino.">
-  <title>EuLab Neumática v1.0.0 · basado en Picuino</title>
+  <title>EuLab Neumática v1.1.0 · basado en Picuino</title>
 
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -497,7 +497,7 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 
   <button type="button" id="eulab-toggle" aria-controls="eulab-sidebar" aria-expanded="true">☰ Componentes</button>
   <aside id="eulab-sidebar" aria-label="Biblioteca neumática">
-    <div class="eu-head"><strong>EuLab · Neumática v1.0.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
+    <div class="eu-head"><strong>EuLab · Neumática v1.1.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
     <div id="eulab-catalog"></div>
     <div class="eu-foot">Elige un componente y toca el lienzo para insertarlo. Usa «Tubería» para conectar puertos. Simulación y símbolos originales de Picuino, GPL-3.0-or-later.</div>
   </aside>
@@ -3953,74 +3953,211 @@ function euPortNear(pos, engine, exclude=null, radius=13) {
 // EuLab 1.0: turn all port-on-pipe junctions into real pipe endpoints.
 // A T connection must be split, otherwise moving the attached object can
 // leave a line apparently connected while its pneumatic node separates.
+// ===========================================================================
+// EuLab 1.1 — stable pneumatic links (GPL-3.0-or-later, based on Picuino)
+// A component can be connected simply by sharing a port coordinate with a
+// compressor or exhaust. Such a connection has NO Pipe object. Treat both
+// coincident non-pipe ports and actual pipes as permanent connectivity.
+// ===========================================================================
 function euPointInsidePipe(pt,pipe) {
   const a=pipe.init,b=pipe.end;
-  if(euEq(pt,a)||euEq(pt,b))return false;
-  if(a.x===b.x && pt.x===a.x)return pt.y>Math.min(a.y,b.y)&&pt.y<Math.max(a.y,b.y);
-  if(a.y===b.y && pt.y===a.y)return pt.x>Math.min(a.x,b.x)&&pt.x<Math.max(a.x,b.x);
+  if(euEq(pt,a)||euEq(pt,b)) return false;
+  if(a.x===b.x && pt.x===a.x) return pt.y>Math.min(a.y,b.y)&&pt.y<Math.max(a.y,b.y);
+  if(a.y===b.y && pt.y===a.y) return pt.x>Math.min(a.x,b.x)&&pt.x<Math.max(a.x,b.x);
   return false;
 }
-function euSplitAtPorts(engine) {
-  const points=[];
-  for(const c of engine.components)if(c.type!=='Pipe')for(const v of c.vias())points.push({...v});
-  // Split on non-pipe ports, including compressor, escape, gauge and cylinders.
-  for(const pt of points)for(const pipe of [...engine.components]){
-    if(pipe.type!=='Pipe'||!euPointInsidePipe(pt,pipe))continue;
-    const tail={...pipe.end};pipe.moveEnd(pt);
-    engine.addComponent(new Pipe(pt,tail));
+// A connection at a mid-pipe point is electrically/pneumatically distinct in
+// Picuino unless it becomes an actual Pipe endpoint. Normalize T branches.
+function euNormalizeJunctions(engine) {
+  const points=new Map();
+  for(const comp of engine.components) {
+    const pts=comp.type==='Pipe'?(comp.euAutoLead?[]:[comp.init,comp.end]):comp.vias();
+    for(const pt of pts)points.set(pt.x+','+pt.y,{x:pt.x,y:pt.y});
+  }
+  let splits=0;
+  for(const pt of points.values()) {
+    for(const pipe of [...engine.components]) {
+      if(pipe.type!=='Pipe' || pipe.euAutoLead || !euPointInsidePipe(pt,pipe))continue;
+      const tail={...pipe.end};
+      pipe.moveEnd(pt);
+      const second=new Pipe(pt,tail);
+      second.color=pipe.color;
+      engine.addComponent(second);
+      splits++;
+      if(splits>=1500) return;
+    }
   }
 }
-let euStraightExtensions=[];
-function euBeginAttachedMove(engine, moving) {
-  const movingSet=new Set(moving.filter(c=>c.type!=='Pipe'));
-  euSplitAtPorts(engine);
-  const captures=[];
-  for(const comp of movingSet) {
-    const ports=comp.vias().map(p=>({x:p.x,y:p.y}));
-    for(const pipe of engine.components.filter(c=>c.type==='Pipe' && !moving.includes(c))) {
-      for(const end of ['init','end']) {
-        const pt=pipe[end];
-        const idx=ports.findIndex(v=>euEq(v,pt));
-        if(idx>=0)captures.push({comp,pipe,end,idx,old:{...pt}});
+let euCurrentRoutes=[];
+let euBeforeDrag=null;
+let euSavedRoutes=new WeakMap(); // preserve a routed lead on repeated moves
+function euPipeEndsAt(engine,pt,excluded) {
+  return engine.components.some(c=>c.type==='Pipe' && !excluded.has(c) &&
+     (euEq(c.init,pt)||euEq(c.end,pt)));
+}
+function euPortHasStationaryConnection(engine,comp,pt,excluded) {
+  if(euPipeEndsAt(engine,pt,excluded))return true;
+  return engine.components.some(c=>c!==comp && c.type!=='Pipe' && !excluded.has(c) &&
+    c.vias().some(v=>euEq(v,pt)));
+}
+function euPreferredFirstAxis(engine,point,comp) {
+  // Preserve the orientation of the original pipe leaving the junction.
+  for(const p of engine.components) {
+    if(p.type!=='Pipe')continue;
+    if(euEq(point,p.init) || euEq(point,p.end)) {
+      const other=euEq(point,p.init)?p.end:p.init;
+      if(other.x===point.x && other.y!==point.y)return 'v';
+      if(other.y===point.y && other.x!==point.x)return 'h';
+    }
+  }
+  return (point.x !== comp.x && point.y === comp.y) ? 'h' : 'v'; // Exhausts route sideways first; supply goes vertical.
+}
+function euBeginAttachedMove(engine,moving) {
+  euCurrentRoutes=[];
+  // Save an exact copy so Escape cancels both drags and newly split junctions.
+  euBeforeDrag=JSON.stringify(engine.components.map(c=>c.serialize()));
+  const movingSet=new Set(moving);
+  const movedComponents=moving.filter(c=>c.type!=='Pipe');
+  if(!movedComponents.length)return;
+  euNormalizeJunctions(engine);
+  const covered=new Set();
+  for(const comp of movedComponents) {
+    const ports=comp.vias();
+    for(let index=0;index<ports.length;index++) {
+      const pt={...ports[index]};
+      const key=pt.x+','+pt.y;
+      // A group with two collocated moving ports needs only one hose.
+      if(covered.has(key))continue;
+      let stored=euSavedRoutes.get(comp)?.get(index);
+      if(stored && (stored.pipes.some(p=>!engine.components.includes(p))))stored=null;
+      const connected=euPortHasStationaryConnection(engine,comp,pt,movingSet);
+      if(!connected && !stored)continue;
+      const route=stored || {
+        comp,index,anchor:pt,axis:euPreferredFirstAxis(engine,pt,comp),pipes:[]
+      };
+      if(!stored) {
+        let map=euSavedRoutes.get(comp);
+        if(!map){map=new Map();euSavedRoutes.set(comp,map);}
+        map.set(index,route);
+      }
+      euCurrentRoutes.push(route);
+      covered.add(key);
+    }
+  }
+}
+// After release, choose a rectilinear route that avoids other symbols and
+// ports. During mouse motion the fast L-shaped preview remains responsive.
+function euSimplifyPolyline(raw) {
+  const pts=[];
+  for(const p of raw)if(!pts.length||!euEq(p,pts[pts.length-1]))pts.push(p);
+  for(let i=1;i<pts.length-1;) {
+    const a=pts[i-1],b=pts[i],c=pts[i+1];
+    if((a.x===b.x&&b.x===c.x)||(a.y===b.y&&b.y===c.y))pts.splice(i,1);
+    else i++;
+  }
+  return pts;
+}
+function euRouteCost(pts,engine,route) {
+  let score=(pts.length-2)*8;
+  const otherPipes=engine.components.filter(p=>p.type==='Pipe'&&!route.pipes.includes(p));
+  const others=engine.components.filter(c=>c.type!=='Pipe');
+  for(let i=1;i<pts.length;i++) {
+    const a=pts[i-1],b=pts[i];
+    const dx=b.x-a.x,dy=b.y-a.y;
+    if(dx!==0&&dy!==0)return 1e10;
+    score+=(Math.abs(dx)+Math.abs(dy))*0.15;
+    const steps=(Math.abs(dx)+Math.abs(dy))/grid;
+    for(let j=1;j<=steps;j++) {
+      const p={x:a.x+dx*j/steps,y:a.y+dy*j/steps};
+      if(euEq(p,route.anchor)||euEq(p,pts[pts.length-1]))continue;
+      for(const c of others) {
+        if(c.near(p))score+=130;
+        // A pipe endpoint touching another component port can merge networks.
+        for(const v of c.vias())if(euEq(v,p))score+=300;
+      }
+      for(const pipe of otherPipes) {
+        if(euEq(p,pipe.init)||euEq(p,pipe.end))score+=12;
+        else if(euPointInsidePipe(p,pipe))score+=9;
       }
     }
   }
-  euAttachments=captures;
-  euCaptureElbows(engine);
-  euStraightExtensions=[];
-  const elbowPipes=new Set(euActiveElbows.flatMap(e=>[e.a.pipe,e.b.pipe]));
-  // Straight lines need an additional orthogonal section as soon as a port
-  // moves off the original axis. A zero-length piece becomes the new leg.
-  for(const a of captures) {
-    const p=a.pipe;
-    if(elbowPipes.has(p)||euStraightExtensions.some(e=>e.pipe===p))continue;
-    const otherKey=a.end==='init'?'end':'init';
-    const fixed={...p[otherKey]};
-    const pt={...p[a.end]};
-    if(pt.x!==fixed.x && pt.y!==fixed.y)continue;
-    const second=new Pipe(fixed,fixed);
-    engine.addComponent(second);
-    euStraightExtensions.push({pipe:p,end:a.end,otherKey,second,fixed,orientation:pt.y===fixed.y?'h':'v'});
+  return score;
+}
+function euChooseCleanRoute(engine,route,target) {
+  const a=route.anchor,b=target;
+  if(euEq(a,b))return [];
+  const x0=Math.min(a.x,b.x),x1=Math.max(a.x,b.x);
+  const y0=Math.min(a.y,b.y),y1=Math.max(a.y,b.y);
+  const xs=[x0-20,x1+20,x0-80,x1+80];
+  const ys=[y0-20,y1+20,y0-80,y1+80];
+  const candidates=[
+    [a,{x:b.x,y:a.y},b],
+    [a,{x:a.x,y:b.y},b],
+  ];
+  for(const x of xs)candidates.push([a,{x,y:a.y},{x,y:b.y},b]);
+  for(const y of ys)candidates.push([a,{x:a.x,y},{x:b.x,y},b]);
+  for(const x of xs)for(const y of ys){
+    candidates.push([a,{x,y:a.y},{x,y},{x:b.x,y},b]);
+    candidates.push([a,{x:a.x,y},{x,y},{x,y:b.y},b]);
+  }
+  let best=null,bestCost=Infinity;
+  for(const candidate of candidates) {
+    const pts=euSimplifyPolyline(candidate);
+    const cost=euRouteCost(pts,engine,route);
+    if(cost<bestCost){best=pts;bestCost=cost;}
+  }
+  return best||[a,b];
+}
+// Re-route existing lead segments rather than growing another chain each time.
+// The other end stays at the original fixed junction or accessory port.
+function euSetRouteGeometry(engine,route,target,clean=false) {
+  const origin=route.anchor;
+  let segments=[];
+  if(!euEq(origin,target)) {
+    const points=clean?euChooseCleanRoute(engine,route,target):
+      euSimplifyPolyline([origin,route.axis==='h'?{x:target.x,y:origin.y}:
+                                              {x:origin.x,y:target.y},target]);
+    for(let i=1;i<points.length;i++)segments.push([points[i-1],points[i]]);
+  }
+  while(route.pipes.length>segments.length) {
+    const pipe=route.pipes.pop();
+    const i=engine.components.indexOf(pipe);
+    if(i>=0)engine.components.splice(i,1);
+  }
+  for(let i=0;i<segments.length;i++) {
+    const [a,b]=segments[i];
+    let pipe=route.pipes[i];
+    if(!pipe){pipe=new Pipe(a,b);pipe.euAutoLead=true;engine.addComponent(pipe);route.pipes.push(pipe);}
+    else {pipe.moveInit(a);pipe.moveEnd(b);}
   }
 }
 function euUpdateAttachedPipes() {
-  for(const a of euAttachments) {
-    const v=a.comp.vias()[a.idx];
-    if(!v)continue;
-    if(a.end==='init')a.pipe.moveInit(v);else a.pipe.moveEnd(v);
-  }
-  euUpdateElbows();
-  for(const e of euStraightExtensions) {
-    const moving=e.pipe[e.end];
-    const corner=e.orientation==='h'?{x:e.fixed.x,y:moving.y}:{x:moving.x,y:e.fixed.y};
-    if(e.otherKey==='init')e.pipe.moveInit(corner);else e.pipe.moveEnd(corner);
-    e.second.moveInit(corner);e.second.moveEnd(e.fixed);
+  if(!euCurrentRoutes.length)return;
+  for(const route of euCurrentRoutes) {
+    const port=route.comp.vias()[route.index];
+    if(port)euSetRouteGeometry(engine,route,port);
   }
 }
-function euResetAttached() {euAttachments=[];euActiveElbows=[];euStraightExtensions=[];}
-function euSnapPort(pos, engine) {
+function euFinalizeAttachedPipes() {
+  for(const route of euCurrentRoutes){
+    const port=route.comp.vias()[route.index];
+    if(port)euSetRouteGeometry(engine,route,port,true);
+  }
+}
+function euResetAttached() {
+  euCurrentRoutes=[];
+  euBeforeDrag=null;
+}
+function euCancelAttachedMove() {
+  if(euBeforeDrag!==null) {
+    restoreState(euBeforeDrag);
+    euSavedRoutes=new WeakMap();
+  }
+  euResetAttached();
+}
+function euSnapPort(pos,engine) {
   const near=euPortNear(pos,engine);
-  return near ? {x:near.x,y:near.y} : pos;
+  return near?{x:near.x,y:near.y}:pos;
 }
 
 class UIController {
@@ -4165,10 +4302,7 @@ class UIController {
       }
     }
 
-    for (const a of euAttachments) {
-      if(a.end==='init') a.pipe.moveInit(a.old); else a.pipe.moveEnd(a.old);
-    }
-    euResetAttached(); euHoveredPort=null;
+    euCancelAttachedMove(); euHoveredPort=null;
     // Clear multi-select state
     this.engine.components.forEach(c => c.selected = false);
     selectionRect = null;
@@ -4359,7 +4493,10 @@ class UIController {
           editPipe.color=selectedColor;
           // Temporary preview is not in engine.components.
         } else {
-          if(!euEq(initPos,position))euAddOrthogonal(this.engine,initPos,position);
+          if(!euEq(initPos,position)){
+            euAddOrthogonal(this.engine,initPos,position);
+            euNormalizeJunctions(this.engine);
+          }
           editPipe=null;initPos=null;
         }
         comp=null;

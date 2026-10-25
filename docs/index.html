@@ -5,8 +5,9 @@
   <meta name="keywords" content="Online Pneumatic Simulator Schematic Picuino Open-source">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="eulab-version" content="0.3.1">
   <meta name="description" content="Interactive pneumatic circuit simulator designed for secondary school students and teachers. Build, test, and visualize pneumatic systems online. Free, accurate, and ready for classroom use. By Picuino.">
-  <title data-i18n="title">Pneumatic Simulator - Picuino</title>
+  <title>EuLab Neumática v0.3.1 · basado en Picuino</title>
 
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -269,6 +270,32 @@
     width: 100%;
   }
 
+
+/* EuLab Neumática: interfaz sobre el motor original de Picuino */
+:root { --eulab-side: 252px; }
+#eulab-sidebar {position:fixed;z-index:800;top:35px;bottom:0;left:0;width:var(--eulab-side);background:#fff;border-right:1px solid #d6dce5;box-sizing:border-box;overflow:auto;box-shadow:2px 0 8px #0b25400c;font-size:13px}
+#eulab-sidebar .eu-head {position:sticky;top:0;background:#12314a;color:white;padding:13px 14px;z-index:1}
+#eulab-sidebar .eu-head strong {display:block;font-size:17px;letter-spacing:.2px}
+#eulab-sidebar .eu-head small{display:block;color:#c7dfea;margin-top:4px;line-height:1.4}
+#eulab-sidebar .eu-group {border-bottom:1px solid #e5eaf0;padding:9px 10px 12px}
+#eulab-sidebar .eu-group h3{font-size:12px;letter-spacing:.5px;text-transform:uppercase;color:#496176;margin:4px 0 8px}
+#eulab-sidebar .eu-item {cursor:pointer;box-sizing:border-box;width:100%;display:flex;align-items:center;text-align:left;background:white;border:1px solid transparent;border-radius:7px;min-height:36px;margin:2px 0;padding:7px 9px;color:#21364b;font-size:13px;gap:8px}
+#eulab-sidebar .eu-item:hover,#eulab-sidebar .eu-item:focus-visible {background:#eaf4fa;border-color:#afd3e7}
+#eulab-sidebar .eu-item.eu-selected{background:#dceefa;border-color:#3786b3;font-weight:650}
+#eulab-sidebar .eu-icon{display:inline-flex;width:26px;height:23px;flex:none;justify-content:center;align-items:center;border:1px solid #adc1cc;border-radius:4px;background:#fafcfd;color:#124563;font-weight:bold;font-size:10px}
+#eulab-sidebar .eu-foot{padding:11px;line-height:1.4;color:#5f7281;font-size:11px}
+#eulab-toggle{position:fixed;z-index:1005;top:2px;left:460px;height:30px;white-space:nowrap;border:1px solid #a5c2d1;border-radius:5px;background:#eff8fc;color:#1e4c66;font-weight:700;cursor:pointer;padding:0 9px}
+body.eu-sidebar-open #canvas{margin-left:var(--eulab-side)}
+body.eu-sidebar-closed #eulab-sidebar{display:none}
+body.eu-sidebar-closed #canvas{margin-left:0}
+@media(max-width:850px){
+ #eulab-sidebar{width:min(82vw,285px);box-shadow:6px 0 22px #0003}
+ body.eu-sidebar-open #canvas{margin-left:0}
+ #eulab-toggle{left:auto;right:10px;top:39px;z-index:1001;background:#fff}
+ .menu-principal{padding-right:0!important}
+ #eulab-sidebar{top:74px;z-index:999}
+}
+
   </style>
 </head>
 
@@ -439,6 +466,14 @@
 
     </ul>
   </nav>
+
+
+  <button type="button" id="eulab-toggle" aria-controls="eulab-sidebar" aria-expanded="true">☰ EuLab · Componentes</button>
+  <aside id="eulab-sidebar" aria-label="Biblioteca neumática">
+    <div class="eu-head"><strong>EuLab · Neumática v0.3.1</strong><small>Biblioteca de símbolos del simulador Picuino</small></div>
+    <div id="eulab-catalog"></div>
+    <div class="eu-foot">Elige un componente y toca el lienzo para insertarlo. Usa «Tubería» para conectar puertos. Simulación y símbolos originales de Picuino, GPL-3.0-or-later.</div>
+  </aside>
 
   <canvas id="canvas" class="canvas"></canvas>
 
@@ -3967,7 +4002,8 @@ class UIController {
   _resizeCanvas(e) {
     const canvas = this.canvas;
     const ctx = canvas.getContext('2d');
-    const width = window.innerWidth*canvasScale;
+    const sidebarWidth = (document.body.classList.contains("eu-sidebar-open") && window.innerWidth > 850) ? 252 : 0;
+    const width = (window.innerWidth-sidebarWidth)*canvasScale;
     const height = (window.innerHeight - 35)*canvasScale ;
     canvas.width  = (width < minCanvasWidth) ? minCanvasWidth : width;
     canvas.height = (height < minCanvasHeight) ? minCanvasHeight : height;
@@ -5272,6 +5308,46 @@ function closeConfirm() {
   return translations[globalLang]['closeConfirm'];
 }
 
+</script>
+
+
+<script>
+/* Extensión EuLab: reutiliza las acciones originales mediante eventos delegados. */
+(function(){
+ const categories = [
+  ['Válvulas distribuidoras',['cValve22m','cValve32b','cValve32m','cValve32r','cRoller','cValve32p','cValve42m','cValve52m','cValve52p']],
+  ['Válvulas auxiliares',['cValveNret','cValveFlow','cValveOr','cValveAnd']],
+  ['Actuadores',['cCylinder1','cCylinder2']],
+  ['Alimentación y medición',['cPress','cEscape','cManometer']],
+  ['Conexión y anotaciones',['cPipe','cText']]
+ ];
+ const icons = {cPipe:'━━',cPress:'◉',cEscape:'▽',cManometer:'○',cText:'T',cCylinder1:'▯→',cCylinder2:'▯⇄',cValveFlow:'↗',cValveNret:'▷|',cValveOr:'≥1',cValveAnd:'&'};
+ const catalog=document.getElementById('eulab-catalog');
+ categories.forEach(([name,actions])=>{
+  const group=document.createElement('section');group.className='eu-group';
+  const heading=document.createElement('h3');heading.textContent=name;group.append(heading);
+  actions.forEach(action=>{
+   const original=document.querySelector('.menu-item [data-action="'+action+'"]');
+   if(!original)return;
+   const btn=document.createElement('button');btn.type='button';btn.className='eu-item';btn.dataset.action=action;
+   const glyph=document.createElement('span');glyph.className='eu-icon';glyph.textContent=icons[action]||action.replace(/^cValve/,'').replace(/[^0-9a-z]/gi,'').slice(0,4);
+   const label=document.createElement('span');label.textContent=(typeof translations!=='undefined' && translations[globalLang] && translations[globalLang][action]) || original.textContent.trim();
+   label.setAttribute('data-i18n',original.getAttribute('data-i18n')||action);
+   btn.append(glyph,label);group.append(btn);
+   btn.addEventListener('click',()=>{
+    catalog.querySelectorAll('.eu-item').forEach(b=>b.classList.remove('eu-selected'));
+    btn.classList.add('eu-selected');
+    if(matchMedia('(max-width:850px)').matches){document.body.classList.replace('eu-sidebar-open','eu-sidebar-closed');updateButton()}
+   });
+  });catalog.append(group);
+ });
+ const toggle=document.getElementById('eulab-toggle');
+ function updateButton(){ const open=document.body.classList.contains('eu-sidebar-open');toggle.setAttribute('aria-expanded',String(open));toggle.textContent=open?'✕ EuLab · Componentes':'☰ EuLab · Componentes'; }
+ function apply(initial=false){ if(initial){document.body.classList.add(matchMedia('(max-width:850px)').matches?'eu-sidebar-closed':'eu-sidebar-open')};updateButton(); }
+ toggle.addEventListener('click',()=>{document.body.classList.toggle('eu-sidebar-open');document.body.classList.toggle('eu-sidebar-closed');updateButton();window.dispatchEvent(new Event('resize'))});
+ apply(true);
+ // El original mide el canvas respecto a window.innerWidth: conservarlo sin interceptar sus controles.
+})();
 </script>
 
 </body>

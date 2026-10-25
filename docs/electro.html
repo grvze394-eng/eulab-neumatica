@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>EuLab Electroneumática — CircuitJS1 + Picuino</title>
+<style>
+:root{color-scheme:light;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:#172b47}
+*{box-sizing:border-box}body{margin:0;background:#f1f5f9}header{background:#12263d;color:#fff;padding:13px 18px}h1{font-size:21px;margin:0}header p{margin:5px 0 0;color:#bfdbfe;font-size:13px}
+.controls{background:#fff;border-bottom:1px solid #cbd5e1;display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:10px 12px}
+button{border:1px solid #94a3b8;border-radius:7px;background:white;color:#123047;padding:9px 12px;font-size:14px;cursor:pointer}button.primary{background:#146eb4;color:white;border-color:#146eb4}button:disabled{opacity:.5}button:focus-visible{outline:3px solid #f59e0b}button:hover{background:#eaf3fd}
+.status{margin-left:auto;font-size:13px;color:#334155}.status strong{font-variant-numeric:tabular-nums}
+.layout{display:grid;grid-template-columns: 1fr 1fr; gap:10px;padding:10px;height:calc(100dvh - 146px);min-height:450px}.pane{display:flex;flex-direction:column;border:1px solid #cbd5e1;background:white;border-radius:10px;overflow:hidden;min-width:0}.pane h2{margin:0;padding:9px 12px;background:#e8eff7;font-size:14px;border-bottom:1px solid #cbd5e1}.pane iframe{width:100%;height:100%;border:0;flex:1;display:block}
+.notes{font-size:12px;color:#53657e;padding:3px 12px 10px}.led{display:inline-block;width:10px;height:10px;border-radius:50%;background:#94a3b8;margin-right:4px}.led.on{background:#16a34a}.led.err{background:#dc2626}#alert{font-weight:600}#alert.err{color:#be123c}
+@media(max-width:900px){.layout{grid-template-columns:1fr;height:auto}.pane{height:460px}.status{margin-left:0}.pane iframe{min-height:380px}header{padding:10px 12px}}
+</style></head><body>
+<header><h1>EuLab · Electroneumática <span style="font-size:12px;font-weight:normal">prototipo de integración</span></h1><p>Motores originales: CircuitJS1 (eléctrico) + Picuino Neumatic (neumático) · GPL</p></header>
+<div class="controls">
+<button id="load" class="primary">Cargar ejemplo 24 V · S1 / S2</button>
+<button id="start">Iniciar neumática</button>
+<button id="stop">Pausar</button>
+<button id="reset">Restablecer</button>
+<label style="font-size:12px">Motor eléctrico: <select id="elpath"><option value="../eulab-circuits/">/eulab-circuits/</option><option value="../eulab-circuits/circuitjs.html">/eulab-circuits/circuitjs.html</option></select></label>
+<div class="status"><span class="led" id="lamp"></span><strong id="connect">Conectando CircuitJS1…</strong> · Y1 <strong id="y1">—</strong> · Y2 <strong id="y2">—</strong> · cilindro <strong id="pos">—</strong> · B0 <strong id="b0">—</strong> · B1 <strong id="b1">—</strong></div>
+</div>
+<div class="notes" id="alert">La señal de la electroválvula proviene del voltaje calculado por CircuitJS1, no de botones simulados por EuLab.</div>
+<main class="layout">
+<section class="pane"><h2>Control eléctrico: 24 V, S1/S2, Y1/Y2 — CircuitJS1</h2><iframe id="electric" title="Circuito eléctrico de CircuitJS1"></iframe></section>
+<section class="pane"><h2>Actuación neumática: válvula 5/2 biestable y cilindro — Picuino</h2><iframe id="pneumatic" src="./pneumatic.html" title="Circuito neumático Picuino"></iframe></section>
+</main>
+<script>
+'use strict';
+const iframe=document.getElementById('electric');
+const pneumatic=document.getElementById('pneumatic');
+const elpath=document.getElementById('elpath');
+const connect=document.getElementById('connect'),lamp=document.getElementById('lamp');
+const alertbox=document.getElementById('alert');
+const led=(id,on)=>document.getElementById(id).textContent=on?'ON':'OFF';
+let sim=null, pneu=null, outputs={Y1:false,Y2:false};
+let currentCircuit=null;
+function show(msg,error=false){connect.textContent=msg;lamp.className='led'+(error?' err':sim?' on':'');alertbox.className=error?'err':'';if(error)alertbox.textContent=msg;}
+function checkPneu(){try{const api=pneumatic.contentWindow.EuLabPneumaticBridge;if(api){pneu=api;return true;}}catch(e){}return false;}
+function sync(){
+ if(!sim)return;
+ try{
+   if(!sim.getNodeVoltage)throw new Error('Esta versión no expone getNodeVoltage');
+   const a=Number(sim.getNodeVoltage('Y1')),b=Number(sim.getNodeVoltage('Y2'));
+   if(!Number.isFinite(a)||!Number.isFinite(b))throw new Error('Faltan nodos etiquetados Y1/Y2 en CircuitJS1');
+   const out={Y1:a>=12,Y2:b>=12};
+   outputs=out;led('y1',out.Y1);led('y2',out.Y2);
+   if(pneu)pneu.setOutputs(out);
+   if(out.Y1 && out.Y2){alertbox.textContent='Precaución: Y1 e Y2 energizadas simultáneamente. La válvula mantiene su posición.';alertbox.className='err';}
+   else{alertbox.textContent='Señales reales: Y1 = '+a.toFixed(1)+' V; Y2 = '+b.toFixed(1)+' V. Acciona S1 y S2 en el simulador eléctrico.';alertbox.className='';}
+ }catch(err){show('Interfaz eléctrica: '+err.message,true);}
+}
+function readPneu(){if(!pneu&&!checkPneu())return;
+ try{const x=pneu.read();document.getElementById('pos').textContent=x.cylinder===null?'—':(x.cylinder*100).toFixed(0)+' %';
+ document.getElementById('b0').textContent=x.B0?'1':'0';document.getElementById('b1').textContent=x.B1?'1':'0';}catch(e){}
+}
+function onReady(){
+ try{
+  sim=iframe.contentWindow.CircuitJS1;
+  if(!sim||!sim.getNodeVoltage||!sim.importCircuit){show('CircuitJS1 no expone su API en esta compilación',true);sim=null;return;}
+  sim.onupdate=()=>sync();
+  sim.onanalyze=()=>sync();
+  show('CircuitJS1 conectado');
+  if(currentCircuit)sim.importCircuit(currentCircuit,false);
+  else loadExample();
+ }catch(err){show('Error inicializando CircuitJS1: '+err.message,true);}
+}
+function setupElectrical(){sim=null;const rel=elpath.value;iframe.src=rel+'?whiteBackground=true';
+ try{iframe.onload=()=>{const w=iframe.contentWindow;try{w.oncircuitjsloaded=onReady;
+ if(w.CircuitJS1)onReady();else show('Cargando motor eléctrico…');}
+ catch(e){show('Los dos motores deben estar en el mismo origen: '+e.message,true);}};}
+ catch(e){show('No se pudo abrir CircuitJS1: '+e.message,true);}}
+async function loadExample(){
+ try{const txt=await (await fetch('./ejemplo-circuitjs-y1-y2.txt',{cache:'no-store'})).text();
+ if(!txt.startsWith('$ '))throw new Error('Archivo de ejemplo eléctrico no válido');currentCircuit=txt;
+ if(sim){sim.importCircuit(txt,false);show('Ejemplo 24 V cargado: acciona S1/S2');}
+ if(pneu)pneu.reset();
+ }catch(err){show('No se pudo cargar ejemplo: '+err.message,true);}
+}
+document.getElementById('load').onclick=loadExample;
+document.getElementById('start').onclick=()=>{if(checkPneu())pneu.start();};
+document.getElementById('stop').onclick=()=>{if(checkPneu())pneu.stop();};
+document.getElementById('reset').onclick=()=>{if(checkPneu()){pneu.reset();pneu.loadDemo();}if(sim&&currentCircuit)sim.importCircuit(currentCircuit,false);};
+elpath.onchange=setupElectrical;
+pneumatic.addEventListener('load',()=>{checkPneu();if(pneu)pneu.setOutputs(outputs);});
+// Display refresh only; all electrical outputs read from the real CircuitJS1 engine.
+setInterval(()=>{checkPneu();readPneu();},180);
+setupElectrical();
+</script>
+</body></html>

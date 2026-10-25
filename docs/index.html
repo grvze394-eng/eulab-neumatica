@@ -5,9 +5,9 @@
   <meta name="keywords" content="Online Pneumatic Simulator Schematic Picuino Open-source">
 
   <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  <meta name="eulab-version" content="0.8.0">
+  <meta name="eulab-version" content="0.9.0">
   <meta name="description" content="Interactive pneumatic circuit simulator designed for secondary school students and teachers. Build, test, and visualize pneumatic systems online. Free, accurate, and ready for classroom use. By Picuino.">
-  <title>EuLab Neumática v0.8.0 · basado en Picuino</title>
+  <title>EuLab Neumática v0.9.0 · basado en Picuino</title>
 
   <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png">
   <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96.png">
@@ -497,7 +497,7 @@ body.eu-sidebar-closed #canvas{margin-left:0}
 
   <button type="button" id="eulab-toggle" aria-controls="eulab-sidebar" aria-expanded="true">☰ Componentes</button>
   <aside id="eulab-sidebar" aria-label="Biblioteca neumática">
-    <div class="eu-head"><strong>EuLab · Neumática v0.8.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
+    <div class="eu-head"><strong>EuLab · Neumática v0.9.0</strong><small>Símbolos originales de Picuino</small><label for="eu-search" class="eu-search-label">Buscar componente</label><input id="eu-search" type="search" placeholder="Buscar: 5/2, rodillo, cilindro…" autocomplete="off" aria-label="Buscar componente"/><div id="eu-count" aria-live="polite"></div></div>
     <div id="eulab-catalog"></div>
     <div class="eu-foot">Elige un componente y toca el lienzo para insertarlo. Usa «Tubería» para conectar puertos. Simulación y símbolos originales de Picuino, GPL-3.0-or-later.</div>
   </aside>
@@ -1402,7 +1402,13 @@ class Pipe extends ComponentBase {
   }
 
   draw(ctx) {
-    this.drawPipe(ctx, this.color);
+    if(this===editPipe) {
+      const corner=euOrthogonalEnds(this.init,this.end);
+      ctx.save();ctx.strokeStyle=this.color;ctx.lineWidth=lineWidth;
+      ctx.beginPath();ctx.moveTo(this.init.x,this.init.y);
+      ctx.lineTo(corner.x,corner.y);ctx.lineTo(this.end.x,this.end.y);ctx.stroke();
+      ctx.restore();
+    } else this.drawPipe(ctx, this.color);
   };
 
   serialize(){
@@ -3802,6 +3808,7 @@ class Renderer{
     for (const comp of this.engine.components) {
       comp.draw(ctx);
     }
+    if(editPipe && !this.engine.components.includes(editPipe))editPipe.draw(ctx);
 
     // Ghost preview for component placement
     if (ghostComponent) {
@@ -3877,6 +3884,59 @@ class Renderer{
 // EuLab v0.8: keep pipe endpoints connected to the component ports.
 // Capture by original port coordinates, not by screen positions; this preserves
 // connectivity during a move without modifying Picuino's simulation engine.
+// EuLab 0.9: two real axis-aligned Pipe pieces with direction-dependent elbow.
+// Each segment remains a genuine Picuino Pipe, so pneumatic flow still works.
+let euElbows = [];
+function euEq(a,b) {return a && b && a.x===b.x && a.y===b.y;}
+function euOrthogonalEnds(start,finish) {
+  return {x:finish.x,y:start.y}; // horizontal first, vertical second
+}
+function euAddOrthogonal(engine,start,finish) {
+  const elbow=euOrthogonalEnds(start,finish);
+  const pieces=[];
+  if (!euEq(start,elbow)) {const p=new Pipe(start,elbow);engine.addComponent(p);pieces.push(p);}
+  if (!euEq(elbow,finish)) {const p=new Pipe(elbow,finish);engine.addComponent(p);pieces.push(p);}
+  if(pieces.length===2) euElbows.push({first:pieces[0],second:pieces[1],horizontalFirst:true});
+}
+// Rebuild elbow associations for loaded circuits, but only genuine 90-degree,
+// two-segment joints that do not coincide with a valve or cylinder port.
+function euCollectElbows(engine) {
+  const pipes=engine.components.filter(c=>c.type==='Pipe');
+  const nodes=new Map();
+  for (const p of pipes) for (const end of ['init','end']) {
+    const q=p[end],key=q.x+','+q.y;
+    if(!nodes.has(key))nodes.set(key,[]);
+    nodes.get(key).push({pipe:p,end});
+  }
+  const results=[];
+  for(const [key,ends] of nodes) {
+    if(ends.length!==2)continue;
+    const [a,b]=ends;
+    if(a.pipe===b.pipe)continue;
+    const joint=a.pipe[a.end];
+    if(engine.components.some(c=>c.type!=='Pipe' && c.vias().some(v=>euEq(v,joint))))continue;
+    const ao=a.pipe[a.end==='init'?'end':'init'];
+    const bo=b.pipe[b.end==='init'?'end':'init'];
+    const aHorizontal=ao.y===joint.y && ao.x!==joint.x;
+    const aVertical=ao.x===joint.x && ao.y!==joint.y;
+    const bHorizontal=bo.y===joint.y && bo.x!==joint.x;
+    const bVertical=bo.x===joint.x && bo.y!==joint.y;
+    if(!((aHorizontal&&bVertical)||(aVertical&&bHorizontal)))continue;
+    results.push({a,b,aHorizontal,ao:{...ao},bo:{...bo}});
+  }
+  return results;
+}
+let euActiveElbows=[];
+function euCaptureElbows(engine) {euActiveElbows=euCollectElbows(engine);}
+function euUpdateElbows() {
+  for(const r of euActiveElbows) {
+    const aOuter=r.a.pipe[r.a.end==='init'?'end':'init'];
+    const bOuter=r.b.pipe[r.b.end==='init'?'end':'init'];
+    const bend=r.aHorizontal ? {x:bOuter.x,y:aOuter.y} : {x:aOuter.x,y:bOuter.y};
+    if(r.a.end==='init')r.a.pipe.moveInit(bend);else r.a.pipe.moveEnd(bend);
+    if(r.b.end==='init')r.b.pipe.moveInit(bend);else r.b.pipe.moveEnd(bend);
+  }
+}
 let euAttachments = [];
 let euHoveredPort = null;
 function euPortNear(pos, engine, exclude=null, radius=13) {
@@ -3898,12 +3958,13 @@ function euBeginAttachedMove(engine, moving) {
     for (const pipe of engine.components.filter(c=>c.type==='Pipe' && !moving.includes(c))) {
       for (const end of ['init','end']) {
         const p=pipe[end];
-        const idx=ports.findIndex(v=>v.x===p.x && v.y===p.y);
+        const idx=ports.findIndex(v=>Math.abs(v.x-p.x)<=1 && Math.abs(v.y-p.y)<=1);
         if(idx>=0) captures.push({comp,pipe,end,idx,old:{x:p.x,y:p.y}});
       }
     }
   }
   euAttachments=captures;
+  euCaptureElbows(engine);
 }
 function euUpdateAttachedPipes() {
   for(const a of euAttachments) {
@@ -3913,8 +3974,9 @@ function euUpdateAttachedPipes() {
     if(a.end==='init') a.pipe.moveInit(p);
     else a.pipe.moveEnd(p);
   }
+  euUpdateElbows();
 }
-function euResetAttached() {euAttachments=[];}
+function euResetAttached() {euAttachments=[];euActiveElbows=[];}
 function euSnapPort(pos, engine) {
   const near=euPortNear(pos,engine);
   return near ? {x:near.x,y:near.y} : pos;
@@ -4250,22 +4312,16 @@ class UIController {
 
       // Draw pipe
       if (componentType === 'Pipe') {
-        if (initPos === null) {
-          initPos = position;
-          editPipe = new Pipe(initPos, initPos);
-          comp = editPipe;
-          editPipe.color = selectedColor;
+        if(initPos===null) {
+          initPos={x:position.x,y:position.y};
+          editPipe=new Pipe(initPos,initPos);
+          editPipe.color=selectedColor;
+          // Temporary preview is not in engine.components.
+        } else {
+          if(!euEq(initPos,position))euAddOrthogonal(this.engine,initPos,position);
+          editPipe=null;initPos=null;
         }
-        else {
-          editPipe.moveEnd(position);
-          editPipe.color = '#000';
-          if (editPipe.init.x === editPipe.end.x &&
-              editPipe.init.y === editPipe.end.y) {
-            this.engine.deleteComponent(editPipe);
-          }
-          editPipe = null;
-          initPos = null;
-        }
+        comp=null;
       }
 
       // Add component and redraw
@@ -4448,10 +4504,10 @@ class UIController {
 
     if ((drawMode === 'Move') && (componentMove)) {
       if (pipeMove === 'init') {
-        componentMove.moveInit(position);
+        componentMove.moveInit(euSnapPort(position,this.engine));
       }
       else if (pipeMove === 'end') {
-        componentMove.moveEnd(position);
+        componentMove.moveEnd(euSnapPort(position,this.engine));
       }
       else {
         const x = position.x - this.positionMoveInit.x + this.positionCompInit.x;

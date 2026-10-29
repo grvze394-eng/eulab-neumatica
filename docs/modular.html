@@ -14,8 +14,7 @@
 .has-lesson .canvas-controls{bottom:42px;z-index:7}.has-lesson .status-strip{z-index:7}#library-top{color:var(--teal);background:#eef7f5}
 @media(max-width:430px){.header .brand{font-size:13px;gap:4px}.header .brand-mark{width:28px;height:28px;font-size:14px}.header{padding:0 8px}.header-actions button,.header-actions .file-menu summary{padding:7px 8px;font-size:12px}.lesson-command-bar button{min-height:40px;font-size:11px}.header-actions{gap:3px}}
 
-/* EuLab 0.2.1 — forms must never shrink into the measurements panel.
-   One scroll container; heading/footer remain outside it. */
+/* 0.2.1: single non-shrinking scroll area for the form and measurements. */
 :root{--app-height:100dvh;--header-height:72px;--viewport-top:0px;--nav-height:0px}
 html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
 .workspace{height:calc(var(--app-height) - var(--header-height));grid-template-columns:240px minmax(0,1fr) 310px}
@@ -104,7 +103,7 @@ body.inspector-expanded #inspector{display:flex!important;position:fixed;z-index
 <dialog id="import-error-dialog"><div class="dialog-head"><h2>No se pudo abrir el archivo</h2><button class="close-dialog" aria-label="Cerrar">×</button></div><div class="help-content"><p><b id="import-error-file"></b></p><p id="import-error-message"></p><p>El circuito que tenías abierto se conserva. Esta aplicación ya incluye la hoja comparativa.</p><button class="primary" data-action="restoreComparison">Cargar los dos circuitos</button></div></dialog>
 <dialog id="examples-dialog"><div class="dialog-head"><div><span class="eyebrow">APRENDER HACIENDO</span><h2>Biblioteca de prácticas</h2></div><button class="close-dialog" aria-label="Cerrar">×</button></div><div id="example-tabs" class="example-tabs" aria-label="Grupo de prácticas"></div><label class="example-search"><span>Buscar práctica</span><input id="lesson-search" placeholder="AND, temporizador, contador…"></label><div id="examples-list"></div><p class="subtle">Abrir un ejemplo reemplaza el lienzo. Usa Archivo → Guardar para conservar tu práctica.</p></dialog>
 <dialog id="practice-dialog"><div class="dialog-head"><div><span class="eyebrow">GUÍA DE LA PRÁCTICA</span><h2 id="practice-title"></h2></div><button class="close-dialog" aria-label="Cerrar guía">×</button></div><div id="practice-content" class="help-content"></div></dialog>
-<dialog id="help-dialog"><div class="dialog-head"><h2>Tu laboratorio, paso a paso</h2><button class="close-dialog">×</button></div><div class="help-content"><h3>Construir</h3><p>Elige un módulo y toca un símbolo. Arrástralo por el cuerpo. Toca un puerto y luego el otro para conectarlos. Invierte el orden o selecciona la tubería y pulsa <b>Cambiar recorrido</b> para cambiar el codo.</p><h3>Conservar uniones</h3><p>Las conexiones pertenecen a los puertos, no a sus coordenadas. Acerca el puerto de un escape o manómetro a uno compatible y suéltalo para acoplarlo. Aparecerá una unión permanente y el accesorio acompañará al componente. Para una T, empieza en un puerto y termina tocando una tubería.</p><h3>Simular</h3><p>Activa Simular. Mantén pulsados los pulsadores eléctricos. Selecciona una válvula manual y usa sus botones de mando. Pausa para volver a editar. Para el PLC, abre el ejemplo de ciclo y el panel Ladder.</p><h3>Configurar componentes</h3><p>Selecciona un componente y pulsa <b>Propiedades</b>, o haz doble clic en su cuerpo. En el teléfono usa la pestaña inferior. El formulario tiene desplazamiento propio; las mediciones se encuentran en una sección plegable. Pausa para editar. Los valores válidos se aplican al salir del campo; <b>Listo</b> confirma el campo activo y vuelve al circuito. Usa Archivo → Guardar proyecto para descargar una copia.</p><h3>En el teléfono</h3><p>Usa las cuatro pestañas inferiores. Un dedo mueve componentes o desplaza el fondo; dos dedos acercan o alejan. Los botones +, − y ⛶ también ajustan la vista.</p><h3>Alcance de esta base</h3><p>Neumática isotérmica de parámetros concentrados; hidráulica resistiva cuasiestática; electricidad lógica ideal de 24 V, sin cálculo de corriente ni electrónica analógica. PLC educativo con un programa, cuatro entradas y cuatro salidas. Temporizador neumático: retardo lógico, no un depósito físico calibrado.</p><p>Los símbolos son dibujos técnicos propios, sin certificación ISO/IEC. No es FluidSIM ni un controlador de máquinas reales. Los mandos bimanuales didácticos no son dispositivos de seguridad.</p><p>Los proyectos anteriores de Picuino/EuLab no se importan en esta primera base. Se conservan aparte. Guarda tus archivos .eulab.json; el autoguardado del navegador no sustituye una copia.</p></div></dialog>
+<dialog id="help-dialog"><div class="dialog-head"><h2>Tu laboratorio, paso a paso</h2><button class="close-dialog">×</button></div><div class="help-content"><h3>Construir</h3><p>Elige un módulo y toca un símbolo. Arrástralo por el cuerpo. Toca un puerto y luego el otro para conectarlos. Invierte el orden o selecciona la tubería y pulsa <b>Cambiar recorrido</b> para cambiar el codo.</p><h3>Conservar uniones</h3><p>Las conexiones pertenecen a los puertos, no a sus coordenadas. Acerca el puerto de un escape o manómetro a uno compatible y suéltalo para acoplarlo. Aparecerá una unión permanente y el accesorio acompañará al componente. Para una T, empieza en un puerto y termina tocando una tubería.</p><h3>Simular</h3><p>Activa Simular. Mantén pulsados los pulsadores eléctricos. Selecciona una válvula manual y usa sus botones de mando. Pausa para volver a editar. Para el PLC, abre el ejemplo de ciclo y el panel Ladder.</p><h3>En el teléfono</h3><p>Usa las cuatro pestañas inferiores. Un dedo mueve componentes o desplaza el fondo; dos dedos acercan o alejan. Los botones +, − y ⛶ también ajustan la vista.</p><h3>Alcance de esta base</h3><p>Neumática isotérmica de parámetros concentrados; hidráulica resistiva cuasiestática; electricidad lógica ideal de 24 V, sin cálculo de corriente ni electrónica analógica. PLC educativo con un programa, cuatro entradas y cuatro salidas. Temporizador neumático: retardo lógico, no un depósito físico calibrado.</p><p>Los símbolos son dibujos técnicos propios, sin certificación ISO/IEC. No es FluidSIM ni un controlador de máquinas reales. Los mandos bimanuales didácticos no son dispositivos de seguridad.</p><p>Los proyectos anteriores de Picuino/EuLab no se importan en esta primera base. Se conservan aparte. Guarda tus archivos .eulab.json; el autoguardado del navegador no sustituye una copia.</p></div></dialog>
 <dialog id="ladder-dialog"><div class="dialog-head"><div><span class="eyebrow">PLC VIRTUAL · ESCANEO DE 20 ms</span><h2>Programa Ladder</h2></div><button class="close-dialog">×</button></div><div class="ladder-toolbar"><button id="add-rung" class="primary">+ Peldaño</button><span>Contactos en serie = AND · ramas = OR</span></div><div id="ladder-lesson-controls" class="lesson-command-bar"></div><div id="plc-monitor"></div><div id="ladder"></div><p class="subtle">X: entradas · Y: salidas · M: memorias · T: TON · C: contadores. Los contactos se editan al pausar. Salidas ideales PNP alimentadas por el puerto +24 V.</p><datalist id="addresses"></datalist></dialog>
 
 <script>
@@ -180,7 +179,6 @@ function commitProperty(t){
  const current=selectedNode();if(current){t.value=String(name==='label'?current.label:current.params[name]);syncPropertyVisibility(current);document.querySelector('#inspector-title').textContent=current.label;}
  propertyFeedback('Cambio aplicado. Archivo → Guardar descarga tu proyecto.');
  }catch(err){t.setAttribute('aria-invalid','true');propertyFeedback(err.message,true);return false;}finally{applyingProperty=false;}
- // Only controls which change the form need a refresh; never replace a text/number field while typing.
  if(name==='control'||name==='toggle'){properties();propertyFeedback('Cambio aplicado.');}
  return true;
 }
@@ -1061,14 +1059,12 @@ class PracticeLibrary {
 Object.assign(__exports,{PracticeLibrary});
 },
 "src/ui/responsive-panels.js":function(__exports,__require){
-/** Properties/library layout. UI-only: does not touch simulation or project data. */
+/** Responsive panels; simulation and project format unchanged. */
 class ResponsivePanels {
  constructor({store,editor,onClose}){
   this.store=store;this.editor=editor;this.onClose=onClose;this.scroller=document.querySelector('#inspector-scroll');this.expanded=false;
   const resize=()=>{cancelAnimationFrame(this.resizeFrame);this.resizeFrame=requestAnimationFrame(()=>this.layout());};
-  window.addEventListener('resize',resize);
-  window.visualViewport?.addEventListener('resize',resize);
-  window.visualViewport?.addEventListener('scroll',resize);
+  window.addEventListener('resize',resize);window.visualViewport?.addEventListener('resize',resize);window.visualViewport?.addEventListener('scroll',resize);
   if(window.ResizeObserver){this.headerObserver=new ResizeObserver(resize);this.headerObserver.observe(document.querySelector('.header'));}
   document.querySelector('#inspector-expand').onclick=()=>{
    if(this.expanded){document.body.classList.remove('sheet-view');this.expanded=false;document.body.classList.remove('inspector-expanded');}
@@ -1076,11 +1072,8 @@ class ResponsivePanels {
    this.layout();
   };
   document.querySelector('#panel-backdrop').onclick=onClose;
-  // SVG node groups are recreated on selection, so native dblclick targets may
-  // disappear. Detect a second stationary release using the stable component id.
   document.querySelector('#canvas').addEventListener('pointerup',e=>{
-   const drag=editor.drag;
-   if(store.running||!drag||drag.kind!=='node'||drag.moved){this.lastTap=null;return;}
+   const drag=editor.drag;if(store.running||!drag||drag.kind!=='node'||drag.moved){this.lastTap=null;return;}
    const previous=this.lastTap;this.lastTap={id:drag.id,t:e.timeStamp};
    if(previous?.id===drag.id&&e.timeStamp-previous.t<450){this.lastTap=null;setTimeout(()=>this.show('inspector'),0);}
   },true);
@@ -1091,8 +1084,7 @@ class ResponsivePanels {
    if(e.key==='Escape'){e.preventDefault();e.stopPropagation();onClose();}
    if(e.key==='Enter'&&e.target.matches('input')){e.preventDefault();e.target.dispatchEvent(new Event('change',{bubbles:true}));if(e.target.getAttribute('aria-invalid')!=='true')onClose();}
   });
-  store.on(kind=>{if(kind==='select')this.updateSelectionHint();});
-  this.layout();
+  store.on(kind=>{if(kind==='select')this.updateSelectionHint();});this.layout();
  }
  show(name){
   document.body.dataset.panel=name;
@@ -1101,16 +1093,13 @@ class ResponsivePanels {
   for(const b of document.querySelectorAll('.mobile-nav [data-panel]')){const active=b.dataset.panel===name;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));}
   this.layout();
  }
- updateSelectionHint(){const b=document.querySelector('#properties-open');b.classList.toggle('has-selection',!!this.store.selected);}
+ updateSelectionHint(){document.querySelector('#properties-open').classList.toggle('has-selection',!!this.store.selected);}
  layout(){
-  const vv=window.visualViewport,root=document.documentElement;
-  const height=vv?.height||innerHeight,top=vv?.offsetTop||0;
+  const vv=window.visualViewport,root=document.documentElement,height=vv?.height||innerHeight,top=vv?.offsetTop||0;
   root.style.setProperty('--app-height',height+'px');root.style.setProperty('--viewport-top',top+'px');
   root.style.setProperty('--header-height',document.querySelector('.header').getBoundingClientRect().height+'px');
-  const focused=document.activeElement?.matches('input,textarea,select');
-  document.body.classList.toggle('keyboard-open',!!focused&&innerHeight-height>100);
-  const expanded=this.expanded&&innerWidth>1100;
-  document.querySelector('#panel-backdrop').hidden=!expanded;
+  const focused=document.activeElement?.matches('input,textarea,select');document.body.classList.toggle('keyboard-open',!!focused&&innerHeight-height>100);
+  const expanded=this.expanded&&innerWidth>1100;document.querySelector('#panel-backdrop').hidden=!expanded;
   document.querySelector('#inspector-expand').textContent=expanded?'↙':'⛶';
   document.querySelector('#inspector-expand').setAttribute('aria-label',expanded?'Acoplar panel lateral':'Ampliar propiedades');
   document.querySelector('#inspector-expand').setAttribute('aria-expanded',String(expanded));
@@ -1119,8 +1108,7 @@ class ResponsivePanels {
  ensureVisible(el){
   if(!el||!el.isConnected||!this.scroller.contains(el)||!el.matches('input,select,textarea'))return;
   const r=el.getBoundingClientRect(),s=this.scroller.getBoundingClientRect();if(s.height<1)return;
-  if(r.bottom>s.bottom-20)this.scroller.scrollTop+=r.bottom-s.bottom+20;
-  else if(r.top<s.top+16)this.scroller.scrollTop-=s.top+16-r.top;
+  if(r.bottom>s.bottom-20)this.scroller.scrollTop+=r.bottom-s.bottom+20;else if(r.top<s.top+16)this.scroller.scrollTop-=s.top+16-r.top;
  }
 }
 

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#126b68"><meta name="eulab-version" content="modular-0.2.2-cuaderno"><title>EuLab Modular · Cuaderno de 12 prácticas PLC</title><style>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#126b68"><meta name="eulab-version" content="modular-0.3.0-informes"><title>EuLab Modular · Informes PDF y cronograma</title><style>
 :root{--ink:#19323f;--muted:#667e8b;--line:#dce5e9;--teal:#126b68;--light:#eef7f5;--paper:#fff;--pneu:#2875ad;--hydro:#8052a8;--electric:#b97608;--font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden}body{font:14px var(--font);color:var(--ink);background:#f2f6f8}button,input,select{font:inherit}button,.button,summary{cursor:pointer}button,.button{border:1px solid var(--line);background:white;border-radius:7px;color:var(--ink);min-height:38px;padding:8px 12px;font-weight:550}button:hover,.button:hover{background:#f0f5f7;border-color:#aabec7}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #71b8d4;outline-offset:2px}button:disabled{opacity:.4;cursor:not-allowed}.primary{background:var(--teal);border-color:var(--teal);color:white}.primary:hover{background:#0e5957;color:white}.danger{color:#a73039}.subtle{font-size:12px;color:var(--muted);line-height:1.65}.header{height:72px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;background:white;border-bottom:1px solid var(--line)}.brand{display:flex;gap:10px;align-items:center;color:var(--ink);text-decoration:none;flex-shrink:0;font-size:19px;letter-spacing:-.6px}.brand-mark{width:40px;height:40px;border-radius:12px;background:var(--teal);display:grid;place-items:center;color:white;font-weight:700;letter-spacing:-1px}.brand b{font-weight:400}.brand small{display:block;font-size:10px;letter-spacing:.3px;color:var(--muted);margin-top:2px}.header-center{display:flex;flex-direction:column;min-width:0;gap:6px}.version{font-size:9px;font-weight:700;letter-spacing:1.4px;color:var(--teal)}#project-title{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.header-actions{display:flex;gap:8px;align-items:center}.icon-button{font-size:20px;padding:3px 11px}.file-menu{position:relative}.file-menu summary{list-style:none;font-size:12px;padding-top:10px}.file-menu summary::-webkit-details-marker{display:none}.menu{position:absolute;right:0;top:45px;z-index:20;background:white;box-shadow:0 8px 30px #12323c25;border:1px solid var(--line);padding:6px;width:220px;border-radius:10px}.menu button{display:block;width:100%;text-align:left;border:0;font-size:13px}.workspace{display:grid;grid-template-columns:250px minmax(0,1fr) 245px;height:calc(100dvh - 72px)}.panel{background:white;display:flex;flex-direction:column;min-height:0}.panel-heading{display:flex;justify-content:space-between;align-items:center;padding:20px 17px 16px}.eyebrow{display:block;font-size:9px;letter-spacing:1.8px;font-weight:750;color:var(--teal);margin-bottom:6px}h2{font-size:18px;margin:0;letter-spacing:-.4px}h3{font-size:15px;letter-spacing:-.1px}.library{border-right:1px solid var(--line)}.library>select{margin:0 14px 10px;width:calc(100% - 28px);padding:10px;border:1px solid var(--line);border-radius:7px;background:#f8fafb;font-size:12px;color:var(--ink)}.search{margin:0 14px;display:flex;align-items:center;border:1px solid var(--line);border-radius:7px;padding:0 9px;gap:6px}.search span{font-size:24px;color:var(--muted)}.search input{width:100%;border:0;outline:0;padding:10px 0;font-size:11px}.catalog-tip{font-size:10px;color:var(--muted);margin:10px 15px 14px}.catalog{overflow-y:auto;flex:1;padding:0 10px 18px}.catalog details{margin-bottom:6px}.catalog details summary{padding:10px 6px;font-size:11px;font-weight:700;color:#405968;letter-spacing:.05px}.catalog details summary small{float:right;color:#91a0a9;font-weight:500}.component-list{display:grid;grid-template-columns:1fr;gap:5px}.component-card{display:flex;align-items:center;text-align:left;gap:8px;width:100%;min-height:66px;font-size:11px;line-height:1.35;padding:5px 7px;background:#fff;border:1px solid #e6ecef;border-radius:7px;font-weight:500}.component-card:hover{border-color:#66a9a6;background:#f0f8f7}.component-card svg{width:71px;height:51px;flex-shrink:0;color:#334d5b;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}.component-card span{max-width:125px}.library-footer{padding:13px 15px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}.dot{display:inline-block;background:#349a7e;width:6px;height:6px;border-radius:50%;margin-right:5px}.stage{position:relative;overflow:hidden;background:#fbfcfd;min-width:0}.stage-toolbar{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;gap:8px;z-index:4;pointer-events:none}.tool-group{display:flex;gap:2px;align-items:center;border:1px solid var(--line);border-radius:8px;background:white;padding:3px;box-shadow:0 2px 5px #20394408;pointer-events:auto}.tool-group button{border:0;min-height:32px;padding:6px 9px;font-size:12px;font-weight:500}.tool-group .active{background:var(--light);color:var(--teal)}#canvas{width:100%;height:100%;touch-action:none;display:block;user-select:none;-webkit-user-select:none;outline:0}#nodes .node-body{stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}.node{color:#203a47;cursor:grab}.running .node{cursor:pointer}.node.on{color:#11876a}.node .selection{fill:#edf8ff44;stroke:#44a0c7;stroke-width:1.5;stroke-dasharray:5 4;rx:9}.node-label{fill:#314e5f;font:600 11px var(--font)}.port-dot{fill:#fff;stroke:#487484;stroke-width:1.3}.port-hit{fill:transparent;stroke:none;cursor:crosshair}.port-label{fill:#6f8592;font:9px var(--font);pointer-events:none}.port:hover .port-dot,.port.active .port-dot{fill:#79d6f1;stroke:#087ca4;stroke-width:2.5}.wire{fill:none;stroke-linejoin:round;stroke-linecap:round;stroke-width:2}.wire-hit{stroke:transparent;stroke-width:16;fill:none;cursor:pointer}.wire.selected{stroke-width:3;stroke-dasharray:6 3}.stage-note{position:absolute;bottom:57px;left:16px;max-width:calc(100% - 180px);font-size:11px;color:#6c808c;pointer-events:none;background:#fbfcfddf;line-height:1.6;border-radius:5px;padding:3px 5px}.canvas-controls{position:absolute;right:14px;bottom:57px;display:flex;gap:2px;background:white;border:1px solid var(--line);border-radius:8px;align-items:center;padding:3px}.canvas-controls button{border:0;min-height:30px;padding:4px 8px;font-size:17px}.canvas-controls span{font-size:10px;width:35px;text-align:center}.status-strip{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;height:39px;padding:0 15px;background:white;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}.status-strip button{font-size:10px;min-height:26px;padding:4px 7px;border:none;background:#f3f6f8}.status-strip i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#9faeb7;margin-right:6px}.running .status-strip i{background:#13a077}.inspector{border-left:1px solid var(--line);overflow-y:auto}#properties{padding:0 17px 15px;min-height:180px}.empty-inspector{background:#f6f9fa;border:1px dashed #d7e2e6;border-radius:9px;padding:16px;color:var(--muted);font-size:12px;line-height:1.7}.selected-type{font-size:11px;color:var(--teal);margin-bottom:15px;line-height:1.5}.prop-field{display:block;margin-bottom:12px;color:#4b6371;font-size:11px}.prop-field>span{display:block;margin-bottom:5px}.prop-field input,.prop-field select{width:100%;padding:9px 8px;border:1px solid var(--line);border-radius:6px;color:var(--ink);background:white;font-size:12px;min-width:0}.prop-field input[type=range]{padding:0}.properties-buttons{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}.properties-buttons button{flex:1;font-size:11px;padding:7px;white-space:nowrap}.state-card{background:#eff8f4;padding:12px;border:1px solid #d4e8df;border-radius:8px;margin:14px 0;font-size:12px}.state-card strong{display:block;color:var(--teal);font-size:11px;margin-bottom:8px}.actuation{display:flex;flex-wrap:wrap;gap:6px}.actuation button{flex:1;font-size:11px;min-height:42px}.measurement-panel{margin-top:auto;border-top:1px solid var(--line);padding:18px 16px}.panel-subtitle{font-size:9px;letter-spacing:1.1px;color:var(--muted);font-weight:700;margin-bottom:12px}.measure{font-size:11px;display:flex;justify-content:space-between;margin:7px 0;color:var(--muted)}.measure b{color:var(--ink);font-weight:600}.plot-legend{font-size:9px;color:var(--muted);margin-top:4px}.wide{width:100%;font-size:11px;margin-top:16px;background:#f4f8f9}#plot{width:100%;height:auto;display:block;margin-top:16px;background:#f8fafb;border:1px solid #e8eef1;border-radius:5px}dialog{border:1px solid var(--line);border-radius:16px;padding:24px;max-width:calc(100vw - 30px);max-height:90dvh;box-shadow:0 25px 100px #13354430;color:var(--ink);width:760px}dialog::backdrop{background:#142a38aa}.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}.dialog-head>button{font-size:22px;border:0;padding:3px 12px}.dialog-head h2{font-size:23px}.help-content{font-size:13px;line-height:1.8}.help-content h3{margin:20px 0 5px}.help-content p{margin:5px 0 12px}#examples-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}.example-card{text-align:left;padding:16px;background:#f8fafb;line-height:1.6}.example-card b{display:block;font-size:13px;margin-bottom:8px}.example-card small{display:block;font-size:11px;font-weight:400;color:var(--muted)}#ladder-dialog{width:1000px}.ladder-toolbar{display:flex;align-items:center;gap:20px;margin-bottom:14px;font-size:12px;color:var(--muted)}#plc-monitor{display:flex;gap:5px;flex-wrap:wrap;padding:9px;background:#f3f6f8;border-radius:7px;margin-bottom:14px}.bit{padding:4px 7px;border-radius:4px;background:#e1e8ec;color:#5c7280;font:11px ui-monospace,monospace}.bit.on{background:#147a60;color:white}.rung{border:1px solid var(--line);border-radius:8px;margin-bottom:12px;overflow:hidden}.rung-head{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;background:#f5f8fa;font-size:11px;color:var(--muted)}.rung-head button{font-size:11px;min-height:25px;padding:2px 8px}.ladder-graphic{width:100%;height:95px;display:block;color:#607481}.ladder-graphic.active{color:#09946d}.ladder-editor{padding:10px 14px;border-top:1px solid var(--line);background:#fcfdfd}.ladder-editor summary{font-size:11px;font-weight:550;color:var(--muted)}.branch-line{display:flex;gap:8px;align-items:center;margin:12px 0;flex-wrap:wrap;font-size:12px}.contact-edit{padding:5px;border:1px solid var(--line);border-radius:6px;display:flex;gap:4px;align-items:center}.contact-edit input[type=text]{width:62px;padding:5px;border:0;font:12px ui-monospace,monospace}.contact-edit label{font-size:10px}.branch-line button{font-size:10px;padding:4px 7px;min-height:28px}.output-edit{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px}.output-edit select,.output-edit input{border:1px solid var(--line);padding:7px;border-radius:5px;max-width:120px}.output-edit input{width:65px}.ladder-footer{display:flex;gap:7px}.ladder-footer button{font-size:10px;min-height:30px}#toast{position:fixed;bottom:55px;left:50%;transform:translateX(-50%) translateY(15px);opacity:0;pointer-events:none;max-width:min(550px,calc(100vw - 30px));padding:12px 18px;border-radius:10px;background:#193c4c;color:white;box-shadow:0 6px 24px #13232a22;z-index:100;font-size:12px;line-height:1.6;transition:opacity .15s,transform .15s}#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.mobile-nav,.mobile-only{display:none}.sr-only{position:absolute;left:-10000px}
 @media(max-width:1150px){.workspace{grid-template-columns:225px minmax(0,1fr) 220px}.header-center{display:none}.stage-toolbar button span{display:none}.component-card svg{width:62px}.panel-heading{padding:16px 14px}.canvas-controls{right:8px}.stage-note{max-width:calc(100% - 160px)}}
 @media(max-width:820px){.header{height:62px;padding:0 10px;gap:8px}.brand{font-size:15px;gap:6px}.brand-mark{width:32px;height:32px;border-radius:9px;font-size:16px}.brand small{display:none}.header-actions{gap:4px}.header-actions button,.file-menu summary{min-height:38px;padding:7px 9px}.brand b{display:none}.file-menu summary{font-size:11px}.header-actions .icon-button{font-size:18px}.workspace{height:calc(100dvh - 122px - env(safe-area-inset-bottom));display:block}.stage{height:100%;width:100%}.panel{display:none}.panel-heading{padding:14px 17px}.mobile-only{display:block}.close-panel{border:0;font-size:23px;padding:0 10px;min-height:36px}body[data-panel=library] .library,body[data-panel=inspector] .inspector{display:flex;position:fixed;z-index:12;top:70px;left:8px;right:8px;bottom:calc(68px + env(safe-area-inset-bottom));border:1px solid var(--line);border-radius:13px;box-shadow:0 12px 70px #173c4b38;overflow:hidden}.catalog{padding:0 12px 15px}.component-list{grid-template-columns:1fr 1fr}.component-card{min-height:79px;gap:5px}.component-card svg{width:62px;min-width:52px}.component-card span{font-size:10px;max-width:110px}.catalog details summary{padding:12px 7px;font-size:12px}.inspector{overflow-y:auto!important}#properties{padding:0 18px 15px}.prop-field input,.prop-field select{min-height:42px;font-size:14px}.prop-field{font-size:12px}.measurement-panel{padding:15px 18px}.inspector .measurement-panel #plot{max-height:120px;width:100%}.mobile-nav{height:calc(60px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);display:flex;position:fixed;bottom:0;left:0;right:0;border-top:1px solid var(--line);background:white;z-index:14}.mobile-nav button{flex:1;border:0;border-radius:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:20px;padding:4px}.mobile-nav span{font-size:10px;font-weight:600}.mobile-nav .active{color:var(--teal);background:#eff8f5}.stage-toolbar{top:8px;left:8px;right:8px}.tool-group button{min-height:36px;font-size:16px;padding:4px 10px}.tool-group button.examples-button{font-size:11px;padding:4px 7px}.stage-note{font-size:10px;left:10px;bottom:91px;max-width:calc(100% - 20px)}.canvas-controls{bottom:45px}.canvas-controls button{min-width:34px;min-height:34px}.status-strip{padding:0 9px;font-size:10px}.status-strip button{font-size:9px}.dialog-head h2{font-size:19px}dialog{padding:17px;border-radius:13px;max-height:92dvh;width:calc(100vw - 20px);max-width:calc(100vw - 20px)}#examples-list{grid-template-columns:1fr}.ladder-toolbar{gap:10px}.ladder-toolbar span{font-size:10px}.ladder-graphic{height:90px}.rung-head{font-size:10px}.branch-line{gap:5px}.contact-edit input[type=text]{width:47px}#toast{bottom:78px}.measurement-panel .wide{min-height:44px}.output-edit{font-size:11px}.state-card{margin:10px 0}.actuation button{min-height:47px}}
@@ -83,16 +83,80 @@ body.inspector-expanded #inspector{display:flex!important;position:fixed;z-index
 /* Cuaderno PLC: exportación sin modificar los motores. */
 .capture-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;padding:12px 0;border-bottom:1px solid #dce5e9}.capture-row strong{flex:1;min-width:170px;font-size:14px}.capture-row button{min-height:44px}#capture-dialog{width:680px}#capture-dialog p{font-size:13px;line-height:1.6}.file-menu .menu{max-height:70dvh;overflow:auto}#library-top{white-space:nowrap}#ladder-dialog .ladder-toolbar{flex-wrap:wrap} @media(max-width:420px){.brand span:not(.brand-mark){display:none}#library-top{font-size:11px;padding:7px}#run{font-size:12px}}
 
+/* 0.3.0 · comments and reports. Does not change the canvas or property layout. */
+.rung-comment-field{display:flex;flex-direction:column;gap:8px;padding:14px 0;width:100%;min-width:0;color:#315261;font-size:14px}
+.rung-comment-field textarea{display:block;box-sizing:border-box;width:100%;max-width:100%;resize:vertical;min-height:94px;line-height:1.5;padding:12px;font:inherit;border:1px solid #bdcfd7;border-radius:8px;background:white;color:#203b49}
+.rung-comment{white-space:pre-wrap;overflow-wrap:anywhere;max-width:100%}
+#report-dialog{width:min(1160px,calc(100vw - 24px));max-width:calc(100vw - 24px);height:min(900px,calc(100dvh - 28px));max-height:calc(100dvh - 28px);padding:0;overflow:hidden;background:#fff;box-sizing:border-box}
+#report-dialog[open]{display:flex;flex-direction:column}
+#report-dialog .dialog-head{flex-shrink:0;padding:16px 22px;border-bottom:1px solid #dce6ea}
+#report-dialog .dialog-head h2{margin:3px 0 0;font-size:23px}
+.report-tabs{display:flex;gap:8px;padding:10px 20px;border-bottom:1px solid #dce6ea;flex-shrink:0;background:#f5f9fa}
+.report-tabs button.active{background:#126b68;color:white;border-color:#126b68}
+.report-body{min-height:0;overflow:auto;overscroll-behavior:contain;padding:16px 22px 26px;flex:1;-webkit-overflow-scrolling:touch}
+.report-body p{font-size:14px;line-height:1.6;margin:8px 0 16px}
+.report-status{padding:10px 13px;border-radius:8px;background:#edf6f6;color:#205c63}
+.report-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:10px 0}
+#report-dialog button{min-height:44px;white-space:normal;font:inherit;font-size:14px}
+.report-range{display:flex;gap:14px;flex-wrap:wrap;padding:10px 0;align-items:center}
+.report-range>label{display:flex;flex-direction:column;gap:6px;font-size:14px;max-width:180px}
+.report-range input[type=number]{width:130px;max-width:100%;min-height:44px;box-sizing:border-box}
+#report-dialog input[type=checkbox]{width:20px;height:20px;min-width:20px;accent-color:#126b68}
+.report-range>label.report-check{flex-direction:row;align-items:center;max-width:none}
+.trace-picker{border:1px solid #d8e5e8;border-radius:10px;padding:0 12px;margin:12px 0;background:#fff}
+.trace-picker summary{cursor:pointer;padding:14px 4px;font-weight:600;line-height:1.5}
+.signal-search{display:flex;flex-direction:column;font-size:13px;gap:5px;margin-bottom:12px}
+.signal-search input{box-sizing:border-box;min-height:44px;width:100%;font-size:16px}
+#trace-signals{max-height:270px;overflow:auto;border-top:1px solid #dbe5e8;margin-bottom:12px}
+.trace-signal{display:flex;gap:6px;justify-content:space-between;align-items:center;padding:8px 2px;border-bottom:1px solid #edf1f4;min-height:44px}
+.trace-signal label{display:flex;gap:10px;align-items:center;min-width:0;flex:1;font-size:14px;cursor:pointer}
+.trace-signal label span{min-width:0;overflow-wrap:anywhere}
+.trace-signal small{display:block;color:#526d7a;font-size:12px;line-height:1.5;font-weight:400}
+.trace-signal button{min-width:38px;padding:4px!important}
+.trace-signal>div{display:flex;gap:3px}
+#trace-preview{overflow-x:auto;overflow-y:hidden;border:1px solid #d8e4e9;border-radius:8px;background:white;margin:8px 0 12px;-webkit-overflow-scrolling:touch}
+#trace-preview svg{display:block;width:100%;height:auto;min-width:860px}
+.report-empty{padding:28px;line-height:1.7;color:#526b7a}
+.report-meta{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0}
+.report-meta label{display:flex;flex-direction:column;gap:8px;min-width:0;font-size:14px}
+.report-meta .wide{grid-column:1/-1}
+.report-meta input,.report-meta textarea{box-sizing:border-box;min-width:0;width:100%;max-width:100%;min-height:48px;font-size:16px;font-family:inherit;padding:12px;border:1px solid #bcd1db;border-radius:8px;color:#203b49}
+.report-meta textarea{resize:vertical;line-height:1.5}
+.report-sections{border:1px solid #d6e3e8;border-radius:8px;display:grid;grid-template-columns:1fr 1fr;gap:8px 14px;margin:10px 0 16px;padding:12px}
+.report-sections legend{padding:0 5px;font-size:14px;font-weight:600}
+.report-sections label{display:flex;gap:9px;align-items:center;line-height:1.4;font-size:14px;padding:8px 0;min-height:34px}
+.report-warning{padding:12px 14px;background:#fff7e9;border-left:3px solid #ad7d24;border-radius:5px;color:#6c542d}
+#report-file-link{display:block;padding:14px;background:#edf7f3;border:1px solid #9bcbbb;border-radius:8px;overflow-wrap:anywhere}
+#report-file-link[hidden],#report-dialog [hidden]{display:none!important}
+#report-progress{min-height:24px;color:#126b68;font-weight:600;overflow-wrap:anywhere}
+@media(max-width:680px){
+ #report-dialog{width:calc(100vw - 12px);max-width:calc(100vw - 12px);height:calc(100dvh - 12px);max-height:calc(100dvh - 12px);margin:auto;border-radius:10px}
+ #report-dialog .dialog-head{padding:12px 14px}
+ #report-dialog .dialog-head h2{font-size:20px}
+ .report-tabs{padding:8px 12px}
+ .report-body{padding:12px 14px 20px}
+ .report-meta,.report-sections{grid-template-columns:1fr}
+ .report-range{gap:10px}
+ .report-range>label{max-width:calc(50% - 5px)}
+ .report-range>label.report-check{max-width:100%;width:100%}
+ .trace-picker{padding:0 7px}
+ #trace-signals{max-height:225px}
+ .trace-signal label{font-size:13px;gap:6px}
+ #report-download,#report-save-project{width:100%}
+ .rung-comment-field textarea{font-size:16px}
+ .report-actions>span{font-size:12px}
+}
+
 </style></head>
 <body class="sheet-view">
-<header class="header"><a class="brand" href="#" aria-label="EuLab"><span class="brand-mark">Eu</span><span>EuLab <b>Modular</b><small>Laboratorio de automatización</small></span></a><div class="header-center"><span class="version">CUADERNO PLC · 12 PRÁCTICAS</span><span id="project-title"></span></div><div class="header-actions"><button id="library-top" data-action="examples" title="Biblioteca de prácticas PLC">12 prácticas</button><button id="run" class="primary">▶ <span>Simular</span></button><button id="reset" class="icon-button" title="Reiniciar simulación">↺</button><details class="file-menu"><summary class="button">Archivo ▾</summary><div class="menu"><button data-action="restoreComparison">Cargar los dos circuitos</button><button data-action="examples">Biblioteca de prácticas</button><button data-action="new">Nuevo circuito</button><button data-action="save">Guardar proyecto</button><button data-action="open">Abrir proyecto</button><button data-capture-open>Obtener imágenes PNG / SVG</button><button data-action="csv">Exportar datos CSV</button><button data-action="help">Cómo usar / límites</button></div></details></div></header>
+<header class="header"><a class="brand" href="#" aria-label="EuLab"><span class="brand-mark">Eu</span><span>EuLab <b>Modular</b><small>Laboratorio de automatización</small></span></a><div class="header-center"><span class="version">INFORMES PDF · 0.3.0</span><span id="project-title"></span></div><div class="header-actions"><button id="library-top" data-action="examples" title="Biblioteca de prácticas PLC">12 prácticas</button><button id="run" class="primary">▶ <span>Simular</span></button><button id="reset" class="icon-button" title="Reiniciar simulación">↺</button><details class="file-menu"><summary class="button">Archivo ▾</summary><div class="menu"><button data-action="restoreComparison">Cargar los dos circuitos</button><button data-action="examples">Biblioteca de prácticas</button><button data-action="new">Nuevo circuito</button><button data-action="save">Guardar proyecto</button><button data-action="open">Abrir proyecto</button><button data-report-open="pdf">Descargar informe PDF</button><button data-report-open="timeline">Cronograma de señales</button><button data-capture-open>Obtener imágenes PNG / SVG</button><button data-action="csv">Exportar datos CSV</button><button data-action="help">Cómo usar / límites</button></div></details></div></header>
 <div class="workspace">
 <aside id="library" class="panel library"><div class="panel-heading"><div><span class="eyebrow">CONSTRUIR</span><h2>Componentes</h2></div><button class="mobile-only close-panel" aria-label="Cerrar componentes">×</button></div><label class="sr-only" for="module-filter">Módulo</label><select id="module-filter"><option value="pneumatic">Neumática</option><option value="electro">Electroneumática</option><option value="electrical">Electricidad 24 V</option><option value="hydraulic">Hidráulica</option><option value="electrohydraulic">Electrohidráulica</option><option value="plc">PLC y sistemas integrados</option><option value="all">Todos los módulos</option></select><div class="search"><span>⌕</span><input id="search" placeholder="Buscar: válvula, relé, cilindro…" aria-label="Buscar componentes"></div><div class="catalog-tip">Toca un símbolo para insertarlo.</div><div id="catalog" class="catalog"></div><div class="library-footer"><span class="dot"></span> Sin conexión a equipos reales</div></aside>
-<main class="stage" id="stage"><div class="stage-toolbar"><div class="tool-group sheet-buttons"><button data-sheet="all">Todo</button><button data-sheet="pneumatic">Neumática</button><button data-sheet="electro">Control eléctrico</button><button id="sheet-panels">Paneles</button><button id="properties-open" data-action="properties" title="Configurar el componente seleccionado">⚙ Propiedades</button></div><div class="tool-group"><button data-mode="select" class="active" title="Seleccionar y mover">↖ <span>Seleccionar</span></button><button data-mode="connect" title="Toca dos puertos">⌁ <span>Conectar</span></button><button data-mode="pan" title="Desplazar el lienzo">✥ <span>Mover vista</span></button></div><div class="tool-group"><button id="undo" title="Deshacer">↶</button><button id="redo" title="Rehacer">↷</button><button data-action="examples" class="examples-button">Ejemplos · PLC</button><button data-action="guide" class="guide-button">Guía / Mandos</button></div></div>
+<main class="stage" id="stage"><div class="stage-toolbar"><div class="tool-group sheet-buttons"><button data-sheet="all">Todo</button><button data-sheet="pneumatic">Neumática</button><button data-sheet="electro">Control eléctrico</button><button id="sheet-panels">Paneles</button><button id="properties-open" data-action="properties" title="Configurar el componente seleccionado">⚙ Propiedades</button></div><div class="tool-group"><button data-mode="select" class="active" title="Seleccionar y mover">↖ <span>Seleccionar</span></button><button data-mode="connect" title="Toca dos puertos">⌁ <span>Conectar</span></button><button data-mode="pan" title="Desplazar el lienzo">✥ <span>Mover vista</span></button></div><div class="tool-group"><button id="undo" title="Deshacer">↶</button><button id="redo" title="Rehacer">↷</button><button data-action="examples" class="examples-button">Ejemplos · PLC</button><button data-action="guide" class="guide-button">Guía / Mandos</button><button data-report-open="timeline" class="trace-button">Cronograma</button></div></div>
 <svg id="canvas" xmlns="http://www.w3.org/2000/svg" aria-label="Editor de circuitos" tabindex="0"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8" fill="#d5dfe5"/></pattern></defs><g id="camera"><rect x="-12000" y="-12000" width="24000" height="24000" fill="url(#grid)"/><g id="wires"></g><g id="nodes"></g><g id="draft"></g><g id="hover"></g></g></svg>
 <div id="lesson-dock" class="lesson-dock"></div><div class="stage-note" id="stage-note">Pulsa Simular y después S1 en cada circuito. S2 detiene la repetición al finalizar el ciclo.</div><div class="canvas-controls"><button id="zoom-out" aria-label="Alejar">−</button><span id="zoom-value">100 %</span><button id="zoom-in" aria-label="Acercar">+</button><button id="fit" title="Ajustar todo">⛶</button></div><div class="status-strip"><span id="run-status"><i></i> Edición</span><span id="clock">t = 0.00 s</span><button id="diagnostics">Revisar circuito</button></div></main>
 <aside id="inspector" class="panel inspector" aria-label="Propiedades del componente">
-<div class="panel-heading inspector-heading"><div><span class="eyebrow">CONFIGURAR · 0.2.2</span><h2 id="inspector-title">Propiedades</h2></div><div class="inspector-header-actions"><button id="inspector-expand" title="Ampliar el panel" aria-label="Ampliar propiedades">⛶</button><button class="close-panel" aria-label="Cerrar propiedades">×</button></div></div>
+<div class="panel-heading inspector-heading"><div><span class="eyebrow">CONFIGURAR · 0.3.0</span><h2 id="inspector-title">Propiedades</h2></div><div class="inspector-header-actions"><button id="inspector-expand" title="Ampliar el panel" aria-label="Ampliar propiedades">⛶</button><button class="close-panel" aria-label="Cerrar propiedades">×</button></div></div>
 <div id="inspector-scroll" class="inspector-scroll">
 <div id="properties"></div>
 <details class="measurement-panel" id="measurement-details"><summary>Señales y movimiento</summary><div class="measurement-content"><div id="measurements"></div><svg id="plot" viewBox="0 0 230 96" aria-label="Posición del cilindro en función del tiempo"></svg><div class="plot-legend">Posición normalizada · últimos 60 s</div><button id="ladder-open" class="wide">Abrir programa Ladder ↗</button></div></details>
@@ -107,10 +171,11 @@ body.inspector-expanded #inspector{display:flex!important;position:fixed;z-index
 <dialog id="examples-dialog"><div class="dialog-head"><div><span class="eyebrow">APRENDER HACIENDO</span><h2>Biblioteca de prácticas</h2></div><button class="close-dialog" aria-label="Cerrar">×</button></div><div id="example-tabs" class="example-tabs" aria-label="Grupo de prácticas"></div><label class="example-search"><span>Buscar práctica</span><input id="lesson-search" placeholder="AND, temporizador, contador…"></label><div id="examples-list"></div><p class="subtle">Abrir un ejemplo reemplaza el lienzo. Usa Archivo → Guardar para conservar tu práctica.</p></dialog>
 <dialog id="practice-dialog"><div class="dialog-head"><div><span class="eyebrow">GUÍA DE LA PRÁCTICA</span><h2 id="practice-title"></h2></div><button class="close-dialog" aria-label="Cerrar guía">×</button></div><div id="practice-content" class="help-content"></div></dialog>
 <dialog id="help-dialog"><div class="dialog-head"><h2>Tu laboratorio, paso a paso</h2><button class="close-dialog">×</button></div><div class="help-content"><h3>Construir</h3><p>Elige un módulo y toca un símbolo. Arrástralo por el cuerpo. Toca un puerto y luego el otro para conectarlos. Invierte el orden o selecciona la tubería y pulsa <b>Cambiar recorrido</b> para cambiar el codo.</p><h3>Conservar uniones</h3><p>Las conexiones pertenecen a los puertos, no a sus coordenadas. Acerca el puerto de un escape o manómetro a uno compatible y suéltalo para acoplarlo. Aparecerá una unión permanente y el accesorio acompañará al componente. Para una T, empieza en un puerto y termina tocando una tubería.</p><h3>Simular</h3><p>Activa Simular. Mantén pulsados los pulsadores eléctricos. Selecciona una válvula manual y usa sus botones de mando. Pausa para volver a editar. Para el PLC, abre el ejemplo de ciclo y el panel Ladder.</p><h3>En el teléfono</h3><p>Usa las cuatro pestañas inferiores. Un dedo mueve componentes o desplaza el fondo; dos dedos acercan o alejan. Los botones +, − y ⛶ también ajustan la vista.</p><h3>Alcance de esta base</h3><p>Neumática isotérmica de parámetros concentrados; hidráulica resistiva cuasiestática; electricidad lógica ideal de 24 V, sin cálculo de corriente ni electrónica analógica. PLC educativo con un programa, cuatro entradas y cuatro salidas. Temporizador neumático: retardo lógico, no un depósito físico calibrado.</p><p>Los símbolos son dibujos técnicos propios, sin certificación ISO/IEC. No es FluidSIM ni un controlador de máquinas reales. Los mandos bimanuales didácticos no son dispositivos de seguridad.</p><p>Los proyectos anteriores de Picuino/EuLab no se importan en esta primera base. Se conservan aparte. Guarda tus archivos .eulab.json; el autoguardado del navegador no sustituye una copia.</p></div></dialog>
-<dialog id="ladder-dialog"><div class="dialog-head"><div><span class="eyebrow">PLC VIRTUAL · ESCANEO DE 20 ms</span><h2>Programa Ladder</h2></div><button class="close-dialog">×</button></div><div class="ladder-toolbar"><button data-capture-open>Imágenes</button><button id="add-rung" class="primary">+ Peldaño</button><span>Contactos en serie = AND · ramas = OR</span></div><div id="ladder-lesson-controls" class="lesson-command-bar"></div><div id="plc-monitor"></div><div id="ladder"></div><p class="subtle">X: entradas · Y: salidas · M: memorias · T: TON · C: contadores. Los contactos se editan al pausar. Salidas ideales PNP alimentadas por el puerto +24 V.</p><datalist id="addresses"></datalist></dialog>
+<dialog id="ladder-dialog"><div class="dialog-head"><div><span class="eyebrow">PLC VIRTUAL · ESCANEO DE 20 ms</span><h2>Programa Ladder</h2></div><button class="close-dialog">×</button></div><div class="ladder-toolbar"><button data-report-open="pdf">Informe PDF</button><button data-report-open="timeline">Cronograma</button><button data-capture-open>Imágenes</button><button id="add-rung" class="primary">+ Peldaño</button><span>Contactos en serie = AND · ramas = OR</span></div><div id="ladder-lesson-controls" class="lesson-command-bar"></div><div id="plc-monitor"></div><div id="ladder"></div><p class="subtle">X: entradas · Y: salidas · M: memorias · T: TON · C: contadores. Los contactos se editan al pausar. Salidas ideales PNP alimentadas por el puerto +24 V.</p><datalist id="addresses"></datalist></dialog>
 
 <script>
 (()=>{const __modules={"src/app.js":function(__exports,__require){
+const {installReport}=__require("src/ui/report.js");
 __require("src/modules/index.js");
 const {installCapture}=__require("src/ui/capture.js");
 const {worksheetProject}=__require("src/worksheet-project.js");
@@ -233,9 +298,10 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden){if(store.r
 let last=performance.now(),accum=0,lastDraw=0,lastMetrics=0;function frame(now){const delta=Math.min(.1,(now-last)/1000);last=now;if(store.running){accum+=delta;let count=0;while(accum>=.02&&count<5){try{store.engine.step(.02);}catch(err){store.running=false;toast('Simulación detenida: '+err.message);refresh();break;}accum-=.02;count++;}if(now-lastDraw>33){editor.render();lastDraw=now;}if(now-lastMetrics>160){measurements();lastMetrics=now;}}else accum=0;requestAnimationFrame(frame);}requestAnimationFrame(frame);
 for(const m of modules.values()){if(!allowed[m.id]){const o=document.createElement('option');o.value=m.id;o.textContent=m.name;document.querySelector('#module-filter').append(o);}}
 window.addEventListener('resize',()=>editor.render());document.querySelector('#module-filter').value='plc';catalog();refresh();setTimeout(()=>{if(innerWidth<680&&store.doc.lesson)focusSheet('pneumatic');else editor.fit();document.querySelector('#stage-note').textContent=store.doc.lesson?.summary||'';},50);
-window.eulab={store,editor,loadExample,diagnostics,version:'modular-0.2.2-cuaderno',examples,practiceUI,parseProjectText,exportProject:()=>clone(store.doc)};
+window.eulab={store,editor,loadExample,diagnostics,version:'modular-0.3.0-informes',examples,practiceUI,parseProjectText,exportProject:()=>clone(store.doc)};
 
 window.eulab.captures=installCapture({store,editor,ladder,toast});
+window.eulab.report=installReport({store,editor,ladder,captures:window.eulab.captures,toast});
 
 // Navigation within this single-sheet exercise; both networks keep running.
 function focusSheet(which){
@@ -248,6 +314,431 @@ document.querySelectorAll('[data-sheet]').forEach(b=>b.onclick=()=>focusSheet(b.
 document.querySelector('#sheet-panels').onclick=()=>{document.body.classList.toggle('sheet-view');setTimeout(()=>editor.fit(),20);};
 
 Object.assign(__exports,{});
+},
+"src/ui/report.js":function(__exports,__require){
+/** EuLab reports and synchronized traces. Kept separate from physics and editor. */
+const {escapeText: esc}=__require("src/core/registry.js");
+const {traceValue}=__require("src/core/trace.js");
+const {timelineSVG}=__require("src/ui/timeline-svg.js");
+const {ReportPDF,wrapText,rasterSVG,downloadBlob}=__require("src/ui/pdf-writer.js");
+const VERSION='0.3.0';
+const optionsDefault={circuit:true,ladder:true,signals:true,timeline:true,events:true};
+const filename=doc=>(doc.name||'practica').replace(/[^\p{L}\p{N}_-]+/gu,'_').slice(0,65);
+const plainTrack=tr=>tr.kind==='digital'?'Digital':tr.kind==='state'?'Estado':tr.kind==='counter'?'Contador':'Magnitud';
+function csvCell(v){return '"'+String(v??'').replaceAll('"','""')+'"';}
+function clampRange(s,a,b){const start=Math.max(s.start,Math.min(s.end,Number.isFinite(+a)?+a:s.start)),end=Math.max(start,Math.min(s.end,Number.isFinite(+b)?+b:s.end));return {start,end};}
+const createReportPDF=async ({store,ladder,captures,snapshot,selected,settings,range,progress=()=>{}})=>{
+ const doc=store.doc,pdf=new ReportPDF(doc.name),s=snapshot,ids=selected.filter(id=>s.tracks.some(t=>t.id===id)),opts={...optionsDefault,...settings.sections};
+ let y=42,section='',count=0;const W=pdf.width,M=15,C=W-2*M,MAX=191;
+ function newPage(title,sub=''){
+  section=title.replaceAll(' (continuación)','');pdf.page();pdf.rect(0,0,W,2.4,'#147c78');pdf.text('EULAB MODULAR  /  INFORME DE SIMULACIÓN',M,10,9,{bold:true,color:'#126b68'});pdf.text('v'+VERSION,W-35,10,8,{color:'#536d7a'});
+  pdf.text((doc.name||'Práctica').slice(0,125),M,16,9,{color:'#526e7c'});pdf.text(title,M,28,19,{bold:true});pdf.line(M,33,W-M,33);if(sub)pdf.text(sub.slice(0,165),M,39,9,{color:'#5b7380'});y=sub?47:42;count++;
+ }
+ function ensure(h){if(y+h>MAX)newPage(section+' (continuación)');}
+ function textBlock(text,{size=10,bold=false,color='#203d4c',gap=2}={}){
+  const lines=wrapText(String(text).replace(/\n{3,}/g,'\n\n'),C,size),dy=size*.352778*1.35;
+  for(const line of lines){ensure(dy+1);pdf.text(line,M,y,size,{bold,color});y+=dy;}y+=gap;
+ }
+ function table(headers,rows,widths){
+  const row=(cells,head=false)=>{const lines=cells.map((c,i)=>wrapText(String(c??''),widths[i]-5,head?9:8.5)),h=Math.max(...lines.map(l=>l.length))*4.2+4;
+   if(y+h>MAX){newPage(section+' (continuación)');row(headers,true);}
+   if(head)pdf.rect(M,y-3,C,h,'#eaf3f5');let x=M;lines.forEach((ls,i)=>{ls.forEach((l,j)=>pdf.text(l,x+2,y+1+j*4.2,head?9:8.5,{bold:head,color:head?'#153c4f':'#314e5b'}));x+=widths[i];});y+=h;pdf.line(M,y-3,W-M,y-3);};
+  row(headers,true);for(const r of rows)row(r);
+ }
+ async function picture(pic,maxH=145){const image=await rasterSVG(pic);const w=Math.min(C,maxH*pic.width/pic.height),h=w*pic.height/pic.width;ensure(h);pdf.image(image,M+(C-w)/2,y,w,h);y+=h+3;}
+ const stamp=new Date().toLocaleString('es-MX');newPage('Informe de la práctica',`Generado: ${stamp} · Tiempo del circuito: ${store.engine.time.toFixed(2)} s`);
+ textBlock('Autor / estudiante: '+(settings.author||'No indicado'),{bold:true});textBlock('Grupo: '+(settings.group||'No indicado'));
+ textBlock('Proyecto: '+doc.name);textBlock(`Componentes: ${doc.nodes.length}   ·   Conexiones: ${doc.links.length}   ·   Peldaños Ladder: ${doc.program.length}`);
+ textBlock('Observaciones generales',{bold:true,color:'#126b68'});textBlock(settings.notes||'Sin comentarios generales.');
+ textBlock('Registro del ciclo',{bold:true,color:'#126b68'});
+ const hasRun=s.times.length>1&&s.end>s.start;
+ textBlock(hasRun?`Intervalo incluido: ${range.start.toFixed(3)} a ${range.end.toFixed(3)} s. Registro a cada paso de simulación (20 ms), con cambios manuales en su instante simulado. ${s.times.length} muestras conservadas; ${ids.length} filas seleccionadas.`:'Todavía no existe un ciclo registrado. El informe incluye los diagramas actuales; ejecute la simulación antes de obtener el cronograma.');
+ if(s.droppedSamples)textBlock(`Memoria acotada: se descartaron ${s.droppedSamples} muestras antiguas. Solo se conserva la ventana ${s.start.toFixed(2)}–${s.end.toFixed(2)} s.`,{bold:true});
+ if(s.droppedEvents)textBlock(`Eventos: ${s.droppedEvents} transiciones antiguas descartadas por el límite de memoria.`,{bold:true});
+ const counters=s.tracks.filter(t=>t.kind==='counter');if(counters.length)textBlock('Conteo registrado: '+counters.map(t=>`${t.label} = ${t.values.at(-1)??0}`).join('; '));
+ textBlock('Alcance y lectura',{bold:true,color:'#126b68'});
+ textBlock('Resultados de un modelo educativo, no mediciones de una máquina real ni validación de seguridad. Un bit de salida no demuestra movimiento; la posición del cilindro se grafica por separado. Las filas X muestran la imagen de entradas del PLC; los sensores muestran detección física simulada.');
+ textBlock('Los comentarios y datos del autor se guardan en el proyecto. La captura temporal pertenece a esta sesión: guarde PDF o CSV antes de reiniciar o cambiar el montaje. No se determina automáticamente si existe una función de emergencia segura.');
+ progress('Preparando circuito…');
+ if(opts.circuit){newPage('Diagrama del circuito',`Instantánea del montaje a t = ${store.engine.time.toFixed(2)} s · incluye todos los componentes y conexiones`);await picture(captures.circuitSVG(),133);textBlock('Diagrama completo. Los colores representan el estado simulado al generar el informe.',{size:9,color:'#5b7380'});}
+ if(opts.ladder&&doc.program.length){
+  newPage('Programa Ladder y comentarios','Orden de lectura: de arriba hacia abajo. PT: segundos; PV: número de eventos.');
+  for(let i=0;i<doc.program.length;i++){
+   const r=doc.program[i],raw=ladder.graphic(r,i),v=raw.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/),w=+v[1],h=+v[2];
+   const diagramH=Math.min(62,C*h/w*.84),comment=r.comment||'Sin comentario.',lines=wrapText(comment,C,9.5);ensure(11+Math.min(65,lines.length*4.5)+diagramH);
+   const preset=r.op==='TON'?` · PT ${r.preset} s`:r.op==='CTU'?` · PV ${r.preset}`:'';
+   textBlock(`PELDAÑO ${String(i+1).padStart(2,'0')} · ${r.op} ${r.out}${preset}`,{bold:true,color:'#126b68',gap:1});textBlock(comment,{size:9.5,gap:0});
+   const svg=raw.replace('<svg ',`<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" style="font-family:Arial,sans-serif;color:#294b5c;background:white" `);await picture({svg,width:w,height:h},diagramH);pdf.line(M,y-1,W-M,y-1);y+=3;
+   progress(`Ladder ${i+1}/${doc.program.length}…`);
+  }
+ }
+ if(opts.signals){newPage('Tabla de señales seleccionadas','Las etiquetas pueden repetirse; los identificadores internos distinguen cada componente.');
+  const tr=ids.map(id=>s.tracks.find(t=>t.id===id));table(['Señal','Tipo','Inicial del registro','Último valor'],tr.map(t=>[t.label,plainTrack(t)+(t.unit?' · '+t.unit:''),traceValue(t,t.values[0]??0),traceValue(t,t.values.at(-1)??0)]),[108,39,60,60]);
+ }
+ if(opts.timeline){
+  if(!ids.length){newPage('Diagrama temporal de señales');textBlock('No se seleccionaron señales. Abra Cronograma y seleccione las filas que desea incluir.');}
+  else if(!hasRun){newPage('Diagrama temporal de señales');textBlock('Sin ciclo registrado. Pulse Simular, accione sus mandos y vuelva a generar el PDF. No se han dibujado datos de ejemplo como si fueran de esta práctica.');}
+  else for(let i=0;i<ids.length;i+=8){newPage('Cronograma y movimiento',`Filas ${i+1}–${Math.min(i+8,ids.length)} de ${ids.length} · intervalo ${range.start.toFixed(2)}–${range.end.toFixed(2)} s`);
+   const pic=timelineSVG(s,ids.slice(i,i+8),{...range,title:'Diagrama temporal de señales',subtitle:'Digital: 0/1 · Actuador: posición en mm y estado de movimiento'});await picture(pic,133);textBlock('Las transiciones digitales son escalones. La posición es una magnitud continua. Cada fila conserva su propia escala.',{size:9,color:'#5b7380'});progress(`Cronograma ${Math.floor(i/8)+1}/${Math.ceil(ids.length/8)}…`);
+  }
+ }
+ if(opts.events){
+  const events=s.events.filter(e=>ids.includes(e.id)&&e.t>=range.start&&e.t<=range.end),shown=events.slice(-250);
+  newPage('Eventos del ciclo',`${events.length} transiciones de las señales seleccionadas dentro del intervalo`);
+  if(events.length>250)textBlock(`Para limitar el tamaño se muestran las últimas 250 de ${events.length} transiciones. Exporte la tabla CSV de eventos para consultar las demás.`,{bold:true});
+  if(!shown.length)textBlock('No se registraron cambios discretos en este intervalo.');
+  else table(['t (s)','Señal','Antes','Después'],shown.map(e=>{const tr=s.tracks.find(t=>t.id===e.id);return [e.t.toFixed(3),e.label,traceValue(tr,e.from),traceValue(tr,e.to)];}),[22,103,71,71]);
+  textBlock('La tabla incluye cambios digitales, estados de movimiento y contadores. No lista cada variación de una señal analógica.',{size:9,color:'#5b7380'});
+ }
+ for(let i=0;i<pdf.pages.length;i++){pdf.current=pdf.pages[i];pdf.line(M,197,W-M,197);pdf.text('SIMULACIÓN EDUCATIVA · Datos calculados, no mediciones físicas',M,202,8,{color:'#607785'});pdf.text(`${i+1} / ${pdf.pages.length}`,W-32,202,8,{color:'#607785'});}
+ progress('PDF listo.');return {blob:pdf.finish(),pages:pdf.pages.length,signals:ids.length,range};
+};
+function installReport({store,editor,ladder,captures,toast}){
+ const dialog=document.createElement('dialog');dialog.id='report-dialog';dialog.innerHTML=`
+ <div class="dialog-head"><div><span class="eyebrow">INFORME Y CRONOGRAMA · ${VERSION}</span><h2>Señales del ciclo</h2></div><button class="close-dialog" aria-label="Cerrar informe">×</button></div>
+ <div class="report-tabs"><button data-report-tab="timeline" class="active">Cronograma</button><button data-report-tab="pdf">Informe PDF</button></div>
+ <div class="report-body">
+ <p id="trace-status" class="report-status" role="status"></p>
+ <section id="report-tab-timeline">
+  <div class="report-actions"><button id="trace-pause">Pausar simulación</button><button id="trace-refresh">Actualizar gráfica</button><button id="trace-clear">Borrar registro</button></div>
+  <p class="subtle">Una fila por señal. Cambia el orden con ↑ / ↓. La posición del cilindro se muestra en mm y su estado en otra fila. Registrar no modifica el programa.</p>
+  <div class="report-range"><label><span>Desde (s)</span><input id="trace-from" type="number" step=".02" min="0"></label><label><span>Hasta (s)</span><input id="trace-to" type="number" step=".02" min="0"></label><label class="report-check"><input id="trace-live-range" type="checkbox" checked> Todo el registro</label></div>
+  <details class="trace-picker" open><summary>Seleccionar y ordenar señales <span id="trace-count"></span></summary><div class="report-actions"><button data-profile="default">Básicas</button><button data-profile="plc">PLC</button><button data-profile="motion">Actuadores</button><button data-profile="all">Todas</button><button data-profile="none">Ninguna</button></div><label class="signal-search">Buscar señal<input id="signal-query" placeholder="S1, A1, sensor, X0, Y0, M0…"></label><div id="trace-signals"></div></details>
+  <div class="report-actions"><button id="trace-prev">← Filas anteriores</button><span id="trace-page"></span><button id="trace-next">Filas siguientes →</button></div>
+  <div id="trace-preview" aria-label="Cronograma de señales"></div>
+  <div class="report-actions"><button id="trace-csv">Descargar señales CSV</button><button id="trace-events-csv">Eventos CSV</button><button data-report-tab="pdf" class="primary">Preparar PDF</button></div>
+ </section>
+ <section id="report-tab-pdf" hidden>
+  <p>El PDF se descarga directamente. Incluye el circuito completo, el programa Ladder con comentarios, las señales y el registro del ciclo.</p>
+  <div class="report-meta"><label>Autor / estudiante<input id="report-author" maxlength="100" autocomplete="name"></label><label>Grupo<input id="report-group" maxlength="80"></label><label class="wide">Comentarios generales<textarea id="report-notes" rows="4" maxlength="5000" placeholder="Objetivo, pruebas y observaciones de la práctica"></textarea></label></div>
+  <fieldset class="report-sections"><legend>Contenido del PDF</legend>${Object.entries({circuit:'Diagrama del circuito',ladder:'Ladder y comentarios por peldaño',signals:'Tabla de señales',timeline:'Cronograma y posición de actuadores',events:'Tabla de eventos (hasta 250)'}).map(([id,t])=>`<label><input type="checkbox" data-report-section="${id}" checked>${t}</label>`).join('')}</fieldset>
+  <p class="report-warning">El informe usa los datos registrados, no una secuencia ideal. Sin simular, no hay un ciclo para graficar. Al abrir otro proyecto, editar la lógica o reiniciar, comienza un registro nuevo.</p>
+  <p class="subtle">Comentarios Ladder: pausa → Ladder → Editar contactos, instrucción y comentario. Se guardan con el proyecto; las curvas deben descargarse antes de cerrar o reiniciar.</p>
+  <div class="report-actions"><button id="report-download" class="primary">Descargar informe PDF</button><button id="report-save-project">Guardar proyecto y comentarios</button></div>
+  <p id="report-progress" role="status"></p><a id="report-file-link" hidden>Descargar / abrir el PDF generado</a>
+ </section></div>`;
+ document.body.append(dialog);let page=0,lastTrace=null,tab='timeline',busy=false,objectURL=null;
+ const $=id=>dialog.querySelector('#'+id),tr=()=>store.engine.trace;
+ function settings(){return store.doc.report||{};}
+ function save(patch){store.doc.report={...settings(),...patch};store.persist();}
+ function ids(){const valid=new Set(tr().tracks.map(t=>t.id)),s=settings().signalIds;return Array.isArray(s)?[...new Set(s)].filter(id=>valid.has(id)):tr().tracks.filter(t=>t.default!==false).map(t=>t.id);}
+ function setIds(a){save({signalIds:a});page=0;drawList();draw();}
+ function loadMeta(){const r=settings();$('report-author').value=r.author||'';$('report-group').value=r.group||'';$('report-notes').value=r.notes||'';for(const el of dialog.querySelectorAll('[data-report-section]'))el.checked=r.sections?.[el.dataset.reportSection]!==false;}
+ function drawList(){const selected=ids(),q=$('signal-query').value.toLocaleLowerCase(),all=tr().tracks,ordered=[...selected.map(id=>all.find(t=>t.id===id)),...all.filter(t=>!selected.includes(t.id))].filter(Boolean);$('trace-count').textContent=`(${selected.length}/${all.length})`;
+  $('trace-signals').innerHTML=ordered.filter(t=>[t.label,t.group,t.unit].join(' ').toLocaleLowerCase().includes(q)).map(t=>`<div class="trace-signal"><label><input type="checkbox" data-trace-id="${esc(t.id)}" ${selected.includes(t.id)?'checked':''}><span><b>${esc(t.label)}</b><small>${esc(t.group)} · ${esc(plainTrack(t))} ${esc(t.unit)}</small></span></label><div><button data-trace-up="${esc(t.id)}" aria-label="Subir ${esc(t.label)}" ${!selected.includes(t.id)||selected.indexOf(t.id)===0?'disabled':''}>↑</button><button data-trace-down="${esc(t.id)}" aria-label="Bajar ${esc(t.label)}" ${!selected.includes(t.id)||selected.indexOf(t.id)===selected.length-1?'disabled':''}>↓</button></div></div>`).join('');
+ }
+ function rangeOf(s){return $('trace-live-range').checked?{start:s.start,end:s.end}:clampRange(s,$('trace-from').value,$('trace-to').value);}
+ function draw(){if(!dialog.open||busy)return;if(lastTrace!==tr()){lastTrace=tr();page=0;loadMeta();drawList();}
+  const s=tr().snapshot(),selected=ids(),maxPage=Math.max(0,Math.ceil(selected.length/8)-1);page=Math.min(page,maxPage);
+  $('trace-status').textContent=`${store.running?'Registrando':'En pausa'} · ${s.times.length} ${s.times.length===1?'muestra':'muestras'} · t = ${s.start.toFixed(2)}–${s.end.toFixed(2)} s · muestreo de 20 ms${s.droppedSamples?' · se conserva solo la última ventana':''}`;
+  $('trace-pause').textContent=store.running?'Pausar simulación':'Continuar simulación';
+  if($('trace-live-range').checked){$('trace-from').value=s.start.toFixed(2);$('trace-to').value=s.end.toFixed(2);}
+  $('trace-from').disabled=$('trace-to').disabled=$('trace-live-range').checked;
+  $('trace-page').textContent=selected.length?`Filas ${page*8+1}–${Math.min((page+1)*8,selected.length)} / ${selected.length}`:'Sin filas';$('trace-prev').disabled=page===0;$('trace-next').disabled=page>=maxPage;
+  if(tab==='timeline'){$('trace-preview').innerHTML=s.end>s.start?timelineSVG(s,selected.slice(page*8,page*8+8),rangeOf(s)).svg:'<div class="report-empty">Pulsa Simular y acciona los mandos. Aquí aparecerán las señales medidas durante ese ciclo.</div>';}
+ }
+ function changeTab(next){tab=next;for(const t of ['timeline','pdf']){$('report-tab-'+t).hidden=t!==tab;dialog.querySelectorAll(`[data-report-tab="${t}"]`).forEach(b=>b.classList.toggle('active',t===tab));}draw();}
+ function pause(){if(store.running){store.running=false;store.emit('run');}store.engine.trace.capture();}
+ function open(next='timeline'){document.querySelector('.file-menu').open=false;loadMeta();lastTrace=null;if(!dialog.open)dialog.showModal();changeTab(next);if(next==='pdf'){pause();draw();}}
+ function csv(events=false){const s=tr().snapshot(),selected=ids(),range=rangeOf(s),tracks=selected.map(id=>s.tracks.find(t=>t.id===id));let rows;
+  if(events){rows=[['tiempo_s','senal','antes','despues'],...s.events.filter(e=>selected.includes(e.id)&&e.t>=range.start&&e.t<=range.end).map(e=>{const t=tracks.find(t=>t.id===e.id);return [e.t.toFixed(6),e.label,traceValue(t,e.from),traceValue(t,e.to)];})];}
+  else rows=[['tiempo_s',...tracks.map(t=>t.label+' ['+(t.unit||'estado')+']')],...s.times.map((t,i)=>t>=range.start&&t<=range.end?[t.toFixed(6),...tracks.map(a=>Number(a.values[i].toFixed(6)))]:null).filter(Boolean)];
+  downloadBlob(new Blob(['\uFEFF'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n')],{type:'text/csv;charset=utf-8'}),filename(store.doc)+(events?'_eventos':'_cronograma')+'.csv');
+ }
+ async function generate(download=true){
+  if(busy)return;busy=true;pause();$('report-download').disabled=true;$('report-file-link').hidden=true;const snapshot=tr().snapshot(),selected=ids(),range=rangeOf(snapshot);const r={...settings(),author:$('report-author').value,group:$('report-group').value,notes:$('report-notes').value};save(r);
+  try{await new Promise(resolve=>setTimeout(resolve,20));const result=await createReportPDF({store,ladder,captures,snapshot,selected,range,settings:r,progress:t=>$('report-progress').textContent=t});
+   if(objectURL)URL.revokeObjectURL(objectURL);objectURL=URL.createObjectURL(result.blob);const a=$('report-file-link');a.href=objectURL;a.download=filename(store.doc)+'_informe.pdf';a.target='_blank';a.rel='noopener';a.hidden=false;a.textContent='Abrir o descargar el PDF ('+result.pages+' páginas)';if(download)downloadBlob(result.blob,a.download);$('report-progress').textContent=`Informe listo: ${result.pages} páginas. La simulación quedó pausada, sin reiniciarse.`;return result;
+  }catch(e){$('report-progress').textContent='No se pudo generar el PDF: '+e.message;toast('Error al exportar: '+e.message);throw e;}finally{busy=false;$('report-download').disabled=false;draw();}
+ }
+ dialog.addEventListener('cancel',event=>{if(busy)event.preventDefault();});
+ dialog.addEventListener('click',event=>{if(busy&&event.target.closest('button')){event.preventDefault();event.stopImmediatePropagation();}},true);
+ dialog.addEventListener('click',event=>{const t=event.target.closest('button');if(!t)return;
+  if(t.dataset.reportTab){changeTab(t.dataset.reportTab);if(t.dataset.reportTab==='pdf')pause();}
+  if(t.dataset.profile){const a=tr().tracks;setIds(t.dataset.profile==='all'?a.map(t=>t.id):t.dataset.profile==='none'?[]:t.dataset.profile==='plc'?a.filter(t=>t.id.startsWith('plc:')).map(t=>t.id):t.dataset.profile==='motion'?a.filter(t=>t.group==='Actuadores').map(t=>t.id):a.filter(t=>t.default!==false).map(t=>t.id));}
+  const id=t.dataset.traceUp||t.dataset.traceDown;if(id){const a=ids(),i=a.indexOf(id),j=i+(t.dataset.traceUp?-1:1);if(i>=0&&j>=0&&j<a.length){[a[i],a[j]]=[a[j],a[i]];save({signalIds:a});drawList();draw();}}
+ });
+ dialog.addEventListener('change',event=>{const t=event.target;if(t.dataset.traceId){const a=ids();setIds(t.checked?[...a,t.dataset.traceId]:a.filter(id=>id!==t.dataset.traceId));}
+  if(t.dataset.reportSection){const sections={...optionsDefault,...settings().sections,[t.dataset.reportSection]:t.checked};save({sections});}
+  if(t.id==='report-author'||t.id==='report-group'||t.id==='report-notes')save({author:$('report-author').value.slice(0,100),group:$('report-group').value.slice(0,80),notes:$('report-notes').value.slice(0,5000)});
+  if(t.id.startsWith('trace-'))draw();
+ });
+ $('signal-query').oninput=drawList;$('trace-pause').onclick=()=>{if(store.running)pause();else store.toggle();draw();};$('trace-refresh').onclick=draw;
+ $('trace-clear').onclick=()=>{if(confirm('¿Borrar solamente el cronograma registrado? El circuito y su estado no cambian.')){tr().clear();draw();}};
+ $('trace-prev').onclick=()=>{page--;draw();};$('trace-next').onclick=()=>{page++;draw();};$('trace-csv').onclick=()=>csv();$('trace-events-csv').onclick=()=>csv(true);
+ $('report-download').onclick=()=>generate(true).catch(()=>{});$('report-save-project').onclick=()=>{save({author:$('report-author').value,group:$('report-group').value,notes:$('report-notes').value});downloadBlob(new Blob([JSON.stringify(store.doc,null,2)],{type:'application/json'}),filename(store.doc)+'.eulab.json');};
+ document.addEventListener('click',e=>{if(e.target.closest('[data-report-open]'))open(e.target.closest('[data-report-open]').dataset.reportOpen||'pdf');});
+ setInterval(()=>{if(dialog.open&&tab==='timeline')draw();},600);
+ return {open,generate,draw,dialog,snapshot:()=>tr().snapshot(),selection:ids,setSelection:setIds,csv};
+}
+
+Object.assign(__exports,{createReportPDF,installReport});
+},
+"src/core/registry.js":function(__exports,__require){
+/** Extensible registry. A component owns ports, parameters, a symbol and engine behavior. */
+const definitions = new Map();
+const modules = new Map();
+function registerModule(module) {
+  if (!module.id || modules.has(module.id)) throw new Error('Módulo repetido o sin id');
+  modules.set(module.id, module);
+  for (const d of module.components) {
+    if (definitions.has(d.type)) throw new Error(`Tipo repetido: ${d.type}`);
+    for (const p of d.ports || []) if (!p.id || !p.domain) throw new Error(`Puerto incompleto: ${d.type}`);
+    definitions.set(d.type, {...d, module: module.id});
+  }
+}
+function def(type) { const d=definitions.get(type); if(!d) throw new Error(`Componente desconocido: ${type}`); return d; }
+const port = (id,x,y,nx,ny,domain,label=id)=>({id,x,y,nx,ny,domain,label});
+const numberField=(key,label,min,max,step=1,unit='')=>({key,label,type:'number',min,max,step,unit});
+const selectField=(key,label,choices)=>({key,label,type:'select',choices});
+const textField=(key,label)=>({key,label,type:'text'});
+const commonFluidFields=[numberField('pressure','Presión',0,10,.1,'bar')];
+function escapeText(s) { return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+Object.assign(__exports,{definitions,modules,registerModule,def,port,numberField,selectField,textField,commonFluidFields,escapeText});
+},
+"src/core/trace.js":function(__exports,__require){
+/** Read-only 20 ms trace recorder. Values are observations, not a second simulator.
+ * Bounded circular history: 15001 samples (normally last 300 s), 4000 events.
+ * No trace is loaded from an untrusted project; old projects remain version 1.
+ */
+const {def}=__require("src/core/registry.js");
+const {nets,key,ref}=__require("src/core/model.js");
+const STATE_NAMES=['Retraído','Avanzando','Extendido','Retrocediendo','Intermedio'];
+function signalCatalog(engine){
+ const doc=engine.doc, tracks=[], add=(id,label,kind,read,extra={})=>tracks.push({id,label,kind,unit:kind==='digital'?'0/1':'',read,...extra});
+ const list=doc.nodes.map(n=>({n,b:def(n.type).behavior}));
+ for(const {n,b} of list)if(b==='button'){
+  add(n.id+':pressed',n.label+' · accionado','digital',()=>+!!engine.state[n.id]?.pressed,{group:'Mandos',component:n.id});
+  add(n.id+':closed',n.label+' · contacto','digital',()=>+(!!engine.state[n.id]?.pressed!==!!n.params.nc),{group:'Contactos',component:n.id,default:false});
+ }
+ for(const {n,b} of list)if(['valve32','valve52','valve43'].includes(b)&&n.params.control==='manual')
+  add(n.id+':command',n.label+' · mando','state',()=>Number(engine.state[n.id]?.command||0)+1,{group:'Mandos',component:n.id,states:['Retorno','Reposo','Avance']});
+ for(const {n,b} of list)if(['cylinder','hcylinder'].includes(b)){
+  add(n.id+':position',n.label+' · posición','analog',()=>1000*(engine.state[n.id]?.x||0),{group:'Actuadores',component:n.id,unit:'mm',min:0,max:n.params.stroke});
+  add(n.id+':motion',n.label+' · movimiento','state',()=>{
+   const s=engine.state[n.id]||{},x=(s.x||0)*1000,v=s.v||0;
+   if(x<=.05)return 0;if(x>=n.params.stroke-.05)return 2;
+   if(v>1e-5)return 1;if(v< -1e-5)return 3;return 4;
+  },{group:'Actuadores',component:n.id,states:STATE_NAMES});
+ }
+ for(const {n,b} of list)if(['limit','pneumatic_limit'].includes(b))
+  add(n.id+':detected',n.label+' · detectado','digital',()=>+!!engine.state[n.id]?.detected,{group:'Sensores',component:n.id});
+ for(const {n,b} of list)if(['relay','solenoid','lamp','etimer'].includes(b)){
+  add(n.id+':on',n.label+' · activo','digital',()=>+!!engine.state[n.id]?.on,{group:'Salidas y relés',component:n.id});
+  if(b==='etimer')add(n.id+':elapsed',n.label+' · tiempo','analog',()=>engine.state[n.id]?.elapsed||0,{group:'Temporizadores',component:n.id,unit:'s',min:0,max:n.params.delay});
+ }
+ for(const {n,b} of list)if(['valve32','valve52','valve43','sequence','ptimer'].includes(b)){
+  add(n.id+':valve',n.label+' · posición de válvula','state',()=>Number(engine.state[n.id]?.position||0),{group:'Válvulas',component:n.id,states:b==='valve43'?{'-1':'Retorno',0:'Centro',1:'Avance'}:['Reposo / retorno','Actuada / avance'],default:false});
+  if(b==='ptimer')add(n.id+':elapsed',n.label+' · retardo','analog',()=>engine.state[n.id]?.elapsed||0,{group:'Temporizadores',component:n.id,unit:'s',min:0,max:n.params.delay});
+ }
+ const plc=list.find(a=>a.b==='plc')?.n;
+ if(plc){
+  const net=nets(doc,'electrical'),root=(n,p)=>net.find(key(ref(n,p)));
+  const attached=port=>list.filter(({n,b})=>n!==plc&&['button','limit','relay','solenoid','lamp','etimer','contact'].includes(b)&&def(n.type).ports.some(p=>p.domain==='electrical'&&root(n,p.id)===root(plc,port))).map(({n})=>n.label).join(', ');
+  for(let i=0;i<4;i++)for(const kind of ['X','Y']){
+   const address=kind+i,label=attached(address);add('plc:'+address,address+(label?' · '+label:''),'digital',()=>+engine.plc.read(address),{group:kind==='X'?'Entradas PLC':'Salidas PLC',address,description:kind==='X'?'Imagen de entradas del escaneo':'Bit de salida del programa; requiere PLC alimentado',default:!!label});
+  }
+  const refs=[...new Set((doc.program||[]).flatMap(r=>[r.out,...r.branches.flat().map(c=>c.ref)]))].filter(r=>/^[MTCD]\d+$/.test(r)).sort((a,b)=>a.localeCompare(b,undefined,{numeric:true}));
+  for(const address of refs){
+   add('plc:'+address,address+' · bit','digital',()=>+engine.plc.read(address),{group:'Memorias y funciones',address});
+   if(/^T/.test(address))add('plc:'+address+':et',address+' · tiempo acumulado','analog',()=>engine.plc.timers[address]||0,{group:'Temporizadores',address,unit:'s',min:0,max:Math.max(1,...doc.program.filter(r=>r.out===address).map(r=>r.preset||0))});
+   if(/^C/.test(address))add('plc:'+address+':cv',address+' · conteo','counter',()=>engine.plc.counters[address]||0,{group:'Contadores',address,unit:'ciclos',min:0});
+  }
+ }
+ for(const {n,b} of list)if(['gauge','reservoir'].includes(b))add(n.id+':pressure',n.label+' · presión','analog',()=>engine.state[n.id]?.pressure||0,{group:'Presión',component:n.id,unit:'bar',min:0});
+ return tracks;
+}
+function traceValue(track,value){if(track.kind==='digital')return value?'1 · activo':'0 · inactivo';if(track.kind==='state')return track.states?.[Math.round(value)]||String(value);if(track.kind==='counter')return `${Math.round(value)} ${track.unit}`;return `${Number(value).toFixed(2)} ${track.unit}`;}
+class TraceRecorder{
+ constructor(engine,{capacity=15001,maxEvents=4000}={}){
+  this.engine=engine;this.capacity=capacity;this.maxEvents=maxEvents;this.tracks=signalCatalog(engine);this.times=new Float64Array(capacity);this.values=this.tracks.map(()=>new Float64Array(capacity));this.head=0;this.count=0;this.total=0;this.events=[];this.droppedEvents=0;this.interval=.02;this.started=engine.time;this.reason='Inicio / reinicio de simulación';this.capture();
+ }
+ clear(reason='Registro borrado por el usuario'){
+  this.head=0;this.count=0;this.total=0;this.events=[];this.droppedEvents=0;this.started=this.engine.time;this.reason=reason;this.capture();
+ }
+ capture(){
+  const t=this.engine.time,last=this.count?(this.head+this.count-1)%this.capacity:-1,same=last>=0&&Math.abs(this.times[last]-t)<1e-9;
+  let at;if(same)at=last;else if(this.count<this.capacity){at=(this.head+this.count)%this.capacity;this.count++;this.total++;}else{at=this.head;this.head=(this.head+1)%this.capacity;this.total++;}
+  const vals=this.tracks.map(a=>{try{const v=Number(a.read());return Number.isFinite(v)?v:0;}catch{return 0;}});
+  if(last>=0)for(let j=0;j<this.tracks.length;j++){
+   const tr=this.tracks[j],old=this.values[j][last],v=vals[j];
+   if(old!==v&&['digital','state','counter'].includes(tr.kind))this.events.push({t,id:tr.id,label:tr.label,from:old,to:v,kind:tr.kind});
+  }
+  if(this.events.length>this.maxEvents){const n=this.events.length-this.maxEvents;this.events.splice(0,n);this.droppedEvents+=n;}
+  this.times[at]=t;vals.forEach((v,j)=>this.values[j][at]=v);
+ }
+ snapshot(){
+  const times=Array.from({length:this.count},(_,i)=>this.times[(this.head+i)%this.capacity]);
+  const tracks=this.tracks.map(({read,...tr},j)=>({...tr,values:Array.from({length:this.count},(_,i)=>this.values[j][(this.head+i)%this.capacity])}));
+  return {format:'eulab-trace',version:1,interval:this.interval,started:this.started,reason:this.reason,totalSamples:this.total,droppedSamples:Math.max(0,this.total-this.count),droppedEvents:this.droppedEvents,times,tracks,events:this.events.filter(e=>e.t>=(times[0]||0)).map(e=>({...e})),start:times[0]??0,end:times.at(-1)??0};
+ }
+}
+
+Object.assign(__exports,{signalCatalog,traceValue,TraceRecorder});
+},
+"src/core/model.js":function(__exports,__require){
+const {def}=__require("src/core/registry.js");
+let seq=0;
+function uid(prefix='n'){ return `${prefix}_${Date.now().toString(36)}_${(++seq).toString(36)}`; }
+const clone=v=>JSON.parse(JSON.stringify(v));
+function project(name='Mi práctica'){return {format:'eulab-modular',version:1,name,nodes:[],links:[],program:[],view:{x:0,y:0,scale:1}};}
+function addNode(doc,type,x,y,params={},label){const d=def(type);const n={id:uid(),type,x,y,rotation:0,label:label||`${type.toUpperCase()}${doc.nodes.filter(a=>a.type===type).length+1}`,params:{...clone(d.defaults),...params}};doc.nodes.push(n);return n;}
+function node(doc,id){return doc.nodes.find(n=>n.id===id);}
+function rotatePoint(x,y,deg){const a=deg*Math.PI/180;return {x:x*Math.cos(a)-y*Math.sin(a),y:x*Math.sin(a)+y*Math.cos(a)};}
+function resolveNode(doc,n,seen=new Set()){
+ if(!n) throw new Error('Componente inexistente');
+ if(!n.mount)return {x:n.x,y:n.y,rotation:n.rotation||0};
+ if(seen.has(n.id))throw new Error('Acoplamiento circular'); seen.add(n.id);
+ const parent=node(doc,n.mount.parent);if(!parent)return {x:n.x,y:n.y,rotation:n.rotation||0};
+ const a=resolveNode(doc,parent,seen),v=rotatePoint(n.mount.dx,n.mount.dy,a.rotation);
+ return {x:a.x+v.x,y:a.y+v.y,rotation:a.rotation+(n.mount.rotation||0)};
+}
+function endpoint(doc,ref){const n=node(doc,ref.component),d=def(n.type),p=d.ports.find(p=>p.id===ref.port);if(!p)throw new Error(`Puerto inexistente: ${ref.port}`);const a=resolveNode(doc,n),v=rotatePoint(p.x,p.y,a.rotation),u=rotatePoint(p.nx,p.ny,a.rotation);return {...p,x:a.x+v.x,y:a.y+v.y,nx:u.x,ny:u.y,component:n.id};}
+function ref(n,port){return {component:typeof n==='string'?n:n.id,port};}
+function key(r){return `${r.component}:${r.port}`;}
+function connect(doc,from,to,options={}){
+ const a=endpoint(doc,from),b=endpoint(doc,to);
+ if(a.domain!==b.domain)throw new Error('No se puede conectar aire, aceite y electricidad entre sí.');
+ if(key(from)===key(to))throw new Error('Selecciona otro puerto.');
+ const existing=doc.links.find(l=>(key(l.from)===key(from)&&key(l.to)===key(to))||(key(l.from)===key(to)&&key(l.to)===key(from)));
+ if(existing)return existing;
+ const l={id:uid('l'),from:clone(from),to:clone(to),domain:a.domain,route:'HV',...options};doc.links.push(l);return l;
+}
+function mount(doc,child,parent,parentPort,ownPort){
+ if(child.id===parent.id)throw new Error('No se puede acoplar a sí mismo.');
+ let q=parent;while(q.mount){if(q.mount.parent===child.id)throw new Error('Acoplamiento circular.');q=node(doc,q.mount.parent);if(!q)break;}
+ const a=resolveNode(doc,parent),p=endpoint(doc,ref(parent,parentPort)),cp=def(child.type).ports.find(v=>v.id===ownPort);
+ const delta=rotatePoint(p.x-a.x,p.y-a.y,-a.rotation);
+ child.mount={parent:parent.id,dx:delta.x-cp.x,dy:delta.y-cp.y,rotation:0};
+ connect(doc,ref(child,ownPort),ref(parent,parentPort),{mount:true});
+}
+function unmount(doc,n){const w=resolveNode(doc,n);n.x=w.x;n.y=w.y;n.rotation=w.rotation;delete n.mount;doc.links.filter(l=>l.from.component===n.id||l.to.component===n.id).forEach(l=>delete l.mount);}
+function move(doc,id,x,y){const n=node(doc,id);if(n.mount){const a=resolveNode(doc,node(doc,n.mount.parent)),d=rotatePoint(x-a.x,y-a.y,-a.rotation);n.mount.dx=d.x;n.mount.dy=d.y;}else{n.x=x;n.y=y;}}
+function remove(doc,id){const n=node(doc,id);if(n){for(const ch of doc.nodes.filter(a=>a.mount?.parent===id))unmount(doc,ch);doc.nodes=doc.nodes.filter(a=>a.id!==id);doc.links=doc.links.filter(l=>l.from.component!==id&&l.to.component!==id);}else doc.links=doc.links.filter(l=>l.id!==id);}
+function validateProject(doc){
+ if(!doc||doc.format!=='eulab-modular'||doc.version!==1||!Array.isArray(doc.nodes)||!Array.isArray(doc.links))throw new Error('Formato incompatible. Usa proyectos .eulab.json de EuLab Modular.');
+ if(doc.nodes.length>200||doc.links.length>500)throw new Error('Límite educativo: 200 componentes y 500 conexiones.');
+ const ids=new Set();for(const n of doc.nodes){if(typeof n.id!=='string'||!/^[-\w]{1,100}$/.test(n.id)||['__proto__','constructor','prototype'].includes(n.id)||ids.has(n.id))throw new Error('Identificadores duplicados');ids.add(n.id);const d=def(n.type);if(!Number.isFinite(n.x)||!Number.isFinite(n.y))throw new Error('Coordenadas inválidas');n.rotation=Number.isFinite(n.rotation)?Math.round(n.rotation/90)*90:0;n.params={...clone(d.defaults),...n.params};n.label=String(n.label||d.name).slice(0,80);for(const k of ['tag','ref','tagA','tagB'])if(n.params[k]&&(!/^[A-Za-z][A-Za-z0-9_-]{0,31}$/.test(n.params[k])||['__proto__','constructor','prototype'].includes(n.params[k])))throw new Error('Referencia eléctrica inválida');
+ for(const f of d.fields){if(f.type==='number'){let v=Number(n.params[f.key]);if(!Number.isFinite(v))throw new Error('Parámetro no numérico');n.params[f.key]=Math.max(f.min,Math.min(f.max,v));}else if(f.type==='select'&&!f.choices.some(c=>c[0]===n.params[f.key]))n.params[f.key]=d.defaults[f.key];}
+ if(n.params.bore&&n.params.rod>=n.params.bore)throw new Error('El vástago debe ser menor que el diámetro del pistón.');
+ }
+ for(const n of doc.nodes)if(n.mount){if(!ids.has(n.mount.parent)||!Number.isFinite(n.mount.dx)||!Number.isFinite(n.mount.dy))throw new Error('Acoplamiento inválido');resolveNode(doc,n);}
+ for(const l of doc.links){if(typeof l.id!=='string'||!/^[-\w]{1,100}$/.test(l.id))throw new Error('Id de conexión inválido');const a=endpoint(doc,l.from),b=endpoint(doc,l.to);if(a.domain!==b.domain)throw new Error('Dominios incompatibles');l.domain=a.domain;}
+ doc.program=Array.isArray(doc.program)?doc.program:[];if(doc.program.length>100)throw new Error('Máximo 100 peldaños');
+ for(const r of doc.program){if(!['OUT','SET','RESET','TON','CTU'].includes(r.op)||!/^([YMTCD]\d+)$/.test(r.out))throw new Error('Instrucción PLC inválida');r.branches=Array.isArray(r.branches)?r.branches:[[]];for(const b of r.branches){if(!Array.isArray(b)||b.length>8)throw new Error('Rama inválida');for(const c of b)if(!/^([XYMTCD]\d+|TRUE|FALSE)$/.test(c.ref))throw new Error('Dirección PLC inválida');}r.comment=String(r.comment||'').slice(0,1500);r.preset=Math.max(0,Math.min(3600,Number(r.preset)||0));}
+ return doc;
+}
+class UnionFind{constructor(keys=[]){this.p=new Map(keys.map(k=>[k,k]));}find(k){if(!this.p.has(k))this.p.set(k,k);let r=k;while(this.p.get(r)!==r)r=this.p.get(r);while(k!==r){const v=this.p.get(k);this.p.set(k,r);k=v;}return r;}union(a,b){a=this.find(a);b=this.find(b);if(a!==b)this.p.set(b,a);}}
+function nets(doc,domain){const u=new UnionFind();for(const n of doc.nodes)for(const p of def(n.type).ports)if(p.domain===domain)u.find(key(ref(n,p.id)));for(const l of doc.links)if(l.domain===domain)u.union(key(l.from),key(l.to));return u;}
+
+Object.assign(__exports,{uid,clone,project,addNode,node,rotatePoint,resolveNode,endpoint,ref,key,connect,mount,unmount,move,remove,validateProject,UnionFind,nets});
+},
+"src/ui/timeline-svg.js":function(__exports,__require){
+const {escapeText: esc}=__require("src/core/registry.js");
+const {traceValue}=__require("src/core/trace.js");
+const palette=['#526c83','#16877d','#126b68','#a45439','#738593'];
+function wrap(text,size=30){const words=String(text).split(/\s+/),lines=[];let line='';for(const w of words){if((line+' '+w).trim().length>size&&line){lines.push(line);line=w;}else line=(line+' '+w).trim();}if(line)lines.push(line);return lines;}
+function decimals(span){return span<1?3:span<10?2:1;}
+function timelineSVG(snapshot,ids,{start=snapshot.start,end=snapshot.end,title='Diagrama temporal de señales',subtitle='',rowHeight=76}={}){
+ const tracks=ids.map(id=>snapshot.tracks.find(t=>t.id===id)).filter(Boolean);
+ const W=1280,L=290,R=1185,top=112,bottom=78,H=top+rowHeight*tracks.length+bottom;
+ start=Number.isFinite(+start)?+start:snapshot.start;end=Number.isFinite(+end)?+end:snapshot.end;
+ end=Math.max(start+.02,end);const span=end-start,px=t=>L+(Math.max(start,Math.min(end,t))-start)/span*(R-L);
+ let svg=`<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" style="font-family:Arial,sans-serif"><rect width="100%" height="100%" fill="white"/><text x="24" y="30" font-size="24" font-weight="700" fill="#143c50">${esc(title)}</text><text x="24" y="54" font-size="14" fill="#536b78">${esc(subtitle||'Tiempo de simulación en segundos · señales alineadas sobre el mismo eje')}</text>`;
+ for(let i=0;i<=8;i++){const t=start+span*i/8,x=px(t);svg+=`<path d="M${x} 87V${H-45}" stroke="#d6e2e6" stroke-dasharray="3 5"/><text x="${x}" y="83" text-anchor="middle" font-size="13" fill="#526a78">${t.toFixed(decimals(span))}</text>`;}
+ if(!tracks.length)svg+=`<text x="24" y="122" font-size="18" fill="#526a78">Selecciona al menos una señal.</text>`;
+ let from=snapshot.times.findIndex(t=>t>=start);if(from<0)from=Math.max(0,snapshot.times.length-1);from=Math.max(0,from-1);
+ let to=snapshot.times.findIndex(t=>t>end);if(to<0)to=snapshot.times.length;
+ const indices=Array.from({length:Math.max(0,to-from)},(_,i)=>from+i);
+ tracks.forEach((tr,j)=>{
+  const y=top+j*rowHeight,base=y+rowHeight-18,high=y+14,color=palette[j%palette.length];
+  if(j%2===0)svg+=`<rect x="18" y="${y}" width="${W-36}" height="${rowHeight}" rx="3" fill="#f5f9fa"/>`;
+  // Redraw grid above alternate-row fills.
+  for(let i=0;i<=8;i++)svg+=`<path d="M${L+(R-L)*i/8} ${y}V${y+rowHeight}" stroke="#dce5e9" stroke-dasharray="3 5"/>`;
+  wrap(tr.label,31).slice(0,2).forEach((s,k)=>svg+=`<text x="26" y="${y+24+k*17}" font-size="15" font-weight="600" fill="#193c4d">${esc(s)}</text>`);
+  svg+=`<text x="26" y="${y+rowHeight-10}" font-size="12" fill="#546f7b">${esc(tr.kind==='state'?'Estado del actuador / componente':tr.unit||'0/1')}</text><path d="M${L} ${base}H${R}" stroke="#bbccd4"/>`;
+  const pts=indices.map(i=>({t:snapshot.times[i],v:tr.values[i]}));
+  if(!pts.length)return;
+  const last=pts.at(-1).v;
+  if(tr.kind==='state'){
+   const segments=[];let begin=start,value=pts[0].v;
+   for(const p of pts){if(p.t<start){value=p.v;continue;}if(p.v!==value){segments.push({a:begin,b:p.t,v:value});begin=p.t;value=p.v;}}
+   segments.push({a:begin,b:end,v:value});
+   for(const seg of segments){const x=px(seg.a),w=px(seg.b)-x;if(w<.1)continue;const state=tr.states?.[seg.v]||String(seg.v);svg+=`<rect x="${x}" y="${high}" width="${w}" height="${base-high}" fill="${palette[Math.abs(seg.v)%palette.length]}" fill-opacity=".17" stroke="white"/>`;const short=(tr.id.endsWith(':motion')?['R','A+','E','A-','I'][seg.v]:String(seg.v));const label=w>state.length*7+6?state:w>20?short:'';if(label)svg+=`<text x="${x+w/2}" y="${high+(base-high)/2+5}" text-anchor="middle" font-size="13" fill="#203d4e">${esc(label)}</text>`;}
+   svg+=`<text x="${R+10}" y="${y+34}" font-size="11" fill="#365769">${esc(tr.states?.[last]||String(last))}</text>`;
+  }else{
+   const min=tr.kind==='digital'?0:Math.min(tr.min??0,...pts.map(p=>p.v)),max=tr.kind==='digital'?1:Math.max(min+1e-9,tr.max??0,...pts.map(p=>p.v)),range=max-min||1;
+   const py=v=>base-(v-min)/range*(base-high);let d=`M${L} ${py(pts[0].v)}`,value=pts[0].v;
+   if(tr.kind==='digital'||tr.kind==='counter'){
+    for(const p of pts){if(p.t<start){value=p.v;d=`M${L} ${py(value)}`;continue;}if(p.v!==value){d+=`H${px(p.t)}V${py(p.v)}`;value=p.v;}}
+    d+=`H${R}`;
+   }else{
+    // Keep all recorded samples. No averaging that could erase short transitions.
+    for(const p of pts)if(p.t>=start)d+=`L${px(p.t).toFixed(2)} ${py(p.v).toFixed(2)}`;
+    d+=`H${R}`;
+   }
+   svg+=`<path d="${d}" fill="none" stroke="${color}" stroke-width="2.2" stroke-linejoin="round"/><text x="${L-8}" y="${high+4}" text-anchor="end" font-size="11" fill="#71858c">${max.toFixed(tr.kind==='digital'?0:1)}</text><text x="${L-8}" y="${base+3}" text-anchor="end" font-size="11" fill="#71858c">${min.toFixed(tr.kind==='digital'?0:1)}</text><text x="${R+10}" y="${y+34}" font-size="13" fill="#365769">${Number(last).toFixed(tr.kind==='digital'||tr.kind==='counter'?0:2)}</text>`;
+  }
+ });
+ svg+=`<text x="${(L+R)/2}" y="${H-32}" text-anchor="middle" font-size="14" fill="#405d6c">Tiempo de simulación (s)</text><text x="24" y="${H-10}" font-size="12" fill="#536b78">Movimiento: R = retraído · A+ = avanzando · E = extendido · A- = retrocediendo · I = intermedio</text></svg>`;
+ return {svg,width:W,height:H};
+}
+
+Object.assign(__exports,{timelineSVG});
+},
+"src/ui/pdf-writer.js":function(__exports,__require){
+/** Small purpose-specific PDF 1.4 writer. No CDN, server or hidden print window.
+ * Standard Helvetica/WinAnsi text + JPEG diagrams. Offsets are byte offsets.
+ */
+const enc=new TextEncoder();
+const cp1252={'€':128,'‚':130,'ƒ':131,'„':132,'…':133,'†':134,'‡':135,'ˆ':136,'‰':137,'Š':138,'‹':139,'Œ':140,'Ž':142,'‘':145,'’':146,'“':147,'”':148,'•':149,'–':150,'—':151,'˜':152,'™':153,'š':154,'›':155,'œ':156,'ž':158,'Ÿ':159};
+function pdfText(text){const s=String(text).replaceAll('→',' -> ').replaceAll('←',' <- ').replaceAll('≥',' >= ').replaceAll('≤',' <= ').replaceAll('∧',' AND ').replaceAll('∨',' OR ').replaceAll('↔',' <-> ');let out='';for(const c of s){let n=c.charCodeAt(0);if(n>255)n=cp1252[c]??63;out+='\\'+n.toString(8).padStart(3,'0');}return '('+out+')';}
+function utf16(text){return '<FEFF'+Array.from(String(text)).map(c=>c.charCodeAt(0).toString(16).padStart(4,'0')).join('')+'>';}
+function bytes(s){return enc.encode(s);}
+function concat(chunks){const size=chunks.reduce((n,c)=>n+c.length,0),out=new Uint8Array(size);let k=0;for(const c of chunks){out.set(c,k);k+=c.length;}return out;}
+function rgb(hex){return hex.replace('#','').match(/.{2}/g).map(a=>(parseInt(a,16)/255).toFixed(4)).join(' ');}
+const PT=72/25.4;
+class ReportPDF{
+ constructor(title='Informe EuLab'){this.title=title;this.pages=[];this.width=297;this.height=210;}
+ page(){const p={commands:[],images:[]};this.pages.push(p);this.current=p;return p;}
+ text(text,x,y,size=10,{bold=false,color='#203d4c'}={}){this.current.commands.push(`BT /${bold?'F2':'F1'} ${size} Tf ${rgb(color)} rg 1 0 0 1 ${(x*PT).toFixed(3)} ${((this.height-y)*PT).toFixed(3)} Tm ${pdfText(text)} Tj ET`);}
+ line(x1,y1,x2,y2,color='#d9e3e7',width=.25){this.current.commands.push(`${rgb(color)} RG ${(width*PT).toFixed(3)} w ${(x1*PT).toFixed(3)} ${((this.height-y1)*PT).toFixed(3)} m ${(x2*PT).toFixed(3)} ${((this.height-y2)*PT).toFixed(3)} l S`);}
+ rect(x,y,w,h,color='#f1f6f8'){this.current.commands.push(`${rgb(color)} rg ${(x*PT).toFixed(3)} ${((this.height-y-h)*PT).toFixed(3)} ${(w*PT).toFixed(3)} ${(h*PT).toFixed(3)} re f`);}
+ image(data,x,y,w,h){const name='Im'+(this.current.images.length+1);this.current.images.push({...data,name});this.current.commands.push(`q ${(w*PT).toFixed(3)} 0 0 ${(h*PT).toFixed(3)} ${(x*PT).toFixed(3)} ${((this.height-y-h)*PT).toFixed(3)} cm /${name} Do Q`);}
+ finish(){
+  const objs=[null,null,null,bytes('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>'),bytes('<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>')],pageIds=[];
+  const add=b=>{objs.push(typeof b==='string'?bytes(b):b);return objs.length-1;};
+  const stream=(dict,data)=>concat([bytes(`<< ${dict} /Length ${data.length} >>\nstream\n`),data,bytes('\nendstream')]);
+  for(const p of this.pages){
+   const images=[];for(const im of p.images){const id=add(stream(`/Type /XObject /Subtype /Image /Width ${im.width} /Height ${im.height} /ColorSpace /DeviceRGB /BitsPerComponent 8 /Filter /DCTDecode`,im.bytes));images.push(`/${im.name} ${id} 0 R`);}
+   const content=add(stream('',bytes(p.commands.join('\n'))));
+   const id=add(`<< /Type /Page /Parent 2 0 R /MediaBox [0 0 ${(this.width*PT).toFixed(3)} ${(this.height*PT).toFixed(3)}] /Resources << /Font << /F1 3 0 R /F2 4 0 R >> /XObject << ${images.join(' ')} >> >> /Contents ${content} 0 R >>`);pageIds.push(id);
+  }
+  objs[1]=bytes('<< /Type /Catalog /Pages 2 0 R >>');objs[2]=bytes(`<< /Type /Pages /Count ${pageIds.length} /Kids [${pageIds.map(id=>id+' 0 R').join(' ')}] >>`);
+  const info=add(`<< /Title ${utf16(this.title)} /Author ${utf16('EuLab Modular')} /Producer (EuLab ReportPDF 0.3.0) >>`);
+  const chunks=[bytes('%PDF-1.4\n% EuLab portable report\n')],offsets=[0];let length=chunks[0].length;
+  for(let i=1;i<objs.length;i++){offsets[i]=length;const chunk=concat([bytes(`${i} 0 obj\n`),objs[i],bytes('\nendobj\n')]);chunks.push(chunk);length+=chunk.length;}
+  const xref=length;let trailer=`xref\n0 ${objs.length}\n0000000000 65535 f \n`;for(let i=1;i<objs.length;i++)trailer+=String(offsets[i]).padStart(10,'0')+' 00000 n \n';trailer+=`trailer\n<< /Size ${objs.length} /Root 1 0 R /Info ${info} 0 R >>\nstartxref\n${xref}\n%%EOF\n`;chunks.push(bytes(trailer));return new Blob(chunks,{type:'application/pdf'});
+ }
+}
+function wrapText(text,widthMM,size=10){
+ const canvas=document.createElement('canvas'),ctx=canvas.getContext('2d');ctx.font=`${size}px Arial`;
+ const max=widthMM*PT,lines=[];for(const para of String(text||'').split(/\n/)){
+  if(!para.trim()){lines.push('');continue;}let line='';for(const word of para.split(/\s+/)){
+   if(ctx.measureText((line+' '+word).trim()).width<=max){line=(line+' '+word).trim();continue;}
+   if(line){lines.push(line);line='';}if(ctx.measureText(word).width>max){for(const char of word){if(ctx.measureText(line+char).width>max){lines.push(line);line='';}line+=char;}}else line=word;
+  }if(line)lines.push(line);
+ }return lines;
+}
+function rasterSVG(pic,maxWidth=2400,maxHeight=2200){return new Promise((resolve,reject)=>{
+ const url=URL.createObjectURL(new Blob([pic.svg],{type:'image/svg+xml;charset=utf-8'})),img=new Image();
+ img.onload=()=>{try{const s=Math.min(2,maxWidth/pic.width,maxHeight/pic.height),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.ceil(pic.width*s));canvas.height=Math.max(1,Math.ceil(pic.height*s));const c=canvas.getContext('2d');c.fillStyle='white';c.fillRect(0,0,canvas.width,canvas.height);c.drawImage(img,0,0,canvas.width,canvas.height);const b=atob(canvas.toDataURL('image/jpeg',.94).split(',')[1]);resolve({bytes:Uint8Array.from(b,c=>c.charCodeAt(0)),width:canvas.width,height:canvas.height});canvas.width=canvas.height=1;}catch(e){reject(e);}finally{URL.revokeObjectURL(url);}};
+ img.onerror=()=>{URL.revokeObjectURL(url);reject(new Error('No se pudo convertir un diagrama a PDF.'));};img.src=url;
+ });}
+function downloadBlob(blob,name){const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),60000);}
+
+Object.assign(__exports,{ReportPDF,wrapText,rasterSVG,downloadBlob});
 },
 "src/modules/index.js":function(__exports,__require){
 __require("src/modules/pneumatic.js");
@@ -285,29 +776,6 @@ const pneumaticModule={id:'pneumatic',name:'Neumática',components:[
 registerModule(pneumaticModule);
 
 Object.assign(__exports,{pneumaticModule});
-},
-"src/core/registry.js":function(__exports,__require){
-/** Extensible registry. A component owns ports, parameters, a symbol and engine behavior. */
-const definitions = new Map();
-const modules = new Map();
-function registerModule(module) {
-  if (!module.id || modules.has(module.id)) throw new Error('Módulo repetido o sin id');
-  modules.set(module.id, module);
-  for (const d of module.components) {
-    if (definitions.has(d.type)) throw new Error(`Tipo repetido: ${d.type}`);
-    for (const p of d.ports || []) if (!p.id || !p.domain) throw new Error(`Puerto incompleto: ${d.type}`);
-    definitions.set(d.type, {...d, module: module.id});
-  }
-}
-function def(type) { const d=definitions.get(type); if(!d) throw new Error(`Componente desconocido: ${type}`); return d; }
-const port = (id,x,y,nx,ny,domain,label=id)=>({id,x,y,nx,ny,domain,label});
-const numberField=(key,label,min,max,step=1,unit='')=>({key,label,type:'number',min,max,step,unit});
-const selectField=(key,label,choices)=>({key,label,type:'select',choices});
-const textField=(key,label)=>({key,label,type:'text'});
-const commonFluidFields=[numberField('pressure','Presión',0,10,.1,'bar')];
-function escapeText(s) { return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
-
-Object.assign(__exports,{definitions,modules,registerModule,def,port,numberField,selectField,textField,commonFluidFields,escapeText});
 },
 "src/modules/electrical.js":function(__exports,__require){
 const {registerModule,port: P,numberField: N,selectField: S,textField: T}=__require("src/core/registry.js");
@@ -435,6 +903,7 @@ Object.assign(__exports,{symbols,symbol});
 "src/ui/capture.js":function(__exports,__require){
 /** Export actual EuLab SVGs as PNG/SVG. No network, no invented screenshot. */
 const {escapeText: esc}=__require("src/core/registry.js");
+function commentLines(text,max=145){const lines=[];for(const para of String(text||'').split(/\n/)){let line='';for(const word of para.split(/\s+/)){if((line+' '+word).length>max){if(line)lines.push(line);line='';}for(const part of word.match(/.{1,145}/g)||['']){if(line.length+part.length+1>max){lines.push(line);line=part;}else line=(line+' '+part).trim();}}lines.push(line);}return lines;}
 const NS='http://www.w3.org/2000/svg';
 function nameOf(doc){return `practica${String(doc.lesson?.number||'').padStart(2,'0')}`;}
 function wrap(svg){return `<?xml version="1.0" encoding="UTF-8"?>\n${svg}`;}
@@ -450,16 +919,17 @@ function installCapture({store,editor,ladder,toast}){
   const x=Math.min(nb.x,wb.x)-32,y=Math.min(nb.y,wb.y)-28,w=Math.ceil(Math.max(nb.x+nb.width,wb.x+wb.width)-x+32),h=Math.ceil(Math.max(nb.y+nb.height,wb.y+wb.height)-y+28);
   const left=inline(ws),right=inline(ns);const content=new XMLSerializer().serializeToString(left)+new XMLSerializer().serializeToString(right);
   const width=Math.max(1050,w),height=h+130,dx=(width-w)/2-x;
-  return {svg:root(width,height,header(store.doc.name,`Circuito · t = ${store.engine.time.toFixed(2)} s · ${store.doc.lesson?.lamps?'Banco didáctico de lámparas':'Neumática y cableado de control 24 V'} · EuLab Modular`,width)+`<g transform="translate(${dx} ${94-y})">${content}</g><text x="28" y="${height-12}" font-size="12" fill="#617885">Simulación educativa; no equivale a una instalación industrial validada.</text>`),width,height};
+  return {svg:root(width,height,header(store.doc.name,`Circuito · t = ${store.engine.time.toFixed(2)} s · ${store.doc.lesson?.lamps?'Banco didáctico de lámparas':store.doc.links.some(l=>l.domain==='hydraulic')?'Hidráulica y control':'Neumática y cableado de control 24 V'} · EuLab Modular`,width)+`<g transform="translate(${dx} ${94-y})">${content}</g><text x="28" y="${height-12}" font-size="12" fill="#617885">Simulación educativa; no equivale a una instalación industrial validada.</text>`),width,height};
  }
  function ladderSVG(page=0){
   const start=page*5,rs=store.doc.program.slice(start,start+5),width=1260;let body='',yy=96;
   for(let j=0;j<rs.length;j++){const r=rs[j],index=start+j;let svg=ladder.graphic(r,index);const v=svg.match(/viewBox="0 0 ([\d.]+) ([\d.]+)"/),vw=+v[1],vh=+v[2],scale=(width-80)/vw;
+   const comments=commentLines(r.comment),commentH=r.comment?comments.length*17:0;
    const preset=r.op==='TON'?` · PT = ${r.preset} s`:r.op==='CTU'?` · PV = ${r.preset} ciclos`:'';
-   body+=`<rect x="20" y="${yy-8}" width="${width-40}" height="${vh*scale+62}" fill="white" stroke="#dce5e9" rx="5"/><text x="38" y="${yy+12}" font-size="15" fill="#315364" font-weight="700">PELDAÑO ${String(index+1).padStart(2,'0')} · ${esc(r.op)} ${esc(r.out)}${esc(preset)}</text>`;
-   if(r.comment)body+=`<text x="38" y="${yy+34}" font-size="13" fill="#617885">${esc(r.comment)}</text>`;
-   svg=svg.replace('<svg ',`<svg x="40" y="${yy+40}" width="${width-80}" height="${vh*scale}" style="color:${store.engine.plc.rungs[index]?'#09946d':'#607481'}" `);
-   body+=svg;yy+=vh*scale+80;
+   body+=`<rect x="20" y="${yy-8}" width="${width-40}" height="${vh*scale+45+commentH}" fill="white" stroke="#dce5e9" rx="5"/><text x="38" y="${yy+12}" font-size="15" fill="#315364" font-weight="700">PELDAÑO ${String(index+1).padStart(2,'0')} · ${esc(r.op)} ${esc(r.out)}${esc(preset)}</text>`;
+   if(r.comment)comments.forEach((text,k)=>body+=`<text x="38" y="${yy+34+k*17}" font-size="13" fill="#617885">${esc(text)}</text>`);
+   svg=svg.replace('<svg ',`<svg x="40" y="${yy+27+commentH}" width="${width-80}" height="${vh*scale}" style="color:${store.engine.plc.rungs[index]?'#09946d':'#607481'}" `);
+   body+=svg;yy+=vh*scale+63+commentH;
   }
   const height=Math.ceil(yy+28),pages=Math.max(1,Math.ceil(store.doc.program.length/5));
   return {svg:root(width,height,header(store.doc.name,`Ladder · lámina ${page+1}/${pages} · peldaños ${start+1}–${Math.min(start+5,store.doc.program.length)} · EuLab Modular`,width)+body+`<text x="28" y="${height-12}" font-size="12" fill="#617885">Preservar el orden de escaneo. Archivo editable: .eulab.json</text>`),width,height};
@@ -526,63 +996,6 @@ function parseProjectText(raw) {
 
 Object.assign(__exports,{parseProjectText});
 },
-"src/core/model.js":function(__exports,__require){
-const {def}=__require("src/core/registry.js");
-let seq=0;
-function uid(prefix='n'){ return `${prefix}_${Date.now().toString(36)}_${(++seq).toString(36)}`; }
-const clone=v=>JSON.parse(JSON.stringify(v));
-function project(name='Mi práctica'){return {format:'eulab-modular',version:1,name,nodes:[],links:[],program:[],view:{x:0,y:0,scale:1}};}
-function addNode(doc,type,x,y,params={},label){const d=def(type);const n={id:uid(),type,x,y,rotation:0,label:label||`${type.toUpperCase()}${doc.nodes.filter(a=>a.type===type).length+1}`,params:{...clone(d.defaults),...params}};doc.nodes.push(n);return n;}
-function node(doc,id){return doc.nodes.find(n=>n.id===id);}
-function rotatePoint(x,y,deg){const a=deg*Math.PI/180;return {x:x*Math.cos(a)-y*Math.sin(a),y:x*Math.sin(a)+y*Math.cos(a)};}
-function resolveNode(doc,n,seen=new Set()){
- if(!n) throw new Error('Componente inexistente');
- if(!n.mount)return {x:n.x,y:n.y,rotation:n.rotation||0};
- if(seen.has(n.id))throw new Error('Acoplamiento circular'); seen.add(n.id);
- const parent=node(doc,n.mount.parent);if(!parent)return {x:n.x,y:n.y,rotation:n.rotation||0};
- const a=resolveNode(doc,parent,seen),v=rotatePoint(n.mount.dx,n.mount.dy,a.rotation);
- return {x:a.x+v.x,y:a.y+v.y,rotation:a.rotation+(n.mount.rotation||0)};
-}
-function endpoint(doc,ref){const n=node(doc,ref.component),d=def(n.type),p=d.ports.find(p=>p.id===ref.port);if(!p)throw new Error(`Puerto inexistente: ${ref.port}`);const a=resolveNode(doc,n),v=rotatePoint(p.x,p.y,a.rotation),u=rotatePoint(p.nx,p.ny,a.rotation);return {...p,x:a.x+v.x,y:a.y+v.y,nx:u.x,ny:u.y,component:n.id};}
-function ref(n,port){return {component:typeof n==='string'?n:n.id,port};}
-function key(r){return `${r.component}:${r.port}`;}
-function connect(doc,from,to,options={}){
- const a=endpoint(doc,from),b=endpoint(doc,to);
- if(a.domain!==b.domain)throw new Error('No se puede conectar aire, aceite y electricidad entre sí.');
- if(key(from)===key(to))throw new Error('Selecciona otro puerto.');
- const existing=doc.links.find(l=>(key(l.from)===key(from)&&key(l.to)===key(to))||(key(l.from)===key(to)&&key(l.to)===key(from)));
- if(existing)return existing;
- const l={id:uid('l'),from:clone(from),to:clone(to),domain:a.domain,route:'HV',...options};doc.links.push(l);return l;
-}
-function mount(doc,child,parent,parentPort,ownPort){
- if(child.id===parent.id)throw new Error('No se puede acoplar a sí mismo.');
- let q=parent;while(q.mount){if(q.mount.parent===child.id)throw new Error('Acoplamiento circular.');q=node(doc,q.mount.parent);if(!q)break;}
- const a=resolveNode(doc,parent),p=endpoint(doc,ref(parent,parentPort)),cp=def(child.type).ports.find(v=>v.id===ownPort);
- const delta=rotatePoint(p.x-a.x,p.y-a.y,-a.rotation);
- child.mount={parent:parent.id,dx:delta.x-cp.x,dy:delta.y-cp.y,rotation:0};
- connect(doc,ref(child,ownPort),ref(parent,parentPort),{mount:true});
-}
-function unmount(doc,n){const w=resolveNode(doc,n);n.x=w.x;n.y=w.y;n.rotation=w.rotation;delete n.mount;doc.links.filter(l=>l.from.component===n.id||l.to.component===n.id).forEach(l=>delete l.mount);}
-function move(doc,id,x,y){const n=node(doc,id);if(n.mount){const a=resolveNode(doc,node(doc,n.mount.parent)),d=rotatePoint(x-a.x,y-a.y,-a.rotation);n.mount.dx=d.x;n.mount.dy=d.y;}else{n.x=x;n.y=y;}}
-function remove(doc,id){const n=node(doc,id);if(n){for(const ch of doc.nodes.filter(a=>a.mount?.parent===id))unmount(doc,ch);doc.nodes=doc.nodes.filter(a=>a.id!==id);doc.links=doc.links.filter(l=>l.from.component!==id&&l.to.component!==id);}else doc.links=doc.links.filter(l=>l.id!==id);}
-function validateProject(doc){
- if(!doc||doc.format!=='eulab-modular'||doc.version!==1||!Array.isArray(doc.nodes)||!Array.isArray(doc.links))throw new Error('Formato incompatible. Usa proyectos .eulab.json de EuLab Modular.');
- if(doc.nodes.length>200||doc.links.length>500)throw new Error('Límite educativo: 200 componentes y 500 conexiones.');
- const ids=new Set();for(const n of doc.nodes){if(typeof n.id!=='string'||!/^[-\w]{1,100}$/.test(n.id)||['__proto__','constructor','prototype'].includes(n.id)||ids.has(n.id))throw new Error('Identificadores duplicados');ids.add(n.id);const d=def(n.type);if(!Number.isFinite(n.x)||!Number.isFinite(n.y))throw new Error('Coordenadas inválidas');n.rotation=Number.isFinite(n.rotation)?Math.round(n.rotation/90)*90:0;n.params={...clone(d.defaults),...n.params};n.label=String(n.label||d.name).slice(0,80);for(const k of ['tag','ref','tagA','tagB'])if(n.params[k]&&(!/^[A-Za-z][A-Za-z0-9_-]{0,31}$/.test(n.params[k])||['__proto__','constructor','prototype'].includes(n.params[k])))throw new Error('Referencia eléctrica inválida');
- for(const f of d.fields){if(f.type==='number'){let v=Number(n.params[f.key]);if(!Number.isFinite(v))throw new Error('Parámetro no numérico');n.params[f.key]=Math.max(f.min,Math.min(f.max,v));}else if(f.type==='select'&&!f.choices.some(c=>c[0]===n.params[f.key]))n.params[f.key]=d.defaults[f.key];}
- if(n.params.bore&&n.params.rod>=n.params.bore)throw new Error('El vástago debe ser menor que el diámetro del pistón.');
- }
- for(const n of doc.nodes)if(n.mount){if(!ids.has(n.mount.parent)||!Number.isFinite(n.mount.dx)||!Number.isFinite(n.mount.dy))throw new Error('Acoplamiento inválido');resolveNode(doc,n);}
- for(const l of doc.links){if(typeof l.id!=='string'||!/^[-\w]{1,100}$/.test(l.id))throw new Error('Id de conexión inválido');const a=endpoint(doc,l.from),b=endpoint(doc,l.to);if(a.domain!==b.domain)throw new Error('Dominios incompatibles');l.domain=a.domain;}
- doc.program=Array.isArray(doc.program)?doc.program:[];if(doc.program.length>100)throw new Error('Máximo 100 peldaños');
- for(const r of doc.program){if(!['OUT','SET','RESET','TON','CTU'].includes(r.op)||!/^([YMTCD]\d+)$/.test(r.out))throw new Error('Instrucción PLC inválida');r.branches=Array.isArray(r.branches)?r.branches:[[]];for(const b of r.branches){if(!Array.isArray(b)||b.length>8)throw new Error('Rama inválida');for(const c of b)if(!/^([XYMTCD]\d+|TRUE|FALSE)$/.test(c.ref))throw new Error('Dirección PLC inválida');}r.preset=Math.max(0,Math.min(3600,Number(r.preset)||0));}
- return doc;
-}
-class UnionFind{constructor(keys=[]){this.p=new Map(keys.map(k=>[k,k]));}find(k){if(!this.p.has(k))this.p.set(k,k);let r=k;while(this.p.get(r)!==r)r=this.p.get(r);while(k!==r){const v=this.p.get(k);this.p.set(k,r);k=v;}return r;}union(a,b){a=this.find(a);b=this.find(b);if(a!==b)this.p.set(b,a);}}
-function nets(doc,domain){const u=new UnionFind();for(const n of doc.nodes)for(const p of def(n.type).ports)if(p.domain===domain)u.find(key(ref(n,p.id)));for(const l of doc.links)if(l.domain===domain)u.union(key(l.from),key(l.to));return u;}
-
-Object.assign(__exports,{uid,clone,project,addNode,node,rotatePoint,resolveNode,endpoint,ref,key,connect,mount,unmount,move,remove,validateProject,UnionFind,nets});
-},
 "src/core/store.js":function(__exports,__require){
 const {clone,validateProject}=__require("src/core/model.js");
 const {Engine}=__require("src/core/engine.js");
@@ -596,13 +1009,14 @@ class Store {
  historyRedo(forward=false){const a=forward?this.redo:this.undo,b=forward?this.undo:this.redo;if(!a.length)return;this.running=false;b.push(clone(this.doc));this.doc=a.pop();this.engine=new Engine(this.doc);this.selected=null;this.pending=null;this.revision++;this.persist();this.emit('load');}
  persist(){try{localStorage.setItem('eulab-modular-project-v1',JSON.stringify(this.doc));}catch{}}
  select(id){this.selected=id;this.emit('select');}
- toggle(){this.running=!this.running;this.pending=null;for(const n of this.doc.nodes)if(!n.params.toggle&&this.engine.state[n.id])this.engine.state[n.id].pressed=false;this.emit('run');}
+ toggle(){this.running=!this.running;this.pending=null;for(const n of this.doc.nodes)if(!n.params.toggle&&this.engine.state[n.id])this.engine.state[n.id].pressed=false;this.engine.trace?.capture();this.emit('run');}
  reset(){this.running=false;this.engine=new Engine(this.doc);this.pending=null;this.emit('run');}
 }
 
 Object.assign(__exports,{Store});
 },
 "src/core/engine.js":function(__exports,__require){
+const {TraceRecorder}=__require("src/core/trace.js");
 const {def,modules}=__require("src/core/registry.js");
 const {PLC}=__require("src/core/plc-engine.js");
 const {Electrical}=__require("src/core/electrical-engine.js");
@@ -610,11 +1024,12 @@ const {Pneumatic}=__require("src/core/pneumatic-engine.js");
 const {Hydraulic}=__require("src/core/hydraulic-engine.js");
 class Engine{
  constructor(doc){this.doc=doc;this.reset();}
- reset(){this.time=0;this.state={};this.signals={};this.warnings=new Set();this.history=[];this.plc=new PLC();for(const n of this.doc.nodes)this.state[n.id]={x:0,v:0,position:0,command:0,pressed:false,on:false,elapsed:0};this.electrical=new Electrical(this);this.pneumatic=new Pneumatic(this);this.hydraulic=new Hydraulic(this);this.electrical.step(0);this.plugins=[...modules.values()].filter(m=>m.createRuntime).map(m=>m.createRuntime(this));}
- step(dt=.02){this.warnings.clear();for(const p of this.plugins)p.beforeStep?.(dt);this.electrical.step(dt);const plcs=this.doc.nodes.filter(n=>def(n.type).behavior==='plc');if(plcs.length>1)this.warnings.add('Esta versión admite un programa y un PLC por circuito.');if(plcs[0]&&this.state[plcs[0].id].powered){const s=this.state[plcs[0].id];this.plc.scan(this.doc.program,Object.fromEntries(s.inputs.map((v,i)=>[`X${i}`,v])),dt);}else if(plcs.length)this.plc.reset();this.electrical.step(0);this.pneumatic.step(dt);this.hydraulic.step(dt);this.time+=dt;for(const p of this.plugins)p.afterStep?.(dt);if(Math.round(this.time*50)%5===0){this.history.push({t:this.time,positions:this.doc.nodes.filter(n=>['cylinder','hcylinder'].includes(def(n.type).behavior)).map(n=>({id:n.id,label:n.label,x:this.state[n.id].x*1000}))});if(this.history.length>600)this.history.shift();}return this;}
+ reset(){this.time=0;this.state={};this.signals={};this.warnings=new Set();this.history=[];this.plc=new PLC();for(const n of this.doc.nodes)this.state[n.id]={x:0,v:0,position:0,command:0,pressed:false,on:false,elapsed:0};this.electrical=new Electrical(this);this.pneumatic=new Pneumatic(this);this.hydraulic=new Hydraulic(this);this.electrical.step(0);this.plugins=[...modules.values()].filter(m=>m.createRuntime).map(m=>m.createRuntime(this));this.trace=new TraceRecorder(this);}
+ step(dt=.02){this.warnings.clear();for(const p of this.plugins)p.beforeStep?.(dt);this.electrical.step(dt);const plcs=this.doc.nodes.filter(n=>def(n.type).behavior==='plc');if(plcs.length>1)this.warnings.add('Esta versión admite un programa y un PLC por circuito.');if(plcs[0]&&this.state[plcs[0].id].powered){const s=this.state[plcs[0].id];this.plc.scan(this.doc.program,Object.fromEntries(s.inputs.map((v,i)=>[`X${i}`,v])),dt);}else if(plcs.length)this.plc.reset();this.electrical.step(0);this.pneumatic.step(dt);this.hydraulic.step(dt);this.time+=dt;for(const p of this.plugins)p.afterStep?.(dt);if(Math.round(this.time*50)%5===0){this.history.push({t:this.time,positions:this.doc.nodes.filter(n=>['cylinder','hcylinder'].includes(def(n.type).behavior)).map(n=>({id:n.id,label:n.label,x:this.state[n.id].x*1000}))});if(this.history.length>600)this.history.shift();}this.trace?.capture();return this;}
+ restartTrace(reason='Configuración modificada'){this.trace=new TraceRecorder(this);this.trace.reason=reason;}
  run(seconds){for(let t=0;t<seconds-1e-9;t+=.02)this.step(.02);return this;}
- press(id,down=true){const n=this.doc.nodes.find(n=>n.id===id),s=this.state[id];if(!n||!s)return;if(def(n.type).behavior==='button'){s.pressed=n.params.toggle?(down?!s.pressed:s.pressed):down;}else if(['valve32','valve52','valve43'].includes(def(n.type).behavior))s.command=down?1:0;}
- command(id,value){if(this.state[id])this.state[id].command=value;}
+ press(id,down=true){const n=this.doc.nodes.find(n=>n.id===id),s=this.state[id];if(!n||!s)return;if(def(n.type).behavior==='button'){s.pressed=n.params.toggle?(down?!s.pressed:s.pressed):down;}else if(['valve32','valve52','valve43'].includes(def(n.type).behavior))s.command=down?1:0;this.trace?.capture();}
+ command(id,value){if(this.state[id])this.state[id].command=value;this.trace?.capture();}
  value(ref,domain){if(domain==='electrical')return this.electrical.voltage(ref);const n=this.doc.nodes.find(n=>n.id===ref.component);return domain==='hydraulic'?this.hydraulic.gauge(n,ref.port):this.pneumatic.gauge(n,ref.port);}
 }
 
@@ -2776,12 +3191,12 @@ const {uid}=__require("src/core/model.js");
 const addressOptions=['TRUE','FALSE',...['X','Y','M','T','C'].flatMap(p=>Array.from({length:16},(_,i)=>p+i))];
 class LadderView {
  constructor(store,toast){this.store=store;this.toast=toast;this.container=document.querySelector('#ladder');document.querySelector('#addresses').innerHTML=addressOptions.map(a=>`<option value="${a}">`).join('');document.querySelector('#add-rung').onclick=()=>this.edit(()=>store.doc.program.push({id:uid('r'),branches:[[{ref:'X0',not:false}]],op:'OUT',out:'Y0',preset:3}));this.container.addEventListener('click',event=>this.click(event));this.container.addEventListener('change',event=>this.change(event));}
- edit(fn){try{this.store.edit(fn,false);this.store.engine.plc.reset();this.render();}catch(err){this.toast(err.message);}}
+ edit(fn){try{this.store.edit(fn,false);this.store.engine.plc.reset();this.store.engine.restartTrace('Programa Ladder modificado');this.render();}catch(err){this.toast(err.message);}}
  click(event){const b=event.target.closest('[data-action]');if(!b)return;const ri=Number(b.dataset.rung),r=this.store.doc.program[ri],bi=Number(b.dataset.branch||0),ci=Number(b.dataset.contact||0);this.edit(()=>{switch(b.dataset.action){case 'delete-rung':this.store.doc.program.splice(ri,1);break;case 'up-rung':if(ri>0)[this.store.doc.program[ri-1],this.store.doc.program[ri]]=[r,this.store.doc.program[ri-1]];break;case 'add-contact':r.branches[bi].push({ref:'X0',not:false});break;case 'delete-contact':r.branches[bi].splice(ci,1);break;case 'add-branch':r.branches.push([{ref:'X1',not:false}]);break;case 'delete-branch':r.branches.splice(bi,1);break;}});}
- change(event){const t=event.target,ri=Number(t.dataset.rung),r=this.store.doc.program[ri];if(!r)return;this.edit(()=>{if(t.dataset.field==='ref')r.branches[+t.dataset.branch][+t.dataset.contact].ref=t.value.trim().toUpperCase();if(t.dataset.field==='not')r.branches[+t.dataset.branch][+t.dataset.contact].not=t.checked;if(t.dataset.field==='op')r.op=t.value;if(t.dataset.field==='out')r.out=t.value.trim().toUpperCase();if(t.dataset.field==='preset')r.preset=Number(t.value);});}
+ change(event){const t=event.target,ri=Number(t.dataset.rung),r=this.store.doc.program[ri];if(!r)return;if(t.dataset.field==='comment'){try{this.store.edit(()=>{r.comment=t.value.slice(0,1500);},false);}catch(err){this.toast(err.message);}return;}this.edit(()=>{if(t.dataset.field==='ref')r.branches[+t.dataset.branch][+t.dataset.contact].ref=t.value.trim().toUpperCase();if(t.dataset.field==='not')r.branches[+t.dataset.branch][+t.dataset.contact].not=t.checked;if(t.dataset.field==='op')r.op=t.value;if(t.dataset.field==='out')r.out=t.value.trim().toUpperCase();if(t.dataset.field==='preset')r.preset=Number(t.value);});}
  graphic(r,index){const plc=this.store.engine.plc,on=plc.rungs[index],branches=r.branches||[[]],H=Math.max(90,branches.length*45+20),W=Math.max(700,Math.max(...branches.map(b=>b.length))*90+250),join=W-210,coil=W-162,rail=W-28;let s=`<svg class="ladder-graphic ${on?'active':''}" viewBox="0 0 ${W} ${H}" aria-label="Peldaño ${index+1}"><g stroke="currentColor" stroke-width="2" fill="none"><path d="M28 10V${H-10}M${rail} 10V${H-10}"/>`;
  branches.forEach((b,bi)=>{const y=32+bi*45;let x=55;s+=`<path d="M28 ${y}H55"/>`;b.forEach((c,ci)=>{let xx=85+ci*90,state=plc.read(c.ref)!==!!c.not;s+=`<g style="color:${state?'#0a9a71':'#70818c'}"><path d="M${x} ${y}H${xx-9}M${xx-9} ${y-11}V${y+11}M${xx+9} ${y-11}V${y+11}M${xx+9} ${y}H${xx+36}"/>${c.not?`<path d="M${xx-14} ${y+13}L${xx+14} ${y-13}"/>`:''}<text x="${xx}" y="${y-17}" text-anchor="middle" fill="currentColor" stroke="none" font-size="11">${e(c.ref)}</text></g>`;x=xx+36;});s+=`<path d="M${x} ${y}H${join}V32"/>`;});s+=`<path d="M${join} 32H${coil}M${coil+78} 32H${rail}"/><rect x="${coil}" y="14" width="78" height="36" rx="4"/><text x="${coil+39}" y="29" text-anchor="middle" font-size="10" fill="currentColor" stroke="none">${e(r.op)}</text><text x="${coil+39}" y="43" text-anchor="middle" font-size="11" fill="currentColor" stroke="none">${e(r.out)}</text></g></svg>`;return s;}
- render(){const open=new Set([...this.container.querySelectorAll('details[open]')].map(x=>x.dataset.id));const disabled=this.store.running?'disabled':'';this.container.innerHTML=this.store.doc.program.length?this.store.doc.program.map((r,i)=>`<section class="rung"><div class="rung-head"><span>PELDAÑO ${String(i+1).padStart(2,'0')}</span><span class="rung-runtime" data-runtime="${i}"></span><span><button data-action="up-rung" data-rung="${i}" ${disabled}>↑</button> <button data-action="delete-rung" data-rung="${i}" ${disabled}>Eliminar</button></span></div>${r.comment?`<p class="rung-comment">${e(r.comment)}</p>`:''}<div data-graphic="${i}">${this.graphic(r,i)}</div><details class="ladder-editor" data-id="${e(r.id)}" ${open.has(r.id)?'open':''}><summary>Editar contactos e instrucción</summary>${r.branches.map((branch,bi)=>`<div class="branch-line"><span>${bi?'OR':'SI'}</span>${branch.map((c,ci)=>`<div class="contact-edit"><input type="text" value="${e(c.ref)}" list="addresses" data-field="ref" data-rung="${i}" data-branch="${bi}" data-contact="${ci}" aria-label="Dirección de contacto" ${disabled}><label><input type="checkbox" data-field="not" data-rung="${i}" data-branch="${bi}" data-contact="${ci}" ${c.not?'checked':''} ${disabled}> NC</label><button data-action="delete-contact" data-rung="${i}" data-branch="${bi}" data-contact="${ci}" ${disabled}>×</button></div>`).join('')}<button data-action="add-contact" data-rung="${i}" data-branch="${bi}" ${disabled}>+ AND</button>${bi?`<button data-action="delete-branch" data-rung="${i}" data-branch="${bi}" ${disabled}>Quitar rama</button>`:''}</div>`).join('')}<div class="output-edit"><span>Salida</span><select data-field="op" data-rung="${i}" ${disabled}>${['OUT','SET','RESET','TON','CTU'].map(op=>`<option ${r.op===op?'selected':''}>${op}</option>`).join('')}</select><input value="${e(r.out)}" data-field="out" data-rung="${i}" list="addresses" aria-label="Dirección de salida" ${disabled}><label>Preset <input type="number" min="0" max="3600" step="0.1" value="${r.preset??3}" data-field="preset" data-rung="${i}" ${disabled}> ${r.op==='CTU'?'pulsos':'s (TON)'}</label></div><div class="ladder-footer"><button data-action="add-branch" data-rung="${i}" ${disabled}>+ Rama OR</button></div></details></section>`).join(''):'<div class="empty-inspector">Añade un peldaño o carga el ejemplo PLC. Para que las salidas actúen, inserta el PLC en el circuito y conecta +24 V y 0 V.</div>';this.refresh();}
+ render(){const open=new Set([...this.container.querySelectorAll('details[open]')].map(x=>x.dataset.id));const disabled=this.store.running?'disabled':'';this.container.innerHTML=this.store.doc.program.length?this.store.doc.program.map((r,i)=>`<section class="rung"><div class="rung-head"><span>PELDAÑO ${String(i+1).padStart(2,'0')}</span><span class="rung-runtime" data-runtime="${i}"></span><span><button data-action="up-rung" data-rung="${i}" ${disabled}>↑</button> <button data-action="delete-rung" data-rung="${i}" ${disabled}>Eliminar</button></span></div>${r.comment?`<p class="rung-comment">${e(r.comment)}</p>`:''}<div data-graphic="${i}">${this.graphic(r,i)}</div><details class="ladder-editor" data-id="${e(r.id)}" ${open.has(r.id)?'open':''}><summary>Editar contactos, instrucción y comentario</summary><label class="rung-comment-field"><span>Comentario de este peldaño · se incluye en el PDF</span><textarea data-field="comment" data-rung="${i}" maxlength="1500" rows="3" placeholder="Describe qué condiciones comprueba y qué acción realiza…" ${disabled}>${e(r.comment||'')}</textarea></label>${r.branches.map((branch,bi)=>`<div class="branch-line"><span>${bi?'OR':'SI'}</span>${branch.map((c,ci)=>`<div class="contact-edit"><input type="text" value="${e(c.ref)}" list="addresses" data-field="ref" data-rung="${i}" data-branch="${bi}" data-contact="${ci}" aria-label="Dirección de contacto" ${disabled}><label><input type="checkbox" data-field="not" data-rung="${i}" data-branch="${bi}" data-contact="${ci}" ${c.not?'checked':''} ${disabled}> NC</label><button data-action="delete-contact" data-rung="${i}" data-branch="${bi}" data-contact="${ci}" ${disabled}>×</button></div>`).join('')}<button data-action="add-contact" data-rung="${i}" data-branch="${bi}" ${disabled}>+ AND</button>${bi?`<button data-action="delete-branch" data-rung="${i}" data-branch="${bi}" ${disabled}>Quitar rama</button>`:''}</div>`).join('')}<div class="output-edit"><span>Salida</span><select data-field="op" data-rung="${i}" ${disabled}>${['OUT','SET','RESET','TON','CTU'].map(op=>`<option ${r.op===op?'selected':''}>${op}</option>`).join('')}</select><input value="${e(r.out)}" data-field="out" data-rung="${i}" list="addresses" aria-label="Dirección de salida" ${disabled}><label>Preset <input type="number" min="0" max="3600" step="0.1" value="${r.preset??3}" data-field="preset" data-rung="${i}" ${disabled}> ${r.op==='CTU'?'pulsos':'s (TON)'}</label></div><div class="ladder-footer"><button data-action="add-branch" data-rung="${i}" ${disabled}>+ Rama OR</button></div></details></section>`).join(''):'<div class="empty-inspector">Añade un peldaño o carga el ejemplo PLC. Para que las salidas actúen, inserta el PLC en el circuito y conecta +24 V y 0 V.</div>';this.refresh();}
  refresh(){const plc=this.store.engine.plc;document.querySelector('#plc-monitor').innerHTML=[...new Set(['X0','X1','X2','X3','Y0','Y1','Y2','Y3',...this.store.doc.program.flatMap(r=>[r.out,...r.branches.flat().map(c=>c.ref)])])].filter(k=>!['TRUE','FALSE'].includes(k)).map(k=>`<span class="bit ${plc.read(k)?'on':''}">${e(k)} ${k.startsWith('C')?`${plc.counters[k]||0} ciclos`:k.startsWith('T')?`${(plc.timers[k]||0).toFixed(2)} s`:plc.read(k)?'1':'0'}</span>`).join('');for(let i=0;i<this.store.doc.program.length;i++){const r=this.store.doc.program[i],g=this.container.querySelector(`[data-graphic="${i}"]`),t=this.container.querySelector(`[data-runtime="${i}"]`);if(g)g.innerHTML=this.graphic(r,i);if(t)t.textContent=r.op==='TON'?`${(plc.timers[r.out]||0).toFixed(2)} / ${r.preset} s`:r.op==='CTU'?`${plc.counters[r.out]||0} / ${r.preset}`:plc.rungs[i]?'ACTIVO':'INACTIVO';}document.querySelector('#add-rung').disabled=this.store.running;}
 }
 

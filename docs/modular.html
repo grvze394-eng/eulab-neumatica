@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#126b68"><meta name="eulab-version" content="modular-0.3.2-plc8x8-integrado"><title>EuLab Modular · Informes PDF y cronograma</title><style>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#126b68"><meta name="eulab-version" content="modular-0.4.0-industrial"><title>EuLab Modular · Procesos industriales y PLC 8×8</title><style>
 :root{--ink:#19323f;--muted:#667e8b;--line:#dce5e9;--teal:#126b68;--light:#eef7f5;--paper:#fff;--pneu:#2875ad;--hydro:#8052a8;--electric:#b97608;--font:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}*{box-sizing:border-box}html,body{height:100%;margin:0;overflow:hidden}body{font:14px var(--font);color:var(--ink);background:#f2f6f8}button,input,select{font:inherit}button,.button,summary{cursor:pointer}button,.button{border:1px solid var(--line);background:white;border-radius:7px;color:var(--ink);min-height:38px;padding:8px 12px;font-weight:550}button:hover,.button:hover{background:#f0f5f7;border-color:#aabec7}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #71b8d4;outline-offset:2px}button:disabled{opacity:.4;cursor:not-allowed}.primary{background:var(--teal);border-color:var(--teal);color:white}.primary:hover{background:#0e5957;color:white}.danger{color:#a73039}.subtle{font-size:12px;color:var(--muted);line-height:1.65}.header{height:72px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;background:white;border-bottom:1px solid var(--line)}.brand{display:flex;gap:10px;align-items:center;color:var(--ink);text-decoration:none;flex-shrink:0;font-size:19px;letter-spacing:-.6px}.brand-mark{width:40px;height:40px;border-radius:12px;background:var(--teal);display:grid;place-items:center;color:white;font-weight:700;letter-spacing:-1px}.brand b{font-weight:400}.brand small{display:block;font-size:10px;letter-spacing:.3px;color:var(--muted);margin-top:2px}.header-center{display:flex;flex-direction:column;min-width:0;gap:6px}.version{font-size:9px;font-weight:700;letter-spacing:1.4px;color:var(--teal)}#project-title{font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.header-actions{display:flex;gap:8px;align-items:center}.icon-button{font-size:20px;padding:3px 11px}.file-menu{position:relative}.file-menu summary{list-style:none;font-size:12px;padding-top:10px}.file-menu summary::-webkit-details-marker{display:none}.menu{position:absolute;right:0;top:45px;z-index:20;background:white;box-shadow:0 8px 30px #12323c25;border:1px solid var(--line);padding:6px;width:220px;border-radius:10px}.menu button{display:block;width:100%;text-align:left;border:0;font-size:13px}.workspace{display:grid;grid-template-columns:250px minmax(0,1fr) 245px;height:calc(100dvh - 72px)}.panel{background:white;display:flex;flex-direction:column;min-height:0}.panel-heading{display:flex;justify-content:space-between;align-items:center;padding:20px 17px 16px}.eyebrow{display:block;font-size:9px;letter-spacing:1.8px;font-weight:750;color:var(--teal);margin-bottom:6px}h2{font-size:18px;margin:0;letter-spacing:-.4px}h3{font-size:15px;letter-spacing:-.1px}.library{border-right:1px solid var(--line)}.library>select{margin:0 14px 10px;width:calc(100% - 28px);padding:10px;border:1px solid var(--line);border-radius:7px;background:#f8fafb;font-size:12px;color:var(--ink)}.search{margin:0 14px;display:flex;align-items:center;border:1px solid var(--line);border-radius:7px;padding:0 9px;gap:6px}.search span{font-size:24px;color:var(--muted)}.search input{width:100%;border:0;outline:0;padding:10px 0;font-size:11px}.catalog-tip{font-size:10px;color:var(--muted);margin:10px 15px 14px}.catalog{overflow-y:auto;flex:1;padding:0 10px 18px}.catalog details{margin-bottom:6px}.catalog details summary{padding:10px 6px;font-size:11px;font-weight:700;color:#405968;letter-spacing:.05px}.catalog details summary small{float:right;color:#91a0a9;font-weight:500}.component-list{display:grid;grid-template-columns:1fr;gap:5px}.component-card{display:flex;align-items:center;text-align:left;gap:8px;width:100%;min-height:66px;font-size:11px;line-height:1.35;padding:5px 7px;background:#fff;border:1px solid #e6ecef;border-radius:7px;font-weight:500}.component-card:hover{border-color:#66a9a6;background:#f0f8f7}.component-card svg{width:71px;height:51px;flex-shrink:0;color:#334d5b;stroke:currentColor;stroke-width:1.7;fill:none;stroke-linecap:round;stroke-linejoin:round}.component-card span{max-width:125px}.library-footer{padding:13px 15px;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}.dot{display:inline-block;background:#349a7e;width:6px;height:6px;border-radius:50%;margin-right:5px}.stage{position:relative;overflow:hidden;background:#fbfcfd;min-width:0}.stage-toolbar{position:absolute;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;gap:8px;z-index:4;pointer-events:none}.tool-group{display:flex;gap:2px;align-items:center;border:1px solid var(--line);border-radius:8px;background:white;padding:3px;box-shadow:0 2px 5px #20394408;pointer-events:auto}.tool-group button{border:0;min-height:32px;padding:6px 9px;font-size:12px;font-weight:500}.tool-group .active{background:var(--light);color:var(--teal)}#canvas{width:100%;height:100%;touch-action:none;display:block;user-select:none;-webkit-user-select:none;outline:0}#nodes .node-body{stroke:currentColor;stroke-width:1.8;fill:none;stroke-linecap:round;stroke-linejoin:round}.node{color:#203a47;cursor:grab}.running .node{cursor:pointer}.node.on{color:#11876a}.node .selection{fill:#edf8ff44;stroke:#44a0c7;stroke-width:1.5;stroke-dasharray:5 4;rx:9}.node-label{fill:#314e5f;font:600 11px var(--font)}.port-dot{fill:#fff;stroke:#487484;stroke-width:1.3}.port-hit{fill:transparent;stroke:none;cursor:crosshair}.port-label{fill:#6f8592;font:9px var(--font);pointer-events:none}.port:hover .port-dot,.port.active .port-dot{fill:#79d6f1;stroke:#087ca4;stroke-width:2.5}.wire{fill:none;stroke-linejoin:round;stroke-linecap:round;stroke-width:2}.wire-hit{stroke:transparent;stroke-width:16;fill:none;cursor:pointer}.wire.selected{stroke-width:3;stroke-dasharray:6 3}.stage-note{position:absolute;bottom:57px;left:16px;max-width:calc(100% - 180px);font-size:11px;color:#6c808c;pointer-events:none;background:#fbfcfddf;line-height:1.6;border-radius:5px;padding:3px 5px}.canvas-controls{position:absolute;right:14px;bottom:57px;display:flex;gap:2px;background:white;border:1px solid var(--line);border-radius:8px;align-items:center;padding:3px}.canvas-controls button{border:0;min-height:30px;padding:4px 8px;font-size:17px}.canvas-controls span{font-size:10px;width:35px;text-align:center}.status-strip{position:absolute;bottom:0;left:0;right:0;display:flex;align-items:center;justify-content:space-between;height:39px;padding:0 15px;background:white;border-top:1px solid var(--line);font-size:10px;color:var(--muted)}.status-strip button{font-size:10px;min-height:26px;padding:4px 7px;border:none;background:#f3f6f8}.status-strip i{display:inline-block;width:6px;height:6px;border-radius:50%;background:#9faeb7;margin-right:6px}.running .status-strip i{background:#13a077}.inspector{border-left:1px solid var(--line);overflow-y:auto}#properties{padding:0 17px 15px;min-height:180px}.empty-inspector{background:#f6f9fa;border:1px dashed #d7e2e6;border-radius:9px;padding:16px;color:var(--muted);font-size:12px;line-height:1.7}.selected-type{font-size:11px;color:var(--teal);margin-bottom:15px;line-height:1.5}.prop-field{display:block;margin-bottom:12px;color:#4b6371;font-size:11px}.prop-field>span{display:block;margin-bottom:5px}.prop-field input,.prop-field select{width:100%;padding:9px 8px;border:1px solid var(--line);border-radius:6px;color:var(--ink);background:white;font-size:12px;min-width:0}.prop-field input[type=range]{padding:0}.properties-buttons{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px}.properties-buttons button{flex:1;font-size:11px;padding:7px;white-space:nowrap}.state-card{background:#eff8f4;padding:12px;border:1px solid #d4e8df;border-radius:8px;margin:14px 0;font-size:12px}.state-card strong{display:block;color:var(--teal);font-size:11px;margin-bottom:8px}.actuation{display:flex;flex-wrap:wrap;gap:6px}.actuation button{flex:1;font-size:11px;min-height:42px}.measurement-panel{margin-top:auto;border-top:1px solid var(--line);padding:18px 16px}.panel-subtitle{font-size:9px;letter-spacing:1.1px;color:var(--muted);font-weight:700;margin-bottom:12px}.measure{font-size:11px;display:flex;justify-content:space-between;margin:7px 0;color:var(--muted)}.measure b{color:var(--ink);font-weight:600}.plot-legend{font-size:9px;color:var(--muted);margin-top:4px}.wide{width:100%;font-size:11px;margin-top:16px;background:#f4f8f9}#plot{width:100%;height:auto;display:block;margin-top:16px;background:#f8fafb;border:1px solid #e8eef1;border-radius:5px}dialog{border:1px solid var(--line);border-radius:16px;padding:24px;max-width:calc(100vw - 30px);max-height:90dvh;box-shadow:0 25px 100px #13354430;color:var(--ink);width:760px}dialog::backdrop{background:#142a38aa}.dialog-head{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:22px}.dialog-head>button{font-size:22px;border:0;padding:3px 12px}.dialog-head h2{font-size:23px}.help-content{font-size:13px;line-height:1.8}.help-content h3{margin:20px 0 5px}.help-content p{margin:5px 0 12px}#examples-list{display:grid;grid-template-columns:1fr 1fr;gap:10px}.example-card{text-align:left;padding:16px;background:#f8fafb;line-height:1.6}.example-card b{display:block;font-size:13px;margin-bottom:8px}.example-card small{display:block;font-size:11px;font-weight:400;color:var(--muted)}#ladder-dialog{width:1000px}.ladder-toolbar{display:flex;align-items:center;gap:20px;margin-bottom:14px;font-size:12px;color:var(--muted)}#plc-monitor{display:flex;gap:5px;flex-wrap:wrap;padding:9px;background:#f3f6f8;border-radius:7px;margin-bottom:14px}.bit{padding:4px 7px;border-radius:4px;background:#e1e8ec;color:#5c7280;font:11px ui-monospace,monospace}.bit.on{background:#147a60;color:white}.rung{border:1px solid var(--line);border-radius:8px;margin-bottom:12px;overflow:hidden}.rung-head{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;background:#f5f8fa;font-size:11px;color:var(--muted)}.rung-head button{font-size:11px;min-height:25px;padding:2px 8px}.ladder-graphic{width:100%;height:95px;display:block;color:#607481}.ladder-graphic.active{color:#09946d}.ladder-editor{padding:10px 14px;border-top:1px solid var(--line);background:#fcfdfd}.ladder-editor summary{font-size:11px;font-weight:550;color:var(--muted)}.branch-line{display:flex;gap:8px;align-items:center;margin:12px 0;flex-wrap:wrap;font-size:12px}.contact-edit{padding:5px;border:1px solid var(--line);border-radius:6px;display:flex;gap:4px;align-items:center}.contact-edit input[type=text]{width:62px;padding:5px;border:0;font:12px ui-monospace,monospace}.contact-edit label{font-size:10px}.branch-line button{font-size:10px;padding:4px 7px;min-height:28px}.output-edit{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px}.output-edit select,.output-edit input{border:1px solid var(--line);padding:7px;border-radius:5px;max-width:120px}.output-edit input{width:65px}.ladder-footer{display:flex;gap:7px}.ladder-footer button{font-size:10px;min-height:30px}#toast{position:fixed;bottom:55px;left:50%;transform:translateX(-50%) translateY(15px);opacity:0;pointer-events:none;max-width:min(550px,calc(100vw - 30px));padding:12px 18px;border-radius:10px;background:#193c4c;color:white;box-shadow:0 6px 24px #13232a22;z-index:100;font-size:12px;line-height:1.6;transition:opacity .15s,transform .15s}#toast.show{opacity:1;transform:translateX(-50%) translateY(0)}.mobile-nav,.mobile-only{display:none}.sr-only{position:absolute;left:-10000px}
 @media(max-width:1150px){.workspace{grid-template-columns:225px minmax(0,1fr) 220px}.header-center{display:none}.stage-toolbar button span{display:none}.component-card svg{width:62px}.panel-heading{padding:16px 14px}.canvas-controls{right:8px}.stage-note{max-width:calc(100% - 160px)}}
 @media(max-width:820px){.header{height:62px;padding:0 10px;gap:8px}.brand{font-size:15px;gap:6px}.brand-mark{width:32px;height:32px;border-radius:9px;font-size:16px}.brand small{display:none}.header-actions{gap:4px}.header-actions button,.file-menu summary{min-height:38px;padding:7px 9px}.brand b{display:none}.file-menu summary{font-size:11px}.header-actions .icon-button{font-size:18px}.workspace{height:calc(100dvh - 122px - env(safe-area-inset-bottom));display:block}.stage{height:100%;width:100%}.panel{display:none}.panel-heading{padding:14px 17px}.mobile-only{display:block}.close-panel{border:0;font-size:23px;padding:0 10px;min-height:36px}body[data-panel=library] .library,body[data-panel=inspector] .inspector{display:flex;position:fixed;z-index:12;top:70px;left:8px;right:8px;bottom:calc(68px + env(safe-area-inset-bottom));border:1px solid var(--line);border-radius:13px;box-shadow:0 12px 70px #173c4b38;overflow:hidden}.catalog{padding:0 12px 15px}.component-list{grid-template-columns:1fr 1fr}.component-card{min-height:79px;gap:5px}.component-card svg{width:62px;min-width:52px}.component-card span{font-size:10px;max-width:110px}.catalog details summary{padding:12px 7px;font-size:12px}.inspector{overflow-y:auto!important}#properties{padding:0 18px 15px}.prop-field input,.prop-field select{min-height:42px;font-size:14px}.prop-field{font-size:12px}.measurement-panel{padding:15px 18px}.inspector .measurement-panel #plot{max-height:120px;width:100%}.mobile-nav{height:calc(60px + env(safe-area-inset-bottom));padding-bottom:env(safe-area-inset-bottom);display:flex;position:fixed;bottom:0;left:0;right:0;border-top:1px solid var(--line);background:white;z-index:14}.mobile-nav button{flex:1;border:0;border-radius:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:20px;padding:4px}.mobile-nav span{font-size:10px;font-weight:600}.mobile-nav .active{color:var(--teal);background:#eff8f5}.stage-toolbar{top:8px;left:8px;right:8px}.tool-group button{min-height:36px;font-size:16px;padding:4px 10px}.tool-group button.examples-button{font-size:11px;padding:4px 7px}.stage-note{font-size:10px;left:10px;bottom:91px;max-width:calc(100% - 20px)}.canvas-controls{bottom:45px}.canvas-controls button{min-width:34px;min-height:34px}.status-strip{padding:0 9px;font-size:10px}.status-strip button{font-size:9px}.dialog-head h2{font-size:19px}dialog{padding:17px;border-radius:13px;max-height:92dvh;width:calc(100vw - 20px);max-width:calc(100vw - 20px)}#examples-list{grid-template-columns:1fr}.ladder-toolbar{gap:10px}.ladder-toolbar span{font-size:10px}.ladder-graphic{height:90px}.rung-head{font-size:10px}.branch-line{gap:5px}.contact-edit input[type=text]{width:47px}#toast{bottom:78px}.measurement-panel .wide{min-height:44px}.output-edit{font-size:11px}.state-card{margin:10px 0}.actuation button{min-height:47px}}
@@ -147,16 +147,34 @@ body.inspector-expanded #inspector{display:flex!important;position:fixed;z-index
  .report-actions>span{font-size:12px}
 }
 
+/* 0.4.0: industrial process view within Modular. */
+#industrial-dialog{width:1120px;max-width:calc(100vw - 20px);height:min(920px,calc(100dvh - 24px));padding:0;overflow:hidden}
+#industrial-dialog[open]{display:flex;flex-direction:column}
+#industrial-dialog .dialog-head{padding:18px 22px;margin:0;border-bottom:1px solid var(--line);flex-shrink:0}
+.industrial-scroll{overflow:auto;overscroll-behavior:contain;padding:16px 22px 26px;min-height:0;flex:1}
+.industrial-banner{font-size:13px;line-height:1.6;background:#edf8f5;border-left:3px solid #126b68;padding:12px;margin-top:0}
+.industrial-actions{display:flex;gap:7px;flex-wrap:wrap;margin:10px 0}.industrial-actions button{min-height:44px;font-size:13px}
+#industrial-controls:empty{display:none}#industrial-state{font-size:13px;line-height:1.7;color:#305363;font-weight:550}
+.industrial-bits{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.industrial-bits .bit{font-size:12px;min-width:44px;text-align:center}
+#industrial-belts{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin:16px 0}
+.industrial-belt{min-width:0;border:1px solid #d4e2e8;border-radius:12px;background:#f9fcfd;padding:10px}.industrial-belt h3{margin:0;color:#305d6a;font-size:13px}.industrial-belt svg{display:block;width:100%;height:auto;min-height:150px}
+#industrial-parts{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:8px}.industrial-part{border:1px solid #d6e6e8;border-radius:8px;padding:12px;background:white;font-size:12px;display:flex;flex-direction:column;gap:7px;overflow-wrap:anywhere}.industrial-part span{color:#216551;font-weight:700}.industrial-part small{color:#5e7887}.industrial-part.has-warning{background:#fff7ed;border-color:#daae73}
+.industrial-details{margin:15px 0;border:1px solid #d6e3e8;padding:0 12px 12px;border-radius:8px}.industrial-details>summary{padding:14px 0;font-size:14px;font-weight:600}.industrial-details li{font-size:13px;line-height:1.7;margin-bottom:7px}
+.industrial-table-scroll{overflow:auto}.industrial-table-scroll table{border-collapse:collapse;font-size:12px;min-width:520px;width:100%}.industrial-table-scroll th,.industrial-table-scroll td{border-bottom:1px solid #e4ecef;padding:10px 8px;text-align:left}.industrial-table-scroll th{background:#f0f6f8}
+.industrial-warning{padding:12px;background:#fff5e9;border:1px solid #edc29d;border-radius:8px;color:#7c4c1f;font-size:13px;line-height:1.7}
+.industrial-warning[hidden]{display:none}.industrial-fault{display:flex;justify-content:space-between;align-items:center;gap:12px;margin:9px 0;font-size:13px}.industrial-fault select{max-width:170px;min-height:44px;padding:8px;border:1px solid #bdcfd7;border-radius:6px;background:white}
+@media(max-width:680px){#industrial-dialog{width:calc(100vw - 8px);max-width:calc(100vw - 8px);height:calc(100dvh - 8px);max-height:calc(100dvh - 8px);margin:auto}.industrial-scroll{padding:12px}#industrial-dialog .dialog-head{padding:12px}.industrial-actions button{flex:1;min-width:105px}.industrial-belt svg{min-height:120px}#industrial-belts{grid-template-columns:1fr}.industrial-fault{flex-wrap:wrap}#industrial-parts{grid-template-columns:repeat(2,minmax(0,1fr))}.industrial-details ol{padding-left:22px}.mobile-nav span{font-size:10px}}
+
 </style></head>
 <body class="sheet-view">
-<header class="header"><a class="brand" href="#" aria-label="EuLab"><span class="brand-mark">Eu</span><span>EuLab <b>Modular</b><small>Laboratorio de automatización</small></span></a><div class="header-center"><span class="version">INFORMES PDF · PLC 8×8 · 0.3.2</span><span id="project-title"></span></div><div class="header-actions"><button id="library-top" data-action="examples" title="Biblioteca de prácticas PLC">12 prácticas</button><button id="run" class="primary">▶ <span>Simular</span></button><button id="reset" class="icon-button" title="Reiniciar simulación">↺</button><details class="file-menu"><summary class="button">Archivo ▾</summary><div class="menu"><button data-action="restoreComparison">Cargar los dos circuitos</button><button data-action="examples">Biblioteca de prácticas</button><button data-action="new">Nuevo circuito</button><button data-action="save">Guardar proyecto</button><button data-action="open">Abrir proyecto</button><button data-report-open="pdf">Descargar informe PDF</button><button data-report-open="timeline">Cronograma de señales</button><button data-capture-open>Obtener imágenes PNG / SVG</button><button data-action="csv">Exportar datos CSV</button><button data-action="help">Cómo usar / límites</button></div></details></div></header>
+<header class="header"><a class="brand" href="#" aria-label="EuLab"><span class="brand-mark">Eu</span><span>EuLab <b>Modular</b><small>Laboratorio de automatización</small></span></a><div class="header-center"><span class="version">PLC 8×8 · PROCESOS · 0.4.0</span><span id="project-title"></span></div><div class="header-actions"><button id="library-top" data-action="examples" title="Biblioteca de prácticas PLC">12 prácticas</button><button id="run" class="primary">▶ <span>Simular</span></button><button id="reset" class="icon-button" title="Reiniciar simulación">↺</button><details class="file-menu"><summary class="button">Archivo ▾</summary><div class="menu"><button data-action="restoreComparison">Cargar los dos circuitos</button><button data-action="examples">Biblioteca de prácticas</button><button data-action="new">Nuevo circuito</button><button data-action="save">Guardar proyecto</button><button data-action="open">Abrir proyecto</button><button data-report-open="pdf">Descargar informe PDF</button><button data-report-open="timeline">Cronograma de señales</button><button data-capture-open>Obtener imágenes PNG / SVG</button><button data-action="csv">Exportar datos CSV</button><button data-action="help">Cómo usar / límites</button></div></details></div></header>
 <div class="workspace">
-<aside id="library" class="panel library"><div class="panel-heading"><div><span class="eyebrow">CONSTRUIR</span><h2>Componentes</h2></div><button class="mobile-only close-panel" aria-label="Cerrar componentes">×</button></div><label class="sr-only" for="module-filter">Módulo</label><select id="module-filter"><option value="pneumatic">Neumática</option><option value="electro">Electroneumática</option><option value="electrical">Electricidad 24 V</option><option value="hydraulic">Hidráulica</option><option value="electrohydraulic">Electrohidráulica</option><option value="plc">PLC y sistemas integrados</option><option value="all">Todos los módulos</option></select><div class="search"><span>⌕</span><input id="search" placeholder="Buscar: válvula, relé, cilindro…" aria-label="Buscar componentes"></div><div class="catalog-tip">Toca un símbolo para insertarlo.</div><div id="catalog" class="catalog"></div><div class="library-footer"><span class="dot"></span> Sin conexión a equipos reales</div></aside>
+<aside id="library" class="panel library"><div class="panel-heading"><div><span class="eyebrow">CONSTRUIR</span><h2>Componentes</h2></div><button class="mobile-only close-panel" aria-label="Cerrar componentes">×</button></div><label class="sr-only" for="module-filter">Módulo</label><select id="module-filter"><option value="pneumatic">Neumática</option><option value="electro">Electroneumática</option><option value="electrical">Electricidad 24 V</option><option value="hydraulic">Hidráulica</option><option value="electrohydraulic">Electrohidráulica</option><option value="plc">PLC y sistemas integrados</option><option value="industrial">Procesos industriales</option><option value="all">Todos los módulos</option></select><div class="search"><span>⌕</span><input id="search" placeholder="Buscar: válvula, relé, cilindro…" aria-label="Buscar componentes"></div><div class="catalog-tip">Toca un símbolo para insertarlo.</div><div id="catalog" class="catalog"></div><div class="library-footer"><span class="dot"></span> Sin conexión a equipos reales</div></aside>
 <main class="stage" id="stage"><div class="stage-toolbar"><div class="tool-group sheet-buttons"><button data-sheet="all">Todo</button><button data-sheet="pneumatic">Neumática</button><button data-sheet="electro">Control eléctrico</button><button id="sheet-panels">Paneles</button><button id="properties-open" data-action="properties" title="Configurar el componente seleccionado">⚙ Propiedades</button></div><div class="tool-group"><button data-mode="select" class="active" title="Seleccionar y mover">↖ <span>Seleccionar</span></button><button data-mode="connect" title="Toca dos puertos">⌁ <span>Conectar</span></button><button data-mode="pan" title="Desplazar el lienzo">✥ <span>Mover vista</span></button></div><div class="tool-group"><button id="undo" title="Deshacer">↶</button><button id="redo" title="Rehacer">↷</button><button data-action="examples" class="examples-button">Ejemplos · PLC</button><button data-action="guide" class="guide-button">Guía / Mandos</button><button data-report-open="timeline" class="trace-button">Cronograma</button></div></div>
 <svg id="canvas" xmlns="http://www.w3.org/2000/svg" aria-label="Editor de circuitos" tabindex="0"><defs><pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".8" fill="#d5dfe5"/></pattern></defs><g id="camera"><rect x="-12000" y="-12000" width="24000" height="24000" fill="url(#grid)"/><g id="wires"></g><g id="nodes"></g><g id="draft"></g><g id="hover"></g></g></svg>
 <div id="lesson-dock" class="lesson-dock"></div><div class="stage-note" id="stage-note">Pulsa Simular y después S1 en cada circuito. S2 detiene la repetición al finalizar el ciclo.</div><div class="canvas-controls"><button id="zoom-out" aria-label="Alejar">−</button><span id="zoom-value">100 %</span><button id="zoom-in" aria-label="Acercar">+</button><button id="fit" title="Ajustar todo">⛶</button></div><div class="status-strip"><span id="run-status"><i></i> Edición</span><span id="clock">t = 0.00 s</span><button id="diagnostics">Revisar circuito</button></div></main>
 <aside id="inspector" class="panel inspector" aria-label="Propiedades del componente">
-<div class="panel-heading inspector-heading"><div><span class="eyebrow">CONFIGURAR · 0.3.0</span><h2 id="inspector-title">Propiedades</h2></div><div class="inspector-header-actions"><button id="inspector-expand" title="Ampliar el panel" aria-label="Ampliar propiedades">⛶</button><button class="close-panel" aria-label="Cerrar propiedades">×</button></div></div>
+<div class="panel-heading inspector-heading"><div><span class="eyebrow">CONFIGURAR · 0.4.0</span><h2 id="inspector-title">Propiedades</h2></div><div class="inspector-header-actions"><button id="inspector-expand" title="Ampliar el panel" aria-label="Ampliar propiedades">⛶</button><button class="close-panel" aria-label="Cerrar propiedades">×</button></div></div>
 <div id="inspector-scroll" class="inspector-scroll">
 <div id="properties"></div>
 <details class="measurement-panel" id="measurement-details"><summary>Señales y movimiento</summary><div class="measurement-content"><div id="measurements"></div><svg id="plot" viewBox="0 0 230 96" aria-label="Posición del cilindro en función del tiempo"></svg><div class="plot-legend">Posición normalizada · últimos 60 s</div><button id="ladder-open" class="wide">Abrir programa Ladder ↗</button></div></details>
@@ -170,11 +188,12 @@ body.inspector-expanded #inspector{display:flex!important;position:fixed;z-index
 <dialog id="import-error-dialog"><div class="dialog-head"><h2>No se pudo abrir el archivo</h2><button class="close-dialog" aria-label="Cerrar">×</button></div><div class="help-content"><p><b id="import-error-file"></b></p><p id="import-error-message"></p><p>El circuito que tenías abierto se conserva. Esta aplicación ya incluye la hoja comparativa.</p><button class="primary" data-action="restoreComparison">Cargar los dos circuitos</button></div></dialog>
 <dialog id="examples-dialog"><div class="dialog-head"><div><span class="eyebrow">APRENDER HACIENDO</span><h2>Biblioteca de prácticas</h2></div><button class="close-dialog" aria-label="Cerrar">×</button></div><div id="example-tabs" class="example-tabs" aria-label="Grupo de prácticas"></div><label class="example-search"><span>Buscar práctica</span><input id="lesson-search" placeholder="AND, temporizador, contador…"></label><div id="examples-list"></div><p class="subtle">Abrir un ejemplo reemplaza el lienzo. Usa Archivo → Guardar para conservar tu práctica.</p></dialog>
 <dialog id="practice-dialog"><div class="dialog-head"><div><span class="eyebrow">GUÍA DE LA PRÁCTICA</span><h2 id="practice-title"></h2></div><button class="close-dialog" aria-label="Cerrar guía">×</button></div><div id="practice-content" class="help-content"></div></dialog>
-<dialog id="help-dialog"><div class="dialog-head"><h2>Tu laboratorio, paso a paso</h2><button class="close-dialog">×</button></div><div class="help-content"><h3>Construir</h3><p>Elige un módulo y toca un símbolo. Arrástralo por el cuerpo. Toca un puerto y luego el otro para conectarlos. Invierte el orden o selecciona la tubería y pulsa <b>Cambiar recorrido</b> para cambiar el codo.</p><h3>Conservar uniones</h3><p>Las conexiones pertenecen a los puertos, no a sus coordenadas. Acerca el puerto de un escape o manómetro a uno compatible y suéltalo para acoplarlo. Aparecerá una unión permanente y el accesorio acompañará al componente. Para una T, empieza en un puerto y termina tocando una tubería.</p><h3>Simular</h3><p>Activa Simular. Mantén pulsados los pulsadores eléctricos. Selecciona una válvula manual y usa sus botones de mando. Pausa para volver a editar. Para el PLC, abre el ejemplo de ciclo y el panel Ladder.</p><h3>En el teléfono</h3><p>Usa las cuatro pestañas inferiores. Un dedo mueve componentes o desplaza el fondo; dos dedos acercan o alejan. Los botones +, − y ⛶ también ajustan la vista.</p><h3>Alcance de esta base</h3><p>Neumática isotérmica de parámetros concentrados; hidráulica resistiva cuasiestática; electricidad lógica ideal de 24 V, sin cálculo de corriente ni electrónica analógica. PLC educativo con un programa, ocho entradas y ocho salidas. Temporizador neumático: retardo lógico, no un depósito físico calibrado.</p><p>Los símbolos son dibujos técnicos propios, sin certificación ISO/IEC. No es FluidSIM ni un controlador de máquinas reales. Los mandos bimanuales didácticos no son dispositivos de seguridad.</p><p>Los proyectos anteriores de Picuino/EuLab no se importan en esta primera base. Se conservan aparte. Guarda tus archivos .eulab.json; el autoguardado del navegador no sustituye una copia.</p></div></dialog>
+<dialog id="help-dialog"><div class="dialog-head"><h2>Tu laboratorio, paso a paso</h2><button class="close-dialog">×</button></div><div class="help-content"><h3>Construir</h3><p>Elige un módulo y toca un símbolo. Arrástralo por el cuerpo. Toca un puerto y luego el otro para conectarlos. Invierte el orden o selecciona la tubería y pulsa <b>Cambiar recorrido</b> para cambiar el codo.</p><h3>Conservar uniones</h3><p>Las conexiones pertenecen a los puertos, no a sus coordenadas. Acerca el puerto de un escape o manómetro a uno compatible y suéltalo para acoplarlo. Aparecerá una unión permanente y el accesorio acompañará al componente. Para una T, empieza en un puerto y termina tocando una tubería.</p><h3>Simular</h3><p>Activa Simular. Mantén pulsados los pulsadores eléctricos. Selecciona una válvula manual y usa sus botones de mando. Pausa para volver a editar. Para el PLC, abre el ejemplo de ciclo y el panel Ladder.</p><h3>En el teléfono</h3><p>Usa las cuatro pestañas inferiores. Un dedo mueve componentes o desplaza el fondo; dos dedos acercan o alejan. Los botones +, − y ⛶ también ajustan la vista.</p><h3>Alcance de esta base</h3><p>Neumática isotérmica de parámetros concentrados; hidráulica resistiva cuasiestática; electricidad lógica ideal de 24 V, sin cálculo de corriente ni electrónica analógica. PLC educativo con un programa, ocho entradas y ocho salidas. Procesos industriales: transporte 1D y flujos nominales; sensores por posición en metros y no por proximidad del dibujo. Temporizador neumático: retardo lógico, no un depósito físico calibrado.</p><p>Los símbolos son dibujos técnicos propios, sin certificación ISO/IEC. No es FluidSIM ni un controlador de máquinas reales. Los mandos bimanuales didácticos no son dispositivos de seguridad.</p><p>Los proyectos anteriores de Picuino/EuLab no se importan en esta primera base. Se conservan aparte. Guarda tus archivos .eulab.json; el autoguardado del navegador no sustituye una copia.</p></div></dialog>
 <dialog id="ladder-dialog"><div class="dialog-head"><div><span class="eyebrow">PLC VIRTUAL · ESCANEO DE 20 ms</span><h2>Programa Ladder</h2></div><button class="close-dialog">×</button></div><div class="ladder-toolbar"><button data-report-open="pdf">Informe PDF</button><button data-report-open="timeline">Cronograma</button><button data-capture-open>Imágenes</button><button id="add-rung" class="primary">+ Peldaño</button><span>Contactos en serie = AND · ramas = OR</span></div><div id="ladder-lesson-controls" class="lesson-command-bar"></div><div id="plc-monitor"></div><div id="ladder"></div><p class="subtle">X: entradas · Y: salidas · M: memorias · T: TON · C: contadores. Los contactos se editan al pausar. Salidas ideales PNP alimentadas por el puerto +24 V.</p><datalist id="addresses"></datalist></dialog>
 
 <script>
 (()=>{const __modules={"src/app.js":function(__exports,__require){
+const {installIndustrial}=__require("src/ui/industrial.js");
 const {installReport}=__require("src/ui/report.js");
 __require("src/modules/index.js");
 const {installCapture}=__require("src/ui/capture.js");
@@ -195,7 +214,7 @@ examples.unshift({id:'comparacion',group:'Neumática y electricidad',module:'all
 const store=new Store(initial);let toastTimer;
 function toast(message){const el=document.querySelector('#toast');el.textContent=message;el.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.classList.remove('show'),5000);}
 const editor=new Editor(store,toast),ladder=new LadderView(store,toast);let dirty=false;let practiceUI;let responsivePanels;let applyingProperty=false;let lastPropertyId=null;
-const allowed={pneumatic:['pneumatic','mechanical-pneumatic'],electro:['pneumatic','electrical','mechanical-pneumatic'],electrical:['electrical'],hydraulic:['hydraulic'],electrohydraulic:['hydraulic','electrical'],plc:['pneumatic','electrical','plc','hydraulic'],all:['pneumatic','electrical','hydraulic','plc']};
+const allowed={pneumatic:['pneumatic','mechanical-pneumatic'],electro:['pneumatic','electrical','mechanical-pneumatic'],electrical:['electrical'],hydraulic:['hydraulic'],electrohydraulic:['hydraulic','electrical'],industrial:['industrial','electrical','plc'],plc:['pneumatic','electrical','plc','hydraulic'],all:['pneumatic','electrical','hydraulic','plc','industrial']};
 const normalize=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase();
 function catalog(){const query=normalize(document.querySelector('#search').value),filter=document.querySelector('#module-filter').value,selectedModules=filter==='all'?[...modules.keys()]:(allowed[filter]||[filter]),list=[...definitions.values()].filter(d=>d.type!=='plc8'&&selectedModules.includes(d.module)&&normalize(d.name+' '+d.type+' '+d.category).includes(query)),groups=new Map();for(const d of list){const name=(selectedModules.length>1?modules.get(d.module).name+' · ':'')+d.category;if(!groups.has(name))groups.set(name,[]);groups.get(name).push(d);}document.querySelector('#catalog').innerHTML=[...groups].map(([name,items],i)=>`<details ${query||i<2?'open':''}><summary>${esc(name)} <small>${items.length}</small></summary><div class="component-list">${items.map(d=>`<button class="component-card" data-add="${d.type}" title="Insertar ${esc(d.name)}"><svg viewBox="${-d.size[0]/2-10} ${-d.size[1]/2-10} ${d.size[0]+20} ${d.size[1]+20}" aria-hidden="true">${symbol(d,d.defaults,{})}</svg><span>${esc(d.name)}</span></button>`).join('')}</div></details>`).join('')||'<p class="subtle">No hay componentes con ese nombre.</p>';}
 function mobilePanel(name){if(responsivePanels)responsivePanels.show(name);else document.body.dataset.panel=name;}
@@ -256,7 +275,7 @@ function finishProperties(){
  if(invalid){invalid.focus({preventScroll:true});responsivePanels?.ensureVisible(invalid);return;}
  mobilePanel('canvas');
 }
-function selectedMetrics(){const n=selectedNode(),el=document.querySelector('#selected-live');if(!n||!el)return;const d=def(n.type),s=store.engine.state[n.id];if(['cylinder','hcylinder'].includes(d.behavior))el.innerHTML=`<div class="state-card"><strong>MEDICIONES DEL MODELO</strong>x = ${(s.x*1000).toFixed(1)} mm<br>pA = ${(s.pA||0).toFixed(2)} bar · pB = ${(s.pB||0).toFixed(2)} bar<br>F neta sin fricción = ${(s.force||0).toFixed(1)} N</div>`;else if(d.behavior==='ptimer'||d.behavior==='etimer')el.innerHTML=`<p class="subtle">Tiempo: ${(s.elapsed||0).toFixed(2)} s / ${n.params.delay} s</p>`;else el.innerHTML='';}
+function selectedMetrics(){const n=selectedNode(),el=document.querySelector('#selected-live');if(!n||!el)return;const d=def(n.type),s=store.engine.state[n.id];if(d.industrial){const it=s.item;el.innerHTML=`<div class="state-card"><strong>PROCESO INDUSTRIAL</strong>${esc(s.fault||'Modelo nominal educativo')}<br>${it?esc(it.id)+' · '+it.position.toFixed(3)+' m · '+(it.kind==='bottle'?it.volume.toFixed(3)+' L':it.count+' botellas'):'Orden: '+(s.commandActive?'1':'0')+' · Detección: '+(s.detected?'1':'0')}${d.industrial==='tank'?'<br>Disponible: '+s.liters.toFixed(3)+' L':''}</div>`;}else if(['cylinder','hcylinder'].includes(d.behavior))el.innerHTML=`<div class="state-card"><strong>MEDICIONES DEL MODELO</strong>x = ${(s.x*1000).toFixed(1)} mm<br>pA = ${(s.pA||0).toFixed(2)} bar · pB = ${(s.pB||0).toFixed(2)} bar<br>F neta sin fricción = ${(s.force||0).toFixed(1)} N</div>`;else if(d.behavior==='ptimer'||d.behavior==='etimer')el.innerHTML=`<p class="subtle">Tiempo: ${(s.elapsed||0).toFixed(2)} s / ${n.params.delay} s</p>`;else el.innerHTML='';}
 function measurements(){const e=store.engine,cyls=store.doc.nodes.filter(n=>['cylinder','hcylinder'].includes(def(n.type).behavior));document.querySelector('#measurements').innerHTML=cyls.map(n=>`<div class="measure"><span>${esc(n.label)} · posición</span><b>${(e.state[n.id].x*1000).toFixed(1)} mm</b></div>`).join('')+Object.entries(e.signals).slice(0,6).map(([k,v])=>`<div class="measure"><span>${esc(k)}</span><b>${v?'24 V / activo':'inactivo'}</b></div>`).join('');
  const plot=document.querySelector('#plot');let svg='<path d="M24 12V77H220M24 44H220" fill="none" stroke="#d7e2e7" stroke-width="1"/><text x="3" y="17" font-size="8" fill="#7d929d">100</text><text x="11" y="79" font-size="8" fill="#7d929d">0</text>';if(cyls[0]){const c=cyls[0],H=e.history.filter(a=>a.t>e.time-60),first=H[0]?.t||0,span=Math.max(10,e.time-first),points=H.map(a=>({t:a.t,x:a.positions.find(z=>z.id===c.id)?.x||0}));svg+=`<path d="${points.map((a,i)=>`${i?'L':'M'}${24+(a.t-first)/span*192} ${77-a.x/c.params.stroke*61}`).join(' ')}" fill="none" stroke="#17897d" stroke-width="2"/>`;}plot.innerHTML=svg;
  document.querySelector('#clock').textContent=`t = ${e.time.toFixed(2)} s`;selectedMetrics();practiceUI?.refreshRuntime();if(document.querySelector('#ladder-dialog').open)ladder.refresh();}
@@ -298,14 +317,16 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden){if(store.r
 let last=performance.now(),accum=0,lastDraw=0,lastMetrics=0;function frame(now){const delta=Math.min(.1,(now-last)/1000);last=now;if(store.running){accum+=delta;let count=0;while(accum>=.02&&count<5){try{store.engine.step(.02);}catch(err){store.running=false;toast('Simulación detenida: '+err.message);refresh();break;}accum-=.02;count++;}if(now-lastDraw>33){editor.render();lastDraw=now;}if(now-lastMetrics>160){measurements();lastMetrics=now;}}else accum=0;requestAnimationFrame(frame);}requestAnimationFrame(frame);
 for(const m of modules.values()){if(!allowed[m.id]){const o=document.createElement('option');o.value=m.id;o.textContent=m.name;document.querySelector('#module-filter').append(o);}}
 window.addEventListener('resize',()=>editor.render());document.querySelector('#module-filter').value='plc';catalog();refresh();setTimeout(()=>{if(innerWidth<680&&store.doc.lesson)focusSheet('pneumatic');else editor.fit();document.querySelector('#stage-note').textContent=store.doc.lesson?.summary||'';},50);
-window.eulab={store,editor,loadExample,diagnostics,version:'modular-0.3.2-plc8x8-integrado',examples,practiceUI,parseProjectText,exportProject:()=>clone(store.doc)};
+window.eulab={store,editor,loadExample,diagnostics,version:'modular-0.4.0-industrial',examples,practiceUI,parseProjectText,exportProject:()=>clone(store.doc)};
 
 window.eulab.captures=installCapture({store,editor,ladder,toast});
 window.eulab.report=installReport({store,editor,ladder,captures:window.eulab.captures,toast});
+window.eulab.industrial=installIndustrial({store,editor,practiceUI,loadExample,toast,openLadder:actions.ladder});
 
 // Navigation within this single-sheet exercise; both networks keep running.
 function focusSheet(which){
  if(which==='all'){editor.fit();return;}
+ if(store.doc.industryProject){const ns=store.doc.nodes.filter(n=>which==='pneumatic'?def(n.type).industrial:!def(n.type).industrial);if(ns.length){const x=Math.min(...ns.map(n=>n.x-def(n.type).size[0]/2-40)),y=Math.min(...ns.map(n=>n.y-def(n.type).size[1]/2-50)),right=Math.max(...ns.map(n=>n.x+def(n.type).size[0]/2+40)),bottom=Math.max(...ns.map(n=>n.y+def(n.type).size[1]/2+50)),r=editor.svg.getBoundingClientRect(),scale=Math.max(.18,Math.min((r.width-35)/(right-x),(r.height-230)/(bottom-y),1.4));Object.assign(store.doc.view,{scale,x:(r.width-(right-x)*scale)/2-x*scale,y:100-y*scale});editor.render();}return;}
  const bounds=store.doc.lesson?(which==='pneumatic'?{x:40,y:110,w:465,h:720}:{x:585,y:-20,w:970,h:820}):(which==='pneumatic'?{x:0,y:-20,w:1170,h:1420}:{x:1190,y:-20,w:1710,h:1420});
  const r=editor.svg.getBoundingClientRect(),bottom=store.doc.lesson?Math.max(200,(document.querySelector('#lesson-dock')?.offsetHeight||120)+100):150,scale=Math.min((r.width-50)/bounds.w,(r.height-bottom-75)/bounds.h,1.15);
  Object.assign(store.doc.view,{scale:Math.max(.18,scale),x:(r.width-bounds.w*scale)/2-bounds.x*scale,y:70-bounds.y*scale});editor.render();
@@ -321,7 +342,7 @@ const {escapeText: esc}=__require("src/core/registry.js");
 const {traceValue}=__require("src/core/trace.js");
 const {timelineSVG}=__require("src/ui/timeline-svg.js");
 const {ReportPDF,wrapText,rasterSVG,downloadBlob}=__require("src/ui/pdf-writer.js");
-const VERSION='0.3.0';
+const VERSION='0.4.0';
 const optionsDefault={circuit:true,ladder:true,signals:true,timeline:true,events:true};
 const filename=doc=>(doc.name||'practica').replace(/[^\p{L}\p{N}_-]+/gu,'_').slice(0,65);
 const plainTrack=tr=>tr.kind==='digital'?'Digital':tr.kind==='state'?'Estado':tr.kind==='counter'?'Contador':'Magnitud';
@@ -535,7 +556,7 @@ function signalCatalog(engine){
  const plc=list.find(a=>a.b==='plc')?.n;
  if(plc){
   const net=nets(doc,'electrical'),root=(n,p)=>net.find(key(ref(n,p)));
-  const attached=port=>list.filter(({n,b})=>n!==plc&&['button','limit','relay','solenoid','lamp','etimer','contact'].includes(b)&&def(n.type).ports.some(p=>p.domain==='electrical'&&root(n,p.id)===root(plc,port))).map(({n})=>n.label).join(', ');
+  const attached=port=>list.filter(({n,b})=>n!==plc&&(['button','limit','relay','solenoid','lamp','etimer','contact'].includes(b)||def(n.type).electricalRole)&&def(n.type).ports.some(p=>p.domain==='electrical'&&root(n,p.id)===root(plc,port))).map(({n})=>n.label).join(', ');
   for(let i=0;i<8;i++)for(const kind of ['X','Y']){
    const address=kind+i,label=attached(address);add('plc:'+address,address+(label?' · '+label:''),'digital',()=>+engine.plc.read(address),{group:kind==='X'?'Entradas PLC':'Salidas PLC',address,description:kind==='X'?'Imagen de entradas del escaneo':'Bit de salida del programa; requiere PLC alimentado',default:!!label||!!doc.bankPLC?.enabled});
   }
@@ -547,6 +568,21 @@ function signalCatalog(engine){
   }
  }
  for(const {n,b} of list)if(['gauge','reservoir'].includes(b))add(n.id+':pressure',n.label+' · presión','analog',()=>engine.state[n.id]?.pressure||0,{group:'Presión',component:n.id,unit:'bar',min:0});
+ for(const n of doc.nodes.filter(n=>def(n.type).industrial)){
+   const d=def(n.type),k=d.industrial,st=()=>engine.state[n.id]||{};
+   if(d.electricalRole==='actuator')add(n.id+':command',n.label+' · orden aplicada','digital',()=>+!!st().commandActive,{group:'Proceso industrial',component:n.id});
+   if(d.electricalRole==='sensor'){add(n.id+':detected',n.label+' · detección física','digital',()=>+!!st().detected,{group:'Sensores industriales',component:n.id});add(n.id+':signal',n.label+' · contacto eléctrico','digital',()=>+!!st().signalPresent,{group:'Sensores industriales',component:n.id,default:false});}
+   if(k==='bottle'||k==='case'){
+    add(n.id+':position',n.label+' · posición en banda','analog',()=>st().item?.position||0,{group:'Productos',unit:'m',min:0,component:n.id});
+    if(k==='bottle')add(n.id+':volume',n.label+' · líquido','analog',()=>st().item?.volume||0,{group:'Productos',unit:'L',min:0,component:n.id});
+   }
+   if(k==='tank')add(n.id+':liters',n.label+' · nivel','analog',()=>st().liters||0,{group:'Fluidos de proceso',unit:'L',min:0,component:n.id});
+   if(k==='fill'||k==='volume')add(n.id+':volume',n.label+' · volumen medido','analog',()=>st().volume||0,{group:'Fluidos de proceso',unit:'L',min:0,component:n.id});
+   if(['feeder','cap_supply','labeler'].includes(k))add(n.id+':stock',n.label+' · existencias','counter',()=>st().stock||0,{group:'Existencias',unit:'piezas',min:0,component:n.id});
+   if(k==='group')add(n.id+':buffer',n.label+' · agrupadas','counter',()=>st().bufferCount||0,{group:'Productos',unit:'botellas',min:0,component:n.id});
+   if(k==='storage')add(n.id+':stored',n.label+' · ocupación','counter',()=>st().stored||0,{group:'Productos',unit:'cajas',min:0,component:n.id});
+   if(n.params.duration){add(n.id+':elapsed',n.label+' · actuación','analog',()=>st().elapsed||0,{group:'Proceso industrial',unit:'s',min:0,component:n.id,default:false});add(n.id+':done',n.label+' · operación completa','digital',()=>+!!st().done,{group:'Proceso industrial',component:n.id});}
+ }
  return tracks;
 }
 function traceValue(track,value){if(track.kind==='digital')return value?'1 · activo':'0 · inactivo';if(track.kind==='state')return track.states?.[Math.round(value)]||String(value);if(track.kind==='counter')return `${Math.round(value)} ${track.unit}`;return `${Number(value).toFixed(2)} ${track.unit}`;}
@@ -621,6 +657,7 @@ function validateProject(doc){
  if(doc.nodes.length>200||doc.links.length>500)throw new Error('Límite educativo: 200 componentes y 500 conexiones.');
  const ids=new Set();for(const n of doc.nodes){if(typeof n.id!=='string'||!/^[-\w]{1,100}$/.test(n.id)||['__proto__','constructor','prototype'].includes(n.id)||ids.has(n.id))throw new Error('Identificadores duplicados');ids.add(n.id);const d=def(n.type);if(!Number.isFinite(n.x)||!Number.isFinite(n.y))throw new Error('Coordenadas inválidas');n.rotation=Number.isFinite(n.rotation)?Math.round(n.rotation/90)*90:0;n.params={...clone(d.defaults),...n.params};n.label=String(n.label||d.name).slice(0,80);for(const k of ['tag','ref','tagA','tagB'])if(n.params[k]&&(!/^[A-Za-z][A-Za-z0-9_-]{0,31}$/.test(n.params[k])||['__proto__','constructor','prototype'].includes(n.params[k])))throw new Error('Referencia eléctrica inválida');
  for(const f of d.fields){if(f.type==='number'){let v=Number(n.params[f.key]);if(!Number.isFinite(v))throw new Error('Parámetro no numérico');n.params[f.key]=Math.max(f.min,Math.min(f.max,v));}else if(f.type==='select'&&!f.choices.some(c=>c[0]===n.params[f.key]))n.params[f.key]=d.defaults[f.key];}
+ if(d.industrial){for(const f of d.fields)if(f.type==='text')n.params[f.key]=String(n.params[f.key]||'').trim().slice(0,80);if(n.params.commandFrom==='plc'&&!/^Y[0-7]$/.test(n.params.commandBit))throw new Error('El mando PLC debe ser Y0 a Y7.');}
  if(n.params.bore&&n.params.rod>=n.params.bore)throw new Error('El vástago debe ser menor que el diámetro del pistón.');
  }
  for(const n of doc.nodes)if(n.mount){if(!ids.has(n.mount.parent)||!Number.isFinite(n.mount.dx)||!Number.isFinite(n.mount.dy))throw new Error('Acoplamiento inválido');resolveNode(doc,n);}
@@ -746,6 +783,7 @@ __require("src/modules/pneumatic.js");
 __require("src/modules/electrical.js");
 __require("src/modules/hydraulic.js");
 __require("src/modules/plc.js");
+__require("src/modules/industrial.js");
 // Add a local module here; no change is needed in the catalog renderer.
 
 __require("src/modules/pneumatic-limit.js");
@@ -1082,7 +1120,8 @@ class Electrical {
  if(d.behavior==='button')closed=!!s.pressed!==!!p.nc;
  if(d.behavior==='limit'){const c=doc.nodes.find(a=>a.label===p.target&&['cylinder','hcylinder'].includes(def(a.type).behavior));const cs=c&&e.state[c.id];const hit=!!(c&&(p.end==='extended'?cs.x>=c.params.stroke/1000-.0005:cs.x<=.0005));closed=!s.forcedOpen&&(hit!==!!p.nc);s.detected=hit;s.signalPresent=closed;}
  if(d.behavior==='contact')closed=!!tags[p.ref]!==!!p.nc;
- if(['button','limit','contact'].includes(d.behavior)){s.closed=closed;if(closed)u.union(k(n,'1'),k(n,'2'));}
+ if(d.electricalRole==='sensor')closed=!!s.signalPresent;
+ if(['button','limit','contact'].includes(d.behavior)||d.electricalRole==='sensor'){s.closed=closed;if(closed)u.union(k(n,'1'),k(n,'2'));}
  if(d.behavior==='plc'&&s.powered)for(let i=0;i<8;i++)if(e.plc.read(`Y${i}`))u.union(k(n,'+'),k(n,`Y${i}`));
  }
  const supplies=components.filter(n=>def(n.type).behavior==='supply'),plus=new Set(),minus=new Set();
@@ -1091,6 +1130,7 @@ class Electrical {
  const energized=(n,a,b)=>(plus.has(root(n,a))&&minus.has(root(n,b)))||(minus.has(root(n,a))&&plus.has(root(n,b)));
  const next={};
  for(const n of components){const d=def(n.type),s=e.state[n.id],p=n.params;
+ if(d.electricalRole==='actuator'){s.powered=energized(n,'A1','A2');s.on=s.powered;}
  if(['relay','solenoid','lamp','etimer'].includes(d.behavior)){s.powered=energized(n,'A1','A2');s.on=d.behavior==='etimer'?s.powered&&(s.elapsed||0)>=p.delay:s.powered;next[p.tag]=!!next[p.tag]||s.on;}
  if(d.behavior==='plc'){const bc=!!doc.bankPLC?.enabled,count=8;s.powered=bc||(plus.has(root(n,'+'))&&minus.has(root(n,'0')));s.inputs=bc?Array.from({length:8},(_,i)=>!!doc.bankPLC.input[i]):Array.from({length:count},(_,i)=>s.powered&&plus.has(root(n,`X${i}`)));s.outputs=Array.from({length:count},(_,i)=>s.powered&&e.plc.read(`Y${i}`));}
  }
@@ -1197,6 +1237,7 @@ class Hydraulic{
 Object.assign(__exports,{Hydraulic});
 },
 "src/examples.js":function(__exports,__require){
+const {industrialExamples}=__require("src/lessons/industrial.js");
 const {cuadernoLessons}=__require("src/lessons/cuaderno-plc.js");
 const {plcLessons}=__require("src/lessons/plc.js");
 const {project,addNode,connect,ref,mount}=__require("src/core/model.js");
@@ -1231,6 +1272,7 @@ function plcExample(){const d=project('06 · PLC — avance, espera 3 s y retorn
  {id:'r7',branches:[[cond('M1')]],op:'OUT',out:'Y1',preset:0}
  ];return d;}
 const examples=[
+...industrialExamples,
 ...cuadernoLessons,
 ...plcLessons.map(e=>({...e,group:'PLC · Biblioteca anterior'})),
 {id:'pneumatic',name:'Neumática · válvula 5/2',create:pneumaticExample,help:'Pulsa Simular. Selecciona V1 y usa Avanzar / Retroceder. Los dos escapes están acoplados a V1.'},
@@ -3255,7 +3297,7 @@ class PracticeLibrary {
   document.querySelector('#example-tabs').innerHTML=groups.map(g=>`<button data-example-group="${esc(g)}" class="${g===this.group?'active':''}" aria-pressed="${g===this.group}">${esc(g)} <small>${g==='Todos'?this.examples.length:this.examples.filter(e=>this.groupOf(e)===g).length}</small></button>`).join('');
   const norm=s=>String(s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase(),query=norm(document.querySelector('#lesson-search').value);
   const matching=this.examples.filter(e=>(this.group==='Todos'||this.groupOf(e)===this.group)&&norm(e.name+' '+e.help+' '+(e.level||'')).includes(query));
-  document.querySelector('#examples-list').innerHTML=matching.map(ex=>`<button class="example-card ${ex.group==='PLC'?'plc-example':''}" data-example="${ex.id}"><span class="eyebrow">${ex.number?`PLC ${String(ex.number).padStart(2,'0')} · ${esc(ex.level)}`:esc(this.groupOf(ex))}</span><b>${esc(ex.name)}</b><small>${esc(ex.help)}</small><span class="example-includes">${ex.group==='PLC'?(ex.lamps?'Banco de lámparas + cableado 24 V + Ladder editable':'Neumática conectada + cableado 24 V + Ladder editable'):'Circuito editable del catálogo original'} ↗</span></button>`).join('')||'<p class="subtle">No se encontraron prácticas con ese texto.</p>';
+  document.querySelector('#examples-list').innerHTML=matching.map(ex=>`<button class="example-card ${ex.group==='PLC'?'plc-example':''}" data-example="${ex.id}"><span class="eyebrow">${ex.number?`PLC ${String(ex.number).padStart(2,'0')} · ${esc(ex.level)}`:esc(this.groupOf(ex))}</span><b>${esc(ex.name)}</b><small>${esc(ex.help)}</small><span class="example-includes">${ex.industrial?(ex.solved?'Ejemplo industrial con Ladder editable':'Máquina cableada · Ladder vacío'):ex.group==='PLC'?(ex.lamps?'Banco de lámparas + cableado 24 V + Ladder editable':'Neumática conectada + cableado 24 V + Ladder editable'):'Circuito editable del catálogo original'} ↗</span></button>`).join('')||'<p class="subtle">No se encontraron prácticas con ese texto.</p>';
  }
  commands(){
   return `<button data-lesson-action="run" class="primary lesson-run">▶ Simular</button>`+this.store.doc.nodes.filter(n=>def(n.type).behavior==='button').map(n=>`<button data-lesson-press="${esc(n.id)}" title="${n.params.toggle?'Toca para activar o liberar':'Mantén pulsado'}" aria-pressed="false">${esc(n.label)}${n.params.toggle?' ↔':''}</button>`).join('');
@@ -3263,8 +3305,9 @@ class PracticeLibrary {
  sync(){
   for(const t of this.releaseTimers.values())clearTimeout(t);this.releaseTimers.clear();this.pressTimes.clear();this.lastDoc=this.store.doc;const l=this.lesson;
   document.body.classList.toggle('has-lesson',!!l);
+   const industrial=!!l?.industrial;document.querySelector('[data-sheet="pneumatic"]').textContent=industrial?'Proceso':'Neumática';document.querySelector('[data-sheet="electro"]').textContent=industrial?'Cableado':'Control eléctrico';
   document.querySelector('.sheet-buttons').style.display='';
-  document.querySelector('#lesson-dock').innerHTML=l?`<div class="lesson-live" data-lesson-runtime></div><div class="lesson-command-bar">${this.commands()}<button data-lesson-action="ladder">Ladder</button><button data-lesson-action="guide">Guía</button></div>`:'';
+  document.querySelector('#lesson-dock').innerHTML=l?`<div class="lesson-live" data-lesson-runtime></div><div class="lesson-command-bar">${this.commands()}<button data-lesson-action="ladder">Ladder</button><button data-lesson-action="guide">Guía</button>${l.industrial?'<button data-industrial-open>Ver proceso</button>':''}</div>`:'';
   document.querySelector('#ladder-lesson-controls').innerHTML=l?this.commands():'';
   if(l)document.querySelector('#stage-note').textContent=l.summary;
   this.refreshRuntime();
@@ -3277,7 +3320,8 @@ class PracticeLibrary {
    b.disabled=!this.store.running;b.classList.toggle('pressed',pressed);b.setAttribute('aria-pressed',String(pressed));
   }
   for(const b of document.querySelectorAll('.lesson-run'))b.textContent=this.store.running?'Ⅱ Pausar':'▶ Simular';
-  const timer=en.plc.timers.T0||0,count=en.plc.counters.C0;
+  if(this.lesson.industrial){const a=en.industry?.summary();for(const v of document.querySelectorAll('[data-lesson-runtime]'))v.textContent=this.store.doc.name+' · t='+en.time.toFixed(2)+' s · '+(a?a.onBelts+' productos en banda':'');return;}
+   const timer=en.plc.timers.T0||0,count=en.plc.counters.C0;
   const fault=p.read('M4')&&this.lesson.faults;
   const cyl=en.state.A1;
   let phase=fault?'ALARMA — avance bloqueado':p.read('Y1')?'Retorno':timer>0?'Permanencia':p.read('Y0')?'Avance / activo':cyl?.x<.0005?'Reposo / retraído':'En recorrido';
@@ -3355,7 +3399,394 @@ class ResponsivePanels {
 }
 
 Object.assign(__exports,{ResponsivePanels});
-}};const __cache={};function __require(id){if(__cache[id])return __cache[id];const out={};__cache[id]=out;__modules[id](out,__require);return out;}__require('src/app.js');})();
+},
+"src/core/industrial-engine.js":function(__exports,__require){
+/** Shared product model, independent of the student's control sequence.
+ * Geometry on a belt is 1D in metres; actuator time and flow are ideal nominal values.
+ * Items are never recreated by a transfer. No motor/valve output is written here.
+ */
+const {def}=__require('src/core/registry.js');
+class IndustrialRuntime{
+ constructor(e){
+  this.e=e;this.nodes=e.doc.nodes.filter(n=>!!def(n.type).industrial);this.items=[];this.serial=0;this.waste=0;this.usedWash=0;this.notices=[];
+  this.belts=this.nodes.filter(n=>this.kind(n)==='conveyor');this.enabled=!!this.nodes.length;e.industry=this;
+  for(const n of this.nodes){const s=this.state(n),p=n.params,k=this.kind(n);Object.assign(s,{commandActive:false,rawDetected:false,detected:false,signalPresent:false,stock:p.stock??0,liters:Math.min(p.capacity||Infinity,p.initial||0),spent:0,elapsed:0,done:false,fault:'',processed:0,lastCommand:false,lastIssued:-1e6,buffer:[],bufferCount:0,stored:0,storedIds:[],arrivalPulse:false,ready:false,volume:0,markers:[],items:[],faultOverride:null});
+   if(k==='bottle'||k==='case')s.item=this.createItem(k==='bottle'?'bottle':'case',p.belt,p.position,{capacity:p.capacity,volume:p.volume||0,capped:!!p.capped,labeled:!!p.labeled,pressedLabel:!!p.pressedLabel,washed:!!p.washed,defect:!!p.defect,closed:!!p.closed,count:p.initialCount||0,origin:n.id});
+  }
+  this.sensors();this.visuals();
+ }
+ kind(n){return def(n.type).industrial;}
+ state(n){return this.e.state[n.id];}
+ lookup(label,kind){const a=this.nodes.filter(n=>n.label===label&&(!kind||this.kind(n)===kind));return a.length===1?a[0]:null;}
+ belt(label){return this.lookup(label,'conveyor');}
+ createItem(kind,belt,position,extra={}){
+  if(this.items.length>=160){this.warn('Límite educativo: 160 productos. Reinicia la simulación.');return null;}
+  const it={id:(kind==='bottle'?'BOT-':'CAJ-')+String(++this.serial).padStart(4,'0'),kind,belt,position:Number(position)||0,capacity:kind==='bottle'?.6:6,volume:0,count:0,contents:[],capped:false,capReady:false,labeled:false,pressedLabel:false,washed:false,defect:false,closed:false,rejected:false,status:'en banda',clamps:[],...extra};
+  if(kind==='bottle')it.volume=Math.min(it.capacity,Math.max(0,it.volume));else it.count=Math.min(it.capacity,Math.max(0,Math.round(it.count)));
+  this.items.push(it);return it;
+ }
+ warn(t){this.e.warnings.add(t);}
+ fail(n,t){this.state(n).fault=t;this.warn(n.label+': '+t);}
+ activeItems(belt){return this.items.filter(it=>it.belt===belt&&it.status==='en banda');}
+ at(n,kind='bottle'){const p=n.params;return this.activeItems(p.belt).find(it=>(kind==='any'||it.kind===kind)&&Math.abs(it.position-p.position)<=p.window+1e-9)||null;}
+ command(n){
+  const s=this.state(n),p=n.params;if(def(n.type).electricalRole!=='actuator')return false;
+  if(p.commandFrom==='plc')return this.e.doc.nodes.some(a=>def(a.type).behavior==='plc'&&this.e.state[a.id]?.powered)&&/^Y[0-7]$/.test(p.commandBit)&&this.e.plc.read(p.commandBit);
+  if(p.commandFrom==='cylinder'){
+   const cs=this.e.doc.nodes.filter(c=>c.label===p.driveCylinder&&['cylinder','hcylinder'].includes(def(c.type).behavior));
+   if(cs.length!==1){this.fail(n,'No se encuentra un cilindro único: '+p.driveCylinder);return false;}
+   return this.e.state[cs[0].id].x>=cs[0].params.stroke/1000-.0005;
+  }
+  return !!s.on;
+ }
+ beforeStep(){if(!this.enabled)return;this.sensors();}
+ afterStep(dt){
+  if(!this.enabled)return;
+  for(const n of this.nodes){const s=this.state(n);s.fault='';s.arrivalPulse=false;s.commandActive=this.command(n);if(n.params.belt&&!this.belt(n.params.belt))this.fail(n,'La banda asociada no existe o su etiqueta está duplicada: '+n.params.belt);}
+  for(const it of this.items)it.clamps=[];
+  for(const n of this.nodes.filter(n=>this.kind(n)==='clamp')){const s=this.state(n),it=this.at(n);if(s.commandActive&&it)it.clamps.push(n.id);s.done=!!(s.commandActive&&it);}
+  for(const n of this.nodes.filter(n=>this.kind(n)==='feeder'))this.feed(n);
+  this.move(dt);
+  for(const n of this.nodes.filter(n=>this.kind(n)==='group'))this.collect(n);
+  for(const n of this.nodes)this.process(n,dt);
+  for(const n of this.nodes)this.state(n).lastCommand=this.state(n).commandActive;
+  this.sensors();this.visuals();
+ }
+ feed(n){const s=this.state(n),p=n.params,on=s.commandActive;
+  if(!on||s.lastCommand)return;
+  if(s.stock<=0){this.fail(n,'Sin existencias');return;}
+  const belt=this.belt(p.belt);if(!belt)return;
+  if(this.e.time-s.lastIssued+1e-9<p.period){this.fail(n,'Orden antes de la recuperación mecánica');return;}
+  if(this.activeItems(p.belt).some(it=>Math.abs(it.position-p.position)<belt.params.gap)){this.fail(n,'Salida del alimentador ocupada; requiere una nueva orden');return;}
+  const it=this.createItem(p.kind,p.belt,p.position,{capacity:p.kind==='case'?6:p.capacity});if(it){s.stock--;s.processed++;s.lastIssued=this.e.time;s.done=true;}
+ }
+ move(dt){
+  const moved=new Set();
+  for(const b of this.belts){const p=b.params,s=this.state(b);if(!s.commandActive)continue;
+   const items=this.activeItems(b.label).sort((a,c)=>c.position-a.position);let leader=null;
+   for(const it of items){if(moved.has(it.id)){leader=it;continue;}moved.add(it.id);let next=Math.min(p.length,it.position+p.speed*dt);
+    if(it.clamps.length)next=it.position;
+    for(const stop of this.nodes.filter(n=>['stop','clamp'].includes(this.kind(n))&&n.params.belt===b.label&&this.state(n).commandActive)){
+     if(it.position<=stop.params.position+stop.params.window&&next>=stop.params.position)next=Math.min(next,Math.max(it.position,stop.params.position));
+    }
+    for(const group of this.nodes.filter(n=>this.kind(n)==='group'&&n.params.belt===b.label)){
+     if(it.kind==='bottle'&&it.position<group.params.position&&next>=group.params.position)next=group.params.position;
+    }
+    if(leader)next=Math.min(next,Math.max(it.position,leader.position-p.gap));
+    it.position=Math.max(it.position,next);leader=it;
+    if(it.position>=p.length-1e-9&&p.nextBelt){const dest=this.belt(p.nextBelt);
+     if(!dest||dest===b){this.fail(b,'Banda de destino inválida');continue;}
+     if(!this.activeItems(dest.label).some(a=>a.position<dest.params.gap)){it.belt=dest.label;it.position=0;leader=null;s.processed++;}
+    }
+   }
+  }
+ }
+ collect(n){const p=n.params,s=this.state(n);const it=this.at(n);if(it&&s.buffer.length<p.count){it.status='agrupado';it.group=n.id;s.buffer.push(it.id);s.arrivalPulse=true;}s.bufferCount=s.buffer.length;}
+ work(n,it,dt,allowed=true){const s=this.state(n);
+  if(!it||s.workItem!==it.id){s.workItem=it?.id||null;s.elapsed=0;s.done=false;}
+  if(!s.commandActive){s.elapsed=0;return false;}
+  if(!it||!allowed){s.elapsed=0;return false;}
+  if(s.done)return false;
+  s.elapsed+=dt;if(s.elapsed+1e-9>=n.params.duration){s.done=true;s.processed++;return true;}return false;
+ }
+ process(n,dt){const k=this.kind(n),s=this.state(n),p=n.params,it=this.at(n,k==='closer'||k==='storage'?'case':'bottle');
+  if(k==='fill'||k==='wash'){
+   const tank=this.lookup(p.tank,'tank'),ts=tank&&this.state(tank);
+   if(!s.commandActive){s.elapsed=0;if(s.workItem!==it?.id)s.done=false;return;}
+   if(!ts){this.fail(n,'Tanque no encontrado o etiqueta duplicada');return;}
+   if(ts.liters<=1e-12){this.fail(n,'Tanque vacío');s.elapsed=0;return;}
+   const q=Math.min(ts.liters,p.flow*dt);ts.liters=Math.max(0,ts.liters-q);ts.spent+=q;s.spent+=q;
+   if(k==='fill'){
+    if(it){const dv=Math.min(q,Math.max(0,it.capacity-it.volume));it.volume+=dv;s.volume=it.volume;s.elapsed+=dt;
+     if(q>dv+1e-10){this.waste+=q-dv;this.fail(n,'Desbordamiento: la orden de válvula sigue activa');}
+    }else{this.waste+=q;this.fail(n,'Válvula abierta sin recipiente: derrame simulado');}
+   }else{this.usedWash+=q;if(this.work(n,it,dt))it.washed=true;if(!it)this.fail(n,'Bomba activa sin recipiente');}
+   return;
+  }
+  if(k==='cap_supply'){
+   if(s.commandActive&&!s.lastCommand){if(!it)this.fail(n,'No hay recipiente');else if(s.stock<=0)this.fail(n,'Sin tapas');else if(it.capReady||it.capped)this.fail(n,'El recipiente ya tiene una tapa');else{s.stock--;it.capReady=true;s.processed++;s.done=true;}}
+   return;
+  }
+  if(k==='capper'){
+   const okay=!!it&&(it.capReady||it.capped)&&(!p.requireClamp||it.clamps.length>0);
+   if(s.commandActive&&!okay)this.fail(n,!it?'No hay recipiente':!it.capReady&&!it.capped?'Falta tapa':'Falta sujeción');
+   if(this.work(n,it,dt,okay)){it.capped=true;it.capReady=false;}return;
+  }
+  if(k==='labeler'){
+   const okay=!!it&&(s.stock>0||it.labeled);
+   if(s.commandActive&&!okay)this.fail(n,it?'Sin etiquetas':'No hay recipiente');
+   if(this.work(n,it,dt,okay)&&!it.labeled){s.stock--;it.labeled=true;}return;
+  }
+  if(k==='roller'){
+   if(s.commandActive&&it&&!it.labeled)this.fail(n,'No existe etiqueta para prensar');
+   if(this.work(n,it,dt,!!it?.labeled))it.pressedLabel=true;return;
+  }
+  if(k==='reject'){
+   if(this.work(n,it,dt)){it.status='rechazado';it.rejected=true;}return;
+  }
+  if(k==='group'){
+   const box=this.activeItems(p.boxBelt).find(a=>a.kind==='case'&&Math.abs(a.position-p.boxPosition)<=p.window);
+   const okay=!!box&&!box.closed&&box.count===0&&s.buffer.length===p.count&&box.capacity>=p.count;
+   if(s.commandActive&&!okay)this.fail(n,!box?'Falta caja en posición':s.buffer.length<p.count?'Grupo incompleto':'Caja ocupada, cerrada o pequeña');
+   if(this.work(n,box,dt,okay)){box.contents=[...s.buffer];box.count=s.buffer.length;for(const id of s.buffer){const bottle=this.items.find(a=>a.id===id);bottle.status='empacado';bottle.caseId=box.id;}s.buffer=[];s.bufferCount=0;}
+   return;
+  }
+  if(k==='closer'){
+   const okay=!!it&&it.count===it.capacity;
+   if(s.commandActive&&!okay)this.fail(n,it?'Caja incompleta':'Falta caja');
+   if(this.work(n,it,dt,okay))it.closed=true;return;
+  }
+  if(k==='storage'){
+   const okay=!!it&&s.stored<p.capacity&&(!p.requireClosed||it.closed);
+   if(s.commandActive&&!okay)this.fail(n,!it?'Falta caja':s.stored>=p.capacity?'Almacén lleno':'Caja abierta');
+   if(this.work(n,it,dt,okay)){it.status='almacenado';s.storedIds.push(it.id);s.stored++;}return;
+  }
+ }
+ availability(n,mode,threshold){const s=this.state(n),p=n.params,k=this.kind(n);
+  if(mode==='home')return !s.commandActive;
+  if(mode==='active')return !!s.commandActive;
+  if(mode==='done')return !!s.done;
+  if(mode==='arrival')return !!s.arrivalPulse;
+  if(mode==='ready'){
+   if(k==='feeder'){const belt=this.belt(p.belt);return !!belt&&s.stock>0&&this.e.time-s.lastIssued>=p.period&&!this.activeItems(p.belt).some(a=>Math.abs(a.position-p.position)<belt.params.gap);}
+   if(k==='group')return s.buffer.length>=p.count;
+   return !s.commandActive&&!s.fault;
+  }
+  if(k==='tank')return s.liters>=threshold;
+  if(k==='storage')return s.stored<p.capacity;
+  if(['feeder','cap_supply','labeler'].includes(k))return s.stock>=threshold;
+  if(k==='case')return !!s.item&&s.item.status==='en banda'&&!s.item.closed&&s.item.count===0;
+  if(k==='conveyor')return !this.activeItems(n.label).some(a=>a.position<p.gap);
+  return !s.fault;
+ }
+ sensors(){
+  for(const n of this.nodes){const k=this.kind(n),s=this.state(n),p=n.params;let hit=false;
+   if(k==='photo')hit=!!this.at(n,p.kind);
+   else if(k==='volume'){const it=this.at(n);s.volume=it?.volume||0;hit=!!it&&s.volume+1e-9>=p.threshold;}
+   else if(k==='quality'){const it=this.at(n);hit=!!it&&!it.defect&&(!p.requireVolume||(it.volume>=p.minVolume-1e-9&&it.volume<=p.maxVolume+1e-9))&&(!p.requireCap||it.capped)&&(!p.requireLabel||it.labeled)&&(!p.requirePress||it.pressedLabel)&&(!p.requireWash||it.washed);}
+   else if(k==='stock'){const target=this.lookup(p.target);hit=!!target&&this.availability(target,p.mode,p.threshold);if(!target)this.warn(n.label+': equipo observado inexistente o duplicado: '+p.target);}
+   else continue;
+   s.rawDetected=hit;s.detected=hit;const fault=s.faultOverride||p.faultMode;s.signalPresent=fault==='off'?false:fault==='on'?true:(hit!==!!p.nc);
+  }
+ }
+ visuals(){for(const n of this.belts){const s=this.state(n);s.items=this.activeItems(n.label).map(it=>({...it,clamps:undefined,contents:undefined}));s.markers=this.nodes.filter(a=>a.params.belt===n.label&&def(a.type).electricalRole==='sensor'&&this.kind(a)!=='stock').map(a=>({pos:a.params.position,hit:this.state(a).detected}));}
+  for(const n of this.nodes){const k=this.kind(n),s=this.state(n);s.ready=this.availability(n,'ready',.001);if(k==='group')s.bufferCount=s.buffer.length;}
+ }
+ replenish(id){const n=this.nodes.find(a=>a.id===id);if(!n)return false;const s=this.state(n),k=this.kind(n);if(k==='tank')s.liters=n.params.initial;else if(['feeder','cap_supply','labeler'].includes(k))s.stock=n.params.stock;else if(k==='storage'){s.stored=0;s.storedIds=[];}else return false;this.sensors();this.visuals();this.e.trace?.capture();return true;}
+ summary(){return {products:this.items.length,onBelts:this.items.filter(a=>a.status==='en banda').length,rejected:this.items.filter(a=>a.rejected).length,packed:this.items.filter(a=>a.status==='empacado').length,stored:this.items.filter(a=>a.status==='almacenado').length,waste_l:this.waste,wash_l:this.usedWash};}
+}
+Object.assign(__exports,{IndustrialRuntime});
+
+},
+"src/lessons/industrial.js":function(__exports,__require){
+/** Standalone customer machines. Only the introductory example includes a program. */
+const {project,addNode,connect,ref}=__require('src/core/model.js');
+const {def}=__require('src/core/registry.js');
+const W=(d,a,pa,b,pb)=>connect(d,ref(a,pa),ref(b,pb));
+function add(d,id,type,x,y,p={},label=id){const n=addNode(d,type,x,y,p,label);n.id=id.split(' ·')[0];return n;}
+const requests=[
+ {id:'01',title:'Alimentación de envases',summary:'La empresa solicita suministrar envases de uno en uno y formar lotes de seis unidades.',checks:['No liberar antes de Marcha. Mantener al menos 1 s entre liberaciones.','Contar el paso real de seis envases; detener alimentación y señalar lote.','Demostrar dos lotes y una prueba sin existencias. Paro prioritario.']},
+ {id:'02',title:'Lavado y escurrimiento',summary:'La empresa solicita detener cada envase, lavarlo y liberarlo después de escurrir.',checks:['Detener el envase frente a la boquilla. Lavar durante 4 s.','Mantener detenido durante 2 s adicionales de escurrimiento.','Completar tres ciclos sin repetir el lavado del mismo envase. Paro apaga bomba y banda.']},
+ {id:'03',title:'Dosificación de líquidos',summary:'La empresa solicita 500 mL por recipiente con caudal nominal de 100 mL/s.',checks:['Llenar únicamente con recipiente presente y líquido disponible.','Cerrar la válvula a 500 mL; vigilar un tiempo máximo de apertura de 6 s.','Esperar 1 s antes de liberar. Demostrar tres ciclos y falta de suministro.']},
+ {id:'04',title:'Colocación de tapas',summary:'La empresa solicita sujetar el envase, suministrar una tapa y efectuar el tapado.',checks:['Detener el envase y comprobar tapas disponibles. Ordenar una sola tapa.','Sujetar; esperar 1 s; accionar el cabezal durante 2 s.','Retirar el cabezal antes de liberar la sujeción. Completar tres ciclos.']},
+ {id:'05',title:'Etiquetado',summary:'La empresa solicita aplicar una etiqueta y prensarla antes de liberar el recipiente.',checks:['Detener y comprobar etiquetas disponibles.','Aplicador durante 1 s y, después, rodillo durante 2 s.','Contar cinco productos, sin duplicaciones, y probar falta de etiquetas.']},
+ {id:'06',title:'Inspección y rechazo',summary:'La empresa solicita separar productos conformes y defectuosos y contar ambos grupos.',checks:['Consultar calidad solo con producto presente.','Producto conforme: continuar; defectuoso: detener y desviar durante 1 s.','Procesar diez productos, al menos tres defectuosos, sin contar dos veces.']},
+ {id:'07',title:'Agrupación y empaque',summary:'La empresa solicita cajas de seis botellas, con empuje y cierre automáticos.',checks:['Contar cada llegada al agrupador; no empujar un grupo incompleto.','Con caja vacía presente y seis botellas: empujar 2 s; cerrar 3 s.','Expulsar la caja terminada y esperar otra caja. Producir dos cajas.']},
+ {id:'08',title:'Almacenamiento y despacho',summary:'La empresa solicita transferir cajas terminadas a un almacén de capacidad limitada.',checks:['Detener la caja y comprobar destino disponible.','Accionar transferencia durante 2 s; esperar reposo antes de una nueva operación.','Contar cuatro cajas y generar alarma si el destino no está disponible durante más de 10 s.']}
+];
+function base(id,title,length=3){
+ const d=project(title);d.industryProject={version:1,id,solved:false};
+ const b=add(d,'BANDA1','ind_conveyor',290,310,{length,speed:.2},'BANDA1');
+ const power=add(d,'G1','supply',1040,60,{},'G1 · 24 V'),plc=add(d,'PLC1','plc',1050,400,{},'PLC1');
+ W(d,power,'+',plc,'+');W(d,power,'0',plc,'0');
+ const start=add(d,'S1','button',750,200,{},'S1 · Marcha'),stop=add(d,'S0','buttonNC',750,300,{nc:true},'S0 · Paro NC');
+ const io=[],ins={},outs={};
+ function input(n,i){W(d,power,'+',n,'1');W(d,n,'2',plc,'X'+i);io.push(['X'+i,n.label]);ins[i]=n;}
+ function output(n,i){W(d,plc,'Y'+i,n,'A1');W(d,n,'A2',power,'0');io.push(['Y'+i,n.label]);outs[i]=n;}
+ function sensor(id,type,i,params={}){const n=add(d,id,type,735,400+(i-2)*130,params,id);input(n,i);return n;}
+ function actuator(id,type,i,x,y,params={}){const n=add(d,id,type,x,y,params,id);output(n,i);return n;}
+ function lamp(id,i){const n=add(d,id,'lamp',1350,180+i*90,{tag:id.split(' ·')[0]},id);output(n,i);return n;}
+ function bottles(n,params={}){for(let i=0;i<n;i++)add(d,'ENVASE'+(i+1),'ind_bottle',75+i%4*130,570+Math.floor(i/4)*170,{belt:'BANDA1',position:.1+i*.26,capacity:.6,...params},'ENVASE'+(i+1));}
+ input(start,0);input(stop,1);output(b,0);
+ return {d,b,power,plc,start,stop,io,input,output,sensor,actuator,lamp,bottles,ins,outs};
+}
+function annotate(a,spec){
+ const {d}=a;d.description=spec.summary;d.program=[];d.lesson={id:'industrial-ot-'+spec.id,group:'Máquinas · proyectos',summary:spec.summary,steps:['El circuito ya está cableado; el programa Ladder está vacío. Diseña la solución.','Pulsa Simular y después Marcha. Los sensores cambian con el producto, no manualmente.','Consulta Proceso para ver productos, existencias, averías y señales.'],checks:spec.checks,io:a.io,industrial:true,note:'Modelo educativo: transporte cinemático 1D, caudales y tiempos nominales. Los contactos de sensores son ideales de 2 hilos. No valida seguridad de máquinas. Las etiquetas vinculan banda, tanque y equipos; sus posiciones se expresan en metros sobre la banda, no en píxeles del dibujo.'};
+ return d;
+}
+function demo(){
+ const a=base('demo','Ejemplo sencillo · banda y sensor',2),{d}=a;a.start.params.toggle=true;a.start.label='S1 · Marcha mantenida';a.io[0][1]=a.start.label;
+ a.sensor('B1 · presencia','ind_photo',2,{belt:'BANDA1',position:.8,window:.02});a.lamp('H1 · envase detectado',1);a.bottles(1);
+ const c=(ref,not=false)=>({ref,not});d.program=[
+ {id:'demo_motor',branches:[[c('X0'),c('X1'),c('X2',true)]],op:'OUT',out:'Y0',preset:0,comment:'Marcha mantenida y paro NC liberado. El sensor X2 detiene la banda al detectar el envase.'},
+ {id:'demo_lamp',branches:[[c('X2')]],op:'OUT',out:'Y1',preset:0,comment:'La lámpara indica detección, aunque el motor esté detenido.'}];
+ d.industryProject.solved=true;d.lesson={id:'industrial-demo',group:'Procesos industriales',industrial:true,summary:'Una botella avanza por la banda. Al entrar en la zona del sensor situado a 0.80 m, el Ladder apaga Y0 y enciende la lámpara Y1.',steps:['Pulsa Simular. Después toca S1 · Marcha mantenida una vez.','Observa la botella: X2 pasa a 1 y Y0 se apaga aproximadamente a 0.80 m (tolerancia de detección ±0.02 m).','Abre Ladder: los dos peldaños son editables. Prueba S0 para detener antes de llegar.','Pulsa ↺ para reiniciar y repetir. No pulses Crear estación del banco: reemplazaría este ejemplo.'],checks:['Con X0=0, la banda no arranca.','En marcha, el producto avanza y el sensor cambia al llegar.','Tras detectar, la posición permanece constante; la lámpara se enciende.'],io:a.io,note:'Ejemplo introductorio resuelto, separado de las ocho órdenes de trabajo. Requiere el cableado incluido, no el modo Banco PLC. La simulación se pausa si la pestaña queda oculta. No es un sistema de parada de emergencia.'};d.description=d.lesson.summary;return d;
+}
+function machine(id){const spec=requests.find(s=>s.id===id);if(!spec)throw new Error('Orden de trabajo desconocida');const a=base(id,'OT-'+id+' · '+spec.title,id==='06'?6:id==='07'?4:3),{d}=a;const pos=id==='06'?3:id==='07'?2.8:1.6;
+ const photo=(i=2)=>a.sensor('B1 · presencia','ind_photo',i,{belt:'BANDA1',position:pos,window:.04});
+ if(id==='01'){
+  a.actuator('ALIMENTADOR1','ind_feeder',1,115,110,{belt:'BANDA1',position:.1,stock:12,period:.2});
+  a.sensor('B1 · existencias','ind_stock',2,{target:'ALIMENTADOR1',mode:'available'});
+  a.sensor('B2 · paso','ind_photo',3,{belt:'BANDA1',position:.5,window:.02});
+  a.lamp('H1 · lote completo',2);a.lamp('H2 · alarma',3);
+  const reset=add(d,'S2','button',735,790,{},'S2 · Nuevo lote');a.input(reset,5);
+ }else if(id==='02'||id==='03'){
+  a.bottles(3);photo();add(d,'TANQUE1','ind_tank',85,90,{capacity:25,initial:25});
+  a.actuator(id==='02'?'LAVADOR1':'VALVULA1',id==='02'?'ind_wash':'ind_fill',1,370,110,{belt:'BANDA1',position:pos,tank:'TANQUE1',flow:.1,duration:4});
+  a.sensor('B2 · líquido disponible','ind_stock',3,{target:'TANQUE1',mode:'available'});
+  if(id==='03')a.sensor('B3 · 500 mL','ind_volume',4,{belt:'BANDA1',position:pos,threshold:.5});
+  a.lamp('H1 · ciclo completo',2);a.lamp('H2 · alarma',3);
+ }else if(id==='04'){
+  a.bottles(3,{volume:.5});photo();a.actuator('SUJECION1','ind_clamp',1,110,110,{position:pos});a.actuator('CABEZAL1','ind_capper',2,450,110,{position:pos,duration:2});a.actuator('TAPAS1','ind_cap_supply',4,285,110,{position:pos,stock:12});
+  a.sensor('B2 · tapas disponibles','ind_stock',3,{target:'TAPAS1',mode:'available'});a.sensor('B3 · cabezal en reposo','ind_stock',4,{target:'CABEZAL1',mode:'home'});a.sensor('B4 · cabezal accionado','ind_stock',5,{target:'CABEZAL1',mode:'active'});a.lamp('H2 · alarma',3);
+ }else if(id==='05'){
+  a.bottles(5,{position:.1,volume:.5,capped:true});d.nodes.filter(n=>n.type==='ind_bottle').forEach((n,i)=>n.params.position=.1+.26*i);photo();a.actuator('ETIQUETADORA1','ind_labeler',1,160,100,{position:pos,stock:12,duration:1});a.actuator('RODILLO1','ind_roller',2,440,100,{position:pos,duration:2});a.sensor('B2 · etiquetas disponibles','ind_stock',3,{target:'ETIQUETADORA1',mode:'available'});a.lamp('H2 · alarma',3);
+ }else if(id==='06'){
+  a.bottles(10,{volume:.5,capped:true,labeled:true,pressedLabel:true});d.nodes.filter(n=>n.type==='ind_bottle').forEach((n,i)=>{n.params.position=.1+i*.20;n.params.defect=[2,5,8].includes(i);});photo();a.actuator('DESVIADOR1','ind_reject',1,315,110,{position:pos,duration:1});
+  a.sensor('B2 · conforme','ind_quality',3,{position:pos});a.sensor('B3 · desviador en reposo','ind_stock',4,{target:'DESVIADOR1',mode:'home'});a.lamp('H1 · aprobado',2);a.lamp('H2 · rechazado',3);a.lamp('H3 · alarma',4);
+ }else if(id==='07'){
+  a.bottles(12,{volume:.5,capped:true,labeled:true,pressedLabel:true});d.nodes.filter(n=>n.type==='ind_bottle').forEach((n,i)=>{n.params.position=.1+i*.2;n.x=80+i%6*90;n.y=1030+Math.floor(i/6)*160;});
+  const cb=add(d,'CAJAS1','ind_conveyor',290,690,{length:2,speed:.15});a.output(cb,5);
+  for(let i=0;i<2;i++)add(d,'CAJA'+(i+1),'ind_box',140+i*220,880,{belt:'CAJAS1',position:i===0?.8:.2,capacity:6});
+  a.actuator('AGRUPADOR1','ind_group',1,160,100,{position:pos,window:.025,count:6,boxBelt:'CAJAS1',boxPosition:.8,duration:2});a.actuator('CERRADORA1','ind_closer',2,420,520,{belt:'CAJAS1',position:.8,duration:3});
+  a.sensor('B1 · ingreso de botella','ind_stock',2,{target:'AGRUPADOR1',mode:'arrival'});a.sensor('B2 · caja presente','ind_photo',3,{belt:'CAJAS1',position:.8,kind:'case'});a.sensor('B3 · empujador en reposo','ind_stock',4,{target:'AGRUPADOR1',mode:'home'});a.sensor('B4 · cerradora en reposo','ind_stock',5,{target:'CERRADORA1',mode:'home'});a.sensor('B5 · grupo completo','ind_stock',6,{target:'AGRUPADOR1',mode:'ready'});a.lamp('H1 · caja terminada',3);a.lamp('H2 · alarma',4);
+ }else if(id==='08'){
+  for(let i=0;i<5;i++)add(d,'CAJA'+(i+1),'ind_box',80+i%4*140,580+Math.floor(i/4)*160,{belt:'BANDA1',position:.1+i*.25,capacity:6,initialCount:6,closed:true});photo();a.actuator('ALMACEN1','ind_storage',1,300,110,{position:pos,capacity:4,duration:2});a.sensor('B2 · destino disponible','ind_stock',3,{target:'ALMACEN1',mode:'available'});a.sensor('B3 · transferidor en reposo','ind_stock',4,{target:'ALMACEN1',mode:'home'});a.lamp('H1 · transferencia',2);a.lamp('H2 · alarma',3);
+ }
+ return annotate(a,spec);
+}
+const industrialExamples=[{id:'industrial-demo',name:'Ejemplo sencillo · banda, sensor y paro',group:'Procesos industriales',module:'industrial',level:'Ejemplo resuelto',industrial:true,solved:true,create:demo,help:'S1 mueve una botella; el sensor X2 apaga la banda y enciende Y1. Dos peldaños editables.'},...requests.map(s=>({id:'industrial-ot-'+s.id,name:'OT-'+s.id+' · '+s.title,group:'Máquinas · proyectos',module:'industrial',industrial:true,solved:false,create:()=>machine(s.id),help:s.summary}))];
+Object.assign(__exports,{industrialExamples,demo,machine,requests});
+
+},
+"src/modules/industrial.js":function(__exports,__require){
+/** Industrial components: ideal 1D transport and nominal-volume models. No hidden PLC sequence. */
+const {registerModule,port:P,numberField:N,selectField:S,textField:T,escapeText:esc}=__require('src/core/registry.js');
+const {IndustrialRuntime}=__require('src/core/industrial-engine.js');
+const B=(key,label,value=false)=>S(key,label,[[false,'No'],[true,'Sí']]);
+const inputPorts=[P('A1',-46,45,-1,0,'electrical','Mando +'),P('A2',46,45,1,0,'electrical','0 V')];
+const sensorPorts=[P('1',-46,45,-1,0,'electrical','+24 V'),P('2',46,45,1,0,'electrical','Señal')];
+const commandFields=[S('commandFrom','Origen de la orden',[['wired','Cableado A1 / A2'],['plc','Bit Y del PLC alimentado'],['cylinder','Posición de cilindro del circuito']]),T('commandBit','Bit de mando (modo PLC)'),T('driveCylinder','Etiqueta del cilindro (modo cilindro)')];
+const commandDefaults={commandFrom:'wired',commandBit:'Y0',driveCylinder:'A1'};
+const locationFields=[T('belt','Etiqueta de banda asociada'),N('position','Posición sobre la banda',0,20,.01,'m'),N('window','Tolerancia de posición',.005,.5,.005,'m')];
+const located={belt:'BANDA1',position:.8,window:.04};
+const sensorFields=[S('faultMode','Prueba de avería',[['normal','Normal'],['off','Señal atascada en 0'],['on','Señal atascada en 1']]),B('nc','Contacto normalmente cerrado')];
+const sensorDefaults={faultMode:'normal',nc:false};
+const txt=(x,y,t,size=10,color='#244b5b')=>`<text x="${x}" y="${y}" text-anchor="middle" fill="${color}" stroke="none" font-size="${size}">${esc(t)}</text>`;
+const box=(x,y,w,h,fill='#f6fafb')=>`<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="6" fill="${fill}"/>`;
+function bottleIcon(x,y,item={},scale=1){const ratio=Math.max(0,Math.min(1,(item.volume||0)/(item.capacity||.5)));return `<g transform="translate(${x} ${y}) scale(${scale})"><path d="M-5 -31H5V-22L12 -15V17Q12 21 8 21H-8Q-12 21 -12 17V-15L-5 -22Z" fill="#eefbff"/><rect x="-10" y="${19-33*ratio}" width="20" height="${33*ratio}" fill="#51afcf" stroke="none"/>${item.labeled?'<rect x="-12" y="-7" width="24" height="12" fill="#e9bb52" stroke="#b58e31"/>':''}${item.capped?'<rect x="-6" y="-34" width="12" height="5" rx="1" fill="#126b68"/>':''}${item.rejected?'<path d="M-12 -12L12 12M12 -12L-12 12" stroke="#b03939" stroke-width="3"/>':''}</g>`;}
+function caseIcon(x,y,item={},scale=1){return `<g transform="translate(${x} ${y}) scale(${scale})">${box(-23,-22,46,43,'#dfbd85')}<path d="M-23 -22L0 -31L23 -22M0 -31V-22"/>${txt(0,4,`${item.count||0}/${item.capacity||6}`,10)}${item.closed?'<path d="M0 -22V20" stroke="#8d693c" stroke-width="5"/>':''}</g>`;}
+function renderKind(kind,p,s){
+ const active=!!s.commandActive,fill=active?'#d8f1e9':'#f5f8fa',title={feeder:'ALIMENTADOR',stop:'TOPE',stock:'DISPONIBILIDAD',quality:'INSPECCIÓN',wash:'LAVADO',fill:'DOSIFICADOR',volume:'VOLUMEN',cap_supply:'TAPAS',capper:'TAPADO',clamp:'SUJECIÓN',labeler:'ETIQUETAS',roller:'RODILLO',reject:'DESVIADOR',group:'AGRUPADOR',closer:'CERRADORA',storage:'ALMACÉN'}[kind]||kind;
+ if(kind==='conveyor'){
+  let h=box(-230,-18,460,48,'#edf2f5');for(let i=0;i<19;i++)h+=`<circle cx="${-216+i*24}" cy="7" r="10" fill="${active?'#a6d7c5':'#d4dfe4'}"/>`;
+  h+='<path d="M-211 30V50M211 30V50" stroke-width="5"/>'+txt(0,55,`${p.length} m · ${p.speed} m/s · ${active?'MARCHA':'PARADA'}`);
+  h+=`<path d="M-46 45H-70V30M46 45H70V30"/>`;
+  for(const mark of s.markers||[])h+=`<path d="M${-210+420*mark.pos/p.length} -28V28" stroke="${mark.hit?'#c74936':'#8aa4b1'}" stroke-dasharray="4 3"/><circle cx="${-210+420*mark.pos/p.length}" cy="-30" r="4" fill="${mark.hit?'#c74936':'#7197a8'}"/>`;
+  for(const it of s.items||[]){const x=-210+420*it.position/p.length;h+=it.kind==='bottle'?bottleIcon(x,-39,it,.8):caseIcon(x,-38,it,.8);}
+  return h;
+ }
+ if(kind==='bottle')return bottleIcon(0,-10,s.item||{volume:p.volume,capacity:p.capacity,capped:p.capped,labeled:p.labeled},1.1)+txt(0,46,`${(s.item?.volume??p.volume??0).toFixed(3)} L`)+txt(0,61,s.item?.status||'Envase inicial',9);
+ if(kind==='case')return caseIcon(0,-10,s.item||{count:p.initialCount,capacity:p.capacity,closed:p.closed},1.1)+txt(0,49,s.item?.status||'Caja inicial',9);
+ if(kind==='tank'){const level=Math.min(1,Math.max(0,(s.liters??p.initial)/p.capacity));return box(-44,-48,88,98)+`<rect x="-40" y="${46-90*level}" width="80" height="${90*level}" fill="#70bad0" stroke="none"/>`+txt(0,-59,'TANQUE')+txt(0,7,`${(s.liters??p.initial).toFixed(2)} L`,14)+txt(0,67,`Cap. ${p.capacity} L`);}
+ if(kind==='photo')return box(-32,-20,64,41,'#cce3ef')+`<circle cx="0" cy="-7" r="7" fill="${s.detected?'#e15a43':'#7ca2b5'}"/><path d="M0 21V35M-46 45H-20V21M46 45H20V21"/>`+txt(0,-31,'FOTOELÉCTRICO',9)+txt(0,4,s.detected?'1':'0')+txt(0,64,`${p.position} m`);
+ let h=box(-65,-40,130,76,fill)+txt(0,-23,title,10);
+ if(['stock','quality','volume'].includes(kind)){h+=`<circle cx="0" cy="1" r="14" fill="${s.detected?'#a6ddc2':'#e1e8eb'}"/>`+txt(0,5,s.detected?'1':'0',13);}
+ else if(['capper','clamp','reject','group','closer','storage','stop'].includes(kind)){h+=`<path d="M-26 3H${active?36:8}" stroke-width="6"/><rect x="${active?32:4}" y="-8" width="8" height="24" fill="#73a697"/>`;}
+ else if(kind==='wash'||kind==='fill')h+=`<path d="M-28 -3H12V19M4 19H20" stroke-width="4"/>${active?'<path d="M9 23V31M15 23V31" stroke="#3ba3cd"/>':''}`;
+ else h+=txt(0,5,kind==='roller'?'◯':kind==='feeder'?'→':`${s.stock??p.stock??''}`,18);
+ h+='<path d="M-46 45V36M46 45V36"/>';
+ const val=kind==='volume'?`${(s.volume||0).toFixed(3)} L`:kind==='group'?`${s.bufferCount||0} / ${p.count}`:kind==='storage'?`${s.stored||0} / ${p.capacity}`:['feeder','cap_supply','labeler'].includes(kind)?`Stock: ${s.stock??p.stock}`:s.done?'TERMINADO':s.fault?'REVISAR':active?'ACTIVO':'REPOSO';
+ return h+txt(0,64,val,10,s.fault?'#a33b32':'#244b5b');
+}
+const components=[];
+function add(type,kind,name,category,defaults={},fields=[],role='passive',size=[160,155]){components.push({type,name,category,icon:'junction',behavior:'industrial_'+kind,industrial:kind,electricalRole:role,size,defaults:{...(role==='actuator'?commandDefaults:{}),...defaults,...(role==='sensor'?sensorDefaults:{})},fields:[...fields,...(role==='actuator'?commandFields:role==='sensor'?sensorFields:[])],ports:role==='actuator'?inputPorts:role==='sensor'?sensorPorts:[],symbol:(p,s)=>renderKind(kind,p,s)});}
+add('ind_conveyor','conveyor','Banda transportadora','Transporte',{length:2,speed:.2,gap:.17,nextBelt:''},[N('length','Longitud de banda',.5,20,.1,'m'),N('speed','Velocidad nominal',.01,2,.01,'m/s'),N('gap','Separación entre centros',.1,1,.01,'m'),T('nextBelt','Banda de salida (vacío = tope final)')],'actuator',[480,175]);
+add('ind_feeder','feeder','Alimentador de envases / cajas','Transporte',{...located,position:.1,stock:12,kind:'bottle',capacity:.5,period:.2},[...locationFields,N('stock','Existencias iniciales',0,100,1,'piezas'),S('kind','Producto',[['bottle','Botella'],['case','Caja de 6 botellas']]),N('capacity','Capacidad de botella',.1,2,.05,'L'),N('period','Recuperación mecánica mínima',.02,10,.02,'s')],'actuator');
+add('ind_stop','stop','Tope de posicionamiento','Transporte',{...located},locationFields,'actuator');
+add('ind_bottle','bottle','Botella virtual','Productos',{...located,position:.1,capacity:.6,volume:0,capped:false,labeled:false,pressedLabel:false,washed:false,defect:false},[T('belt','Etiqueta de banda'),N('position','Posición inicial',0,20,.01,'m'),N('capacity','Capacidad física',.1,2,.05,'L'),N('volume','Volumen inicial',0,2,.01,'L'),B('capped','Con tapa'),B('labeled','Con etiqueta'),B('pressedLabel','Etiqueta prensada'),B('washed','Lavada'),B('defect','Defecto de prueba')],'passive',[100,160]);
+add('ind_box','case','Caja de empaque','Productos',{...located,position:.1,capacity:6,initialCount:0,closed:false},[T('belt','Etiqueta de banda'),N('position','Posición inicial',0,20,.01,'m'),N('capacity','Botellas por caja',1,12,1,'botellas'),N('initialCount','Contenido inicial declarado',0,12,1,'botellas'),B('closed','Caja cerrada inicialmente')],'passive',[120,150]);
+add('ind_photo','photo','Sensor fotoeléctrico','Sensores',{...located,kind:'any'},[...locationFields,S('kind','Detecta',[['any','Cualquier producto'],['bottle','Botellas'],['case','Cajas']])],'sensor',[135,140]);
+add('ind_stock','stock','Sensor de disponibilidad / estado','Sensores',{target:'ALIMENTADOR1',mode:'available',threshold:.001},[T('target','Etiqueta del equipo observado'),S('mode','Condición',[['available','Hay material / espacio'],['ready','Preparado'],['home','Actuador en reposo'],['active','Actuador accionado'],['done','Operación terminada'],['arrival','Pulso de llegada al agrupador']]),N('threshold','Umbral de existencias',.001,100,.001,'unidades / L')],'sensor');
+add('ind_quality','quality','Sensor de calidad','Sensores',{...located,requireVolume:true,minVolume:.49,maxVolume:.51,requireCap:true,requireLabel:true,requirePress:true,requireWash:false},[...locationFields,B('requireVolume','Comprobar volumen'),N('minVolume','Volumen mínimo',0,2,.001,'L'),N('maxVolume','Volumen máximo',0,2,.001,'L'),B('requireCap','Exigir tapa'),B('requireLabel','Exigir etiqueta'),B('requirePress','Exigir etiqueta prensada'),B('requireWash','Exigir lavado')],'sensor');
+add('ind_tank','tank','Tanque de líquido','Fluidos de proceso',{capacity:25,initial:25},[N('capacity','Capacidad',.5,1000,.5,'L'),N('initial','Volumen inicial',0,1000,.5,'L')],'passive',[130,165]);
+add('ind_wash','wash','Bomba / boquilla de lavado','Fluidos de proceso',{...located,tank:'TANQUE1',flow:.1,duration:4},[...locationFields,T('tank','Etiqueta del tanque'),N('flow','Caudal nominal',.001,2,.001,'L/s'),N('duration','Exposición para lavado completo',.02,60,.02,'s')],'actuator');
+add('ind_fill','fill','Electroválvula dosificadora','Fluidos de proceso',{...located,tank:'TANQUE1',flow:.1},[...locationFields,T('tank','Etiqueta del tanque'),N('flow','Caudal nominal',.001,2,.001,'L/s')],'actuator');
+add('ind_volume','volume','Detector de volumen alcanzado','Sensores',{...located,threshold:.5},[...locationFields,N('threshold','Umbral de volumen',.01,2,.001,'L')],'sensor');
+add('ind_cap_supply','cap_supply','Alimentador de tapas','Montaje',{...located,stock:12},[...locationFields,N('stock','Tapas iniciales',0,100,1,'tapas')],'actuator');
+add('ind_capper','capper','Cabezal de tapado','Montaje',{...located,duration:2,requireClamp:true},[...locationFields,N('duration','Permanencia de contacto',.02,20,.02,'s'),B('requireClamp','Exigir sujeción activa')],'actuator');
+add('ind_clamp','clamp','Mecanismo de sujeción','Montaje',{...located},locationFields,'actuator');
+add('ind_labeler','labeler','Aplicador de etiquetas','Montaje',{...located,stock:12,duration:1},[...locationFields,N('stock','Etiquetas iniciales',0,100,1,'etiquetas'),N('duration','Tiempo de aplicación',.02,20,.02,'s')],'actuator');
+add('ind_roller','roller','Rodillo de presión','Montaje',{...located,duration:2},[...locationFields,N('duration','Tiempo de prensado',.02,20,.02,'s')],'actuator');
+add('ind_reject','reject','Desviador de rechazo','Inspección y empaque',{...located,duration:1},[...locationFields,N('duration','Tiempo de desviación',.02,10,.02,'s')],'actuator');
+add('ind_group','group','Agrupador con empujador','Inspección y empaque',{...located,count:6,boxBelt:'CAJAS1',boxPosition:.8,duration:2},[...locationFields,N('count','Botellas por grupo',1,12,1,'botellas'),T('boxBelt','Banda donde espera la caja'),N('boxPosition','Posición de la caja',0,20,.01,'m'),N('duration','Tiempo de empuje',.02,20,.02,'s')],'actuator');
+add('ind_closer','closer','Cerradora de cajas','Inspección y empaque',{...located,duration:3},[...locationFields,N('duration','Tiempo de cierre',.02,20,.02,'s')],'actuator');
+add('ind_storage','storage','Almacén con transferidor','Almacenamiento',{...located,capacity:4,duration:2,requireClosed:true},[...locationFields,N('capacity','Plazas de almacén',1,100,1,'cajas'),N('duration','Tiempo de transferencia',.02,20,.02,'s'),B('requireClosed','Exigir caja cerrada')],'actuator');
+registerModule({id:'industrial',name:'Procesos industriales',components,createRuntime:e=>new IndustrialRuntime(e)});
+Object.assign(__exports,{components,renderKind,bottleIcon,caseIcon});
+
+},
+"src/ui/industrial.js":function(__exports,__require){
+const {def,escapeText:esc}=__require('src/core/registry.js');
+const {renderKind}=__require('src/modules/industrial.js');
+function installIndustrial({store,editor,practiceUI,loadExample,toast,openLadder}){
+ const dialog=document.createElement('dialog');dialog.id='industrial-dialog';dialog.innerHTML=`
+ <div class="dialog-head"><div><span class="eyebrow">EULAB MODULAR · PROCESOS INDUSTRIALES</span><h2 id="industrial-title">Vista de proceso</h2></div><button class="close-dialog" aria-label="Cerrar proceso">×</button></div>
+ <div class="industrial-scroll">
+ <p class="industrial-banner">La máquina responde al Ladder. Este panel muestra el modelo; no completa la secuencia por el alumno.</p>
+ <div class="industrial-actions"><button id="industrial-run" class="primary">▶ Simular</button><button id="industrial-step">Un scan · 20 ms</button><button id="industrial-reset">↺ Reiniciar</button><button id="industrial-ladder">Editar Ladder</button><button id="industrial-catalog">Componentes</button><button data-report-open="timeline">Cronograma / PDF</button></div>
+ <div id="industrial-controls" class="lesson-command-bar"></div>
+ <p id="industrial-state" role="status"></p><div id="industrial-plc"></div>
+ <div id="industrial-belts"></div><div id="industrial-parts"></div>
+ <details open class="industrial-details"><summary>Productos y resultados calculados</summary><div id="industrial-products"></div></details>
+ <details class="industrial-details"><summary>Averías y reposición manual de materiales</summary><p class="subtle">Estas pruebas no modifican tu Ladder. Un sensor en avería puede entregar una señal distinta de la presencia real. La reposición se permite en pausa.</p><div id="industrial-faults"></div><div id="industrial-refill" class="industrial-actions"></div></details>
+ <details class="industrial-details"><summary>Cómo construir y conectar los elementos</summary><ol><li>En Componentes, elige <b>Procesos industriales</b> e inserta una banda. Ponle una etiqueta única, por ejemplo BANDA1.</li><li>En las propiedades de botella, alimentador y sensores escribe la misma etiqueta de banda. La posición se mide en <b>metros desde el inicio de la banda</b>; mover el dibujo no cambia esa posición.</li><li>Alimenta el PLC con +24 V y 0 V. En modo cableado, conecta Y al terminal A1 del actuador y A2 al 0 V.</li><li>Para un sensor: +24 V → terminal 1; terminal 2 → entrada X. Es un contacto ideal de 2 hilos, no el cableado de un sensor comercial de 3 hilos.</li><li>También existe mando por bit Y del PLC alimentado o por el final de recorrido de un cilindro del circuito. Selecciona el modo en Propiedades.</li><li>La dosificadora toma líquido del tanque indicado por etiqueta. No cierra sola a 500 mL: debe cerrarla el programa.</li><li>El alimentador entrega una pieza por flanco de su orden. Una señal sostenida no genera un flujo infinito de piezas.</li><li>Los productos esperan al final de la banda. Para transferirlos, especifica la etiqueta de la siguiente banda o añade un almacén.</li></ol><p class="subtle">Transporte 1D sin inercia, caudales nominales, estados discretos de montaje y límite de 160 productos por ejecución. No modela presión de agua, rozamiento de botellas ni geometría de contactos 3D. Los cilindros neumáticos existentes conservan su modelo propio.</p></details>
+ <p id="industrial-warning" class="industrial-warning"></p>
+ <div class="industrial-actions"><button id="industrial-demo-load">Abrir ejemplo sencillo</button><button id="industrial-projects">Ver órdenes de trabajo</button><button data-action="save">Guardar proyecto</button></div>
+ </div>`;
+ document.body.append(dialog);const $=id=>dialog.querySelector('#'+id);let lastDoc=null,lastEngine=null,lastUI=0;
+ function present(){return !!store.engine.industry?.enabled;}
+ function build(){
+  lastDoc=store.doc;lastEngine=store.engine;$('industrial-title').textContent=store.doc.name;
+  $('industrial-controls').innerHTML=store.doc.nodes.filter(n=>def(n.type).behavior==='button').map(n=>`<button data-lesson-press="${esc(n.id)}" aria-pressed="false">${esc(n.label)}${n.params.toggle?' ↔':''}</button>`).join('');
+  const all=store.engine.industry?.nodes||[];
+  $('industrial-faults').innerHTML=all.filter(n=>def(n.type).electricalRole==='sensor').map(n=>`<label class="industrial-fault">${esc(n.label)}<select data-industrial-fault="${esc(n.id)}"><option value="normal">Normal</option><option value="off">Atascado en 0</option><option value="on">Atascado en 1</option></select></label>`).join('')||'<p class="subtle">No hay sensores industriales en este circuito.</p>';
+  $('industrial-refill').innerHTML=all.filter(n=>['tank','feeder','labeler','cap_supply','storage'].includes(def(n.type).industrial)).map(n=>`<button data-industrial-refill="${esc(n.id)}">${def(n.type).industrial==='storage'?'Vaciar':'Reponer'} ${esc(n.label)}</button>`).join('');
+ }
+ function draw(){
+  if(!dialog.open)return;if(lastDoc!==store.doc||lastEngine!==store.engine)build();const e=store.engine,rt=e.industry;
+  $('industrial-run').textContent=store.running?'Ⅱ Pausar':'▶ Simular';$('industrial-step').disabled=store.running;
+  for(const b of dialog.querySelectorAll('[data-lesson-press]')){b.disabled=!store.running;const hit=!!e.state[b.dataset.lessonPress]?.pressed;b.classList.toggle('pressed',hit);b.setAttribute('aria-pressed',String(hit));}
+  for(const b of dialog.querySelectorAll('[data-industrial-refill]'))b.disabled=store.running;
+  for(const a of dialog.querySelectorAll('[data-industrial-fault]')){if(document.activeElement!==a)a.value=e.state[a.dataset.industrialFault]?.faultOverride||store.doc.nodes.find(n=>n.id===a.dataset.industrialFault)?.params.faultMode||'normal';}
+  $('industrial-plc').innerHTML=['X','Y'].map(p=>`<div class="industrial-bits">${Array.from({length:8},(_,i)=>`<span class="bit ${e.plc.read(p+i)?'on':''}">${p}${i} ${e.plc.read(p+i)?'1':'0'}</span>`).join('')}</div>`).join('');
+  if(!rt?.enabled){$('industrial-state').textContent='No hay componentes industriales en este circuito. Puedes agregarlos o abrir el ejemplo sencillo.';$('industrial-belts').innerHTML='';$('industrial-parts').innerHTML='';$('industrial-products').innerHTML='';return;}
+  const info=rt.summary();$('industrial-state').textContent=`${store.running?'En ejecución':'En pausa'} · t=${e.time.toFixed(2)} s · ${info.onBelts} en banda · ${info.rejected} rechazados · ${info.packed} empacados · ${info.stored} almacenados · derrame: ${info.waste_l.toFixed(3)} L`;
+  $('industrial-belts').innerHTML=rt.belts.map(b=>`<section class="industrial-belt"><h3>${esc(b.label)}</h3><svg viewBox="-250 -94 500 167" xmlns="http://www.w3.org/2000/svg" style="stroke:#36566b;stroke-width:1.5;fill:none">${renderKind('conveyor',b.params,e.state[b.id])}</svg></section>`).join('');
+  $('industrial-parts').innerHTML=rt.nodes.filter(n=>!['conveyor','bottle','case'].includes(rt.kind(n))).map(n=>{const s=e.state[n.id],k=rt.kind(n),label=s.fault?'AVISO':def(n.type).electricalRole==='sensor'?(s.signalPresent?'SEÑAL 1':'SEÑAL 0'):s.commandActive?'ACTIVO':'REPOSO';return `<div class="industrial-part ${s.fault?'has-warning':''}"><b>${esc(n.label)}</b><span>${label}</span><small>${k==='tank'?s.liters.toFixed(3)+' L':k==='volume'?s.volume.toFixed(3)+' L':k==='group'?s.bufferCount+' botellas':k==='storage'?s.stored+' cajas':typeof n.params.stock==='number'?'Disponibles: '+s.stock:s.elapsed?s.elapsed.toFixed(2)+' s':''}</small></div>`;}).join('');
+  $('industrial-products').innerHTML=`<div class="industrial-table-scroll"><table><thead><tr><th>ID</th><th>Estado</th><th>Banda / posición</th><th>Contenido</th><th>Operaciones</th></tr></thead><tbody>${rt.items.slice(-40).map(it=>`<tr><td>${esc(it.id)}</td><td>${esc(it.status)}</td><td>${esc(it.belt)} · ${it.position.toFixed(2)} m</td><td>${it.kind==='bottle'?it.volume.toFixed(3)+' L':it.count+' / '+it.capacity+' botellas'}</td><td>${esc(it.kind==='bottle'?[it.washed?'Lavada':'',it.capped?'Tapada':it.capReady?'Tapa presentada':'',it.labeled?'Etiqueta':'',it.pressedLabel?'Prensada':'',it.defect?'Defecto':''].filter(Boolean).join(' · ')||'Sin operaciones':it.closed?'Cerrada':'Abierta')}</td></tr>`).join('')}</tbody></table></div>${rt.items.length>40?'<p class="subtle">Se muestran los últimos 40 productos.</p>':''}`;
+  const warns=[...e.warnings];$('industrial-warning').textContent=warns.slice(0,6).join(' · ');$('industrial-warning').hidden=!warns.length;
+ }
+ function open(){document.querySelector('.file-menu').open=false;if(!dialog.open)dialog.showModal();build();draw();}
+ function group(name){dialog.close();document.querySelector('#ladder-dialog').close();practiceUI.group=name;practiceUI.renderLibrary();document.querySelector('[data-action="examples"]').click();}
+ $('industrial-run').onclick=()=>{store.toggle();draw();};$('industrial-step').onclick=()=>{if(store.running)return;store.engine.step(.02);editor.render();draw();};$('industrial-reset').onclick=()=>{store.reset();editor.render();draw();};
+ $('industrial-ladder').onclick=()=>{dialog.close();openLadder();};$('industrial-catalog').onclick=()=>{dialog.close();document.querySelector('[data-panel="library"]').click();const sel=document.querySelector('#module-filter');sel.value='industrial';sel.dispatchEvent(new Event('change'));};
+ $('industrial-demo-load').onclick=()=>{if(store.doc.program.length&&!confirm('Se reemplazará el circuito actual. Guarda tu proyecto antes. ¿Abrir el ejemplo?'))return;dialog.close();loadExample('industrial-demo');open();};
+ $('industrial-projects').onclick=()=>group('Máquinas · proyectos');
+ dialog.addEventListener('change',ev=>{const id=ev.target.dataset.industrialFault;if(!id)return;eFault(id,ev.target.value);});
+ function eFault(id,value){const e=store.engine;if(e.state[id]){e.state[id].faultOverride=value;e.industry.sensors();e.electrical.step(0);e.trace.capture();draw();}}
+ dialog.addEventListener('click',ev=>{const b=ev.target.closest('[data-industrial-refill]');if(b&&!store.running){store.engine.industry.replenish(b.dataset.industrialRefill);draw();}});
+ document.addEventListener('click',ev=>{if(ev.target.closest('[data-industrial-open]'))open();});
+ const fileMenu=document.querySelector('.file-menu .menu');for(const [text,fn] of [['Vista de proceso',open],['Componentes y ejemplo industrial',()=>group('Procesos industriales')]]){const b=document.createElement('button');b.textContent=text;b.onclick=fn;fileMenu.append(b);}
+ const nav=document.querySelector('.mobile-nav'),b=document.createElement('button');b.innerHTML='▥<span>Proceso</span>';b.onclick=open;nav.append(b);
+ const bar=document.querySelector('.sheet-buttons'),pb=document.createElement('button');pb.type='button';pb.textContent='Ver proceso';pb.dataset.industrialOpen='';bar.append(pb);
+ store.on(kind=>{if(dialog.open)draw();});setInterval(draw,160);
+ return {open,draw,dialog};
+}
+Object.assign(__exports,{installIndustrial});
+
+}
+};const __cache={};function __require(id){if(__cache[id])return __cache[id];const out={};__cache[id]=out;__modules[id](out,__require);return out;}__require('src/app.js');})();
 </script><style id="eulab-bank-031-style">
 /* EULAB Modular 0.3.2 — Banco PLC virtual 8×8 */
 #bank31-dialog{width:min(970px,calc(100vw - 16px));max-width:calc(100vw - 16px);height:min(900px,calc(100dvh - 16px));max-height:calc(100dvh - 16px);padding:0;overflow:hidden}
